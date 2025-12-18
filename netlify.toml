@@ -1,0 +1,7 @@
+# [build]
+#   command = "bash build.sh"
+#   publish = "build/html"
+#
+# [build.environment]
+#   CARGO_HOME = "/opt/build/repo/.cargo"
+#   RUSTUP_HOME = "/opt/build/repo/.rustup"

@@ -1,0 +1,9 @@
+content_dir = "pages"
+
+[pdf.merge]
+title = "Rheo Menual"
+spine = ["*.typ"]
+
+[epub.merge]
+title = "Rheo Manual"
+spine = ["*.typ"]
