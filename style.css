@@ -22,14 +22,20 @@ body {
   line-height: 1.6;
   padding: 0;
   margin: 0;
+  margin-bottom: 3em;
 }
 
 .content {
-  margin: 2rem 2rem 25vh 2rem;
+  margin: 2rem 2rem 0 2rem;
   margin-left: var(--sidebar-width);
   margin-top: var(--topbar-height);
   min-height: calc(100vh - var(--topbar-height));
   transition: margin-left 0.3s ease;
+}
+
+[role="doc-endnotes"] {
+  margin-left: var(--sidebar-width);
+  padding: 0 3rem;
 }
 
 h3 {
@@ -251,9 +257,10 @@ nav.sidebar {
     left: 0;
   }
 
-  .sidebar-closed ~ .content {
+  .sidebar-closed ~ .content, .sidebar-closed ~ [role="doc-endnotes"] {
     margin-left: 0;
   }
+
 }
 
 /* Tablet and up */
@@ -336,7 +343,7 @@ nav.sidebar {
 
   .content {
     margin-left: 0;
-    padding: 2rem 1rem 25vh 1rem;
+    padding: 2rem 1rem 0 1rem;
   }
 
   nav.sidebar {
