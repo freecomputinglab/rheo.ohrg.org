@@ -10,12 +10,12 @@ Once you have, you can simply:
 cargo install rheo
 ```
 
-If you want to install rheo another way, refer to the documentation in the #link(rheo-source-url)[source code]. 
+Refer to rheo's #link(rheo-source-url)[source code] for more information and installation options. 
 
 // TODO: If you want to create a new Github repository that automatically runs rheo on the main branch to produce a Github Pages site, clone this repo.  
 
-== Hello world
-The #link(rheo-docs-url)[source code for this documentation] is a collection of typst files.
+== Firing up rheo 
+The #link(rheo-docs-url)[source code for rheo's documentation] is a collection of typst files.
 Rheo allows us to produce a static site, a pdf document, and an epub, all from that same set of typst. 
 
 // TODO: walk through adding typst files one by one, more descriptive
@@ -23,8 +23,8 @@ Let's clone the source code to understand what we can do with rheo:
 
 #raw(lang: "bash", "git clone " + rheo-docs-source-url)
 
-Take a look at the structure of the source code.
-Besides some configuration files at the top level, it's almost entirely just typst files! 
+Take a quick look at the structure of the source code.
+Besides some configuration files at the top level, it's almost entirely just typst files.
 Rheo doesn't require that you add any special syntax or metadata to your files to work: it keeps out of your way as much as possible.
 
 Now that we have some typst on our system, we can see rheo at work:
@@ -33,7 +33,7 @@ Now that we have some typst on our system, we can see rheo at work:
 rheo compile rheo.ohrg.org
 ```
 
-This command produces a `build` folder that contains a pdf, an epub, and a static site.
+This command produces a `build` subdirectory inside the `rheo.ohrg.org` directory which contains a pdf, an epub, and a static site.
 It's a little tiring to have to run the compile command every time we make a change, though. 
 Let's spin up a development server to see live changes across all output formats as we edit the source typst:
 

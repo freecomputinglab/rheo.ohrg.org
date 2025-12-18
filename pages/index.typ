@@ -14,9 +14,10 @@
   // NOTE: in the future, this data structure can be provided by rheo
   let title = "Rheo"
   let pages = (
-    (id: "index", title: "Home", file: "./"),
+    // (id: "index", title: "Home", file: "./"),
     (id: "what-and-why-is-rheo", title: "What and why is rheo?", file: "./what-and-why-is-rheo.typ"),
     (id: "getting-started", title: "Getting started", file: "./getting-started.typ"),
+    (id: "relative-linking", title: "Relative linking", file: "./relative-linking.typ"),
     (id: "configuration", title: "Configuration", file: "./configuration.typ"),
     (id: "build-dir", title: "Build directory", file: "./build-dir.typ"),
     (id: "content-dir", title: "Content directory", file: "./content-dir.typ"),
@@ -32,14 +33,14 @@
   ]
 
   nav("sidebar")[
-  // banner
+    // banner
     #div("banner")[
       #a("./")[
         #image("img/rheo-header.png")
       ]
     ]
 
-  // sidebar
+    // sidebar
     #ul("sidebar-nav")[
       #for page in pages {
         let class = if page.id == current-page {"active"} else {""}

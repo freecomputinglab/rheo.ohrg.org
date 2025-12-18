@@ -31,7 +31,7 @@ This makes it an extremely good replacement for Markdown as a markup language in
 Rheo is a CLI (command line interface) that produces pdf, html, and epub simultaneously from a folder of typst source documents.
 It is a static site engine because it can produce a fully valid website, and all it needs is a folder containing some typst.
 Rheo also provides mechanisms to combine multiple typst files into a unified epub or pdf, making it feasible to write books or dissertations in typst, or to produce an offline version of a website such as a blog.
-If you're already convinced, #link("./")[head on over to the homepage] to install it and get your own sites running from typst. 
+If you're already convinced, move straight on to #link("./getting-started.typ")[Getting Started]. 
 (Naturally, this site was made with rheo, and this blog post was written with typst.)
 
 == The philosophy of rheo
@@ -54,7 +54,7 @@ That there exist digital humanities initiatives measured in months and years to 
 
 Rheo aims to enable the easy publication of more books, blog posts, and papers without the necessary capitalist ceremony of creating an account on Substack, Medium, or Squarespace.
 A website without any interactive elements (forms, online marketplaces, comments) should be simple to set up, as it isn't rocket science in 2025 thanks to all the hard work that folks have put into Internet protocols and web standards.
-It should be much easier than it is to create a PDF or EPUB for sharing with colleagues or collaborators--- and the process of collaboratively commenting on and co-constructing shared documents is something we at #link("./")[the free computing lab] hope to work on more in the future.
+It should be much easier than it is to create a PDF or EPUB for sharing with colleagues or collaborators--- and the process of collaboratively commenting on and co-constructing shared documents is something we at #link("https://free-computing-lab.ohrg.org")[the free computing lab] hope to work on more in the future.
 
 #bibliography("./img/refs.bib", style: "chicago-author-date")
 
