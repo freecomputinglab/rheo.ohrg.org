@@ -2,8 +2,27 @@ const toggle = document.querySelector('.sidebar-toggle');
 const sidebar = document.querySelector('.sidebar');
 const topbar = document.querySelector('.topbar');
 
+// Create backdrop element
+const backdrop = document.createElement('div');
+backdrop.className = 'sidebar-backdrop';
+document.body.appendChild(backdrop);
+
 function isMobile() {
   return window.innerWidth <= 768;
+}
+
+function closeSidebar() {
+  sidebar.classList.add('hidden');
+  topbar.classList.remove('sidebar-open');
+  backdrop.classList.remove('visible');
+}
+
+function openSidebar() {
+  sidebar.classList.remove('hidden');
+  topbar.classList.add('sidebar-open');
+  if (isMobile()) {
+    backdrop.classList.add('visible');
+  }
 }
 
 function initSidebar() {
@@ -11,10 +30,12 @@ function initSidebar() {
     sidebar.classList.add('hidden');
     topbar.classList.remove('sidebar-open');
     topbar.classList.remove('sidebar-closed');
+    backdrop.classList.remove('visible');
   } else {
     sidebar.classList.remove('hidden');
     topbar.classList.remove('sidebar-open');
     topbar.classList.remove('sidebar-closed');
+    backdrop.classList.remove('visible');
   }
 }
 
@@ -22,11 +43,10 @@ toggle.addEventListener('click', () => {
   const isHidden = sidebar.classList.contains('hidden');
 
   if (isMobile()) {
-    sidebar.classList.toggle('hidden');
     if (isHidden) {
-      topbar.classList.add('sidebar-open');
+      openSidebar();
     } else {
-      topbar.classList.remove('sidebar-open');
+      closeSidebar();
     }
   } else {
     sidebar.classList.toggle('hidden');
@@ -35,6 +55,13 @@ toggle.addEventListener('click', () => {
     } else {
       topbar.classList.add('sidebar-closed');
     }
+  }
+});
+
+// Close sidebar when clicking backdrop (mobile only)
+backdrop.addEventListener('click', () => {
+  if (isMobile()) {
+    closeSidebar();
   }
 });
 

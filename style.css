@@ -83,6 +83,27 @@ section[role="doc-endnotes"] ol li a[role="doc-backlink"] {
 }
 
 /* ============================================
+   Sidebar Backdrop
+   ============================================ */
+.sidebar-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 100;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.sidebar-backdrop.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* ============================================
    Topbar
    ============================================ */
 .topbar {
@@ -272,23 +293,35 @@ nav.sidebar {
     z-index: 100;
   }
 
+  /* When sidebar is open, topbar needs to be above it for the button to be visible */
+  .topbar.sidebar-open {
+    z-index: 102;
+    background-color: transparent;
+    border-bottom: none;
+  }
+
+  /* Hide topbar title when sidebar is open on mobile */
+  .topbar.sidebar-open .topbar-title {
+    opacity: 0;
+  }
+
   .sidebar-toggle {
     display: block;
     position: fixed;
     top: 11px;
     left: 15px;
-    z-index: 102;
+    z-index: 1;
   }
 
   /* Hamburger stays in top left when sidebar opens */
   .topbar.sidebar-open .sidebar-toggle {
+    position: fixed;
     left: 15px;
   }
 
   /* Cross animation - hide middle line, rotate top/bottom */
   .sidebar-open .hamburger {
     background-color: transparent;
-    z-index: 100;
   }
 
   .sidebar-open .hamburger::before {
