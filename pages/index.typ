@@ -54,8 +54,12 @@
     #doc
   ]
 
-  
-  // html.script("const toggle = document.querySelector('.sidebar-toggle');\nconst sidebar = document.querySelector('.sidebar');\nconst topbar = document.querySelector('.topbar');\n\nfunction initSidebar() {\n  if (window.innerWidth <= 768) {\n    sidebar.classList.add('hidden');\n  } else {\n    sidebar.classList.remove('hidden');\n  }\n}\n\ninitSidebar();\nwindow.addEventListener('resize', initSidebar);\n\ntoggle.addEventListener('click', () =&gt; {\n  sidebar.classList.toggle('hidden');\n  topbar.classList.toggle('sidebar-open');\n});");
+
+  // Sidebar toggle script
+  // Source: sidebar-toggle-source.js (human-readable)
+  // Encoded: sidebar-toggle.js (base64-encoded to avoid HTML entity escaping)
+  // To update: edit sidebar-toggle-source.js, then run: bash encode-js.sh
+  html.elem("script")[#read("sidebar-toggle.js")];
 }
 
 #show: typbook.with(current-page: "index")

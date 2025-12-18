@@ -29,6 +29,7 @@ body {
   margin-left: var(--sidebar-width);
   margin-top: var(--topbar-height);
   min-height: calc(100vh - var(--topbar-height));
+  transition: margin-left 0.3s ease;
 }
 
 h3 {
@@ -87,7 +88,7 @@ section[role="doc-endnotes"] ol li a[role="doc-backlink"] {
 .topbar {
   position: fixed;
   top: 0;
-  left: var(--sidebar-width);
+  left: calc(var(--sidebar-width) + 40px);
   right: 0;
   height: var(--topbar-height);
   background-color: var(--sidebar-bg);
@@ -95,8 +96,8 @@ section[role="doc-endnotes"] ol li a[role="doc-backlink"] {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0 15px;
   z-index: 98;
+  transition: left 0.3s ease;
 }
 
 .sidebar-toggle {
@@ -116,6 +117,7 @@ section[role="doc-endnotes"] ol li a[role="doc-backlink"] {
   height: 2px;
   background-color: var(--text-color);
   position: relative;
+  transition: background-color 0.3s ease;
 }
 
 .hamburger::before,
@@ -126,6 +128,7 @@ section[role="doc-endnotes"] ol li a[role="doc-backlink"] {
   height: 2px;
   background-color: var(--text-color);
   left: 0;
+  transition: transform 0.3s ease, top 0.3s ease;
 }
 
 .hamburger::before {
@@ -212,6 +215,26 @@ nav.sidebar {
    Responsive Design
    ============================================ */
 
+/* Desktop: Show hamburger and enable sidebar toggle */
+@media (min-width: 769px) {
+  .sidebar-toggle {
+    display: block;
+  }
+
+  nav.sidebar.hidden {
+    transform: translateX(-100%);
+  }
+
+  /* When sidebar is closed, move topbar and content to left edge */
+  .topbar.sidebar-closed {
+    left: 0;
+  }
+
+  .sidebar-closed ~ .content {
+    margin-left: 0;
+  }
+}
+
 /* Tablet and up */
 @media (min-width: 768px) {
   .content {
@@ -251,11 +274,31 @@ nav.sidebar {
 
   .sidebar-toggle {
     display: block;
+    position: fixed;
+    top: 11px;
+    left: 15px;
+    z-index: 102;
+  }
+
+  /* Hamburger stays in top left when sidebar opens */
+  .topbar.sidebar-open .sidebar-toggle {
     left: 15px;
   }
 
-  .topbar.sidebar-open .sidebar-toggle {
-    left: calc(var(--sidebar-width) + 15px);
+  /* Cross animation - hide middle line, rotate top/bottom */
+  .sidebar-open .hamburger {
+    background-color: transparent;
+    z-index: 100;
+  }
+
+  .sidebar-open .hamburger::before {
+    top: 0;
+    transform: rotate(45deg);
+  }
+
+  .sidebar-open .hamburger::after {
+    top: 0;
+    transform: rotate(-45deg);
   }
 
   .content {
