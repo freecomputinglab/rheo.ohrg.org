@@ -1,4 +1,9 @@
 /* ============================================
+   Google Fonts Import
+   ============================================ */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+/* ============================================
    CSS Variables
    ============================================ */
 :root {
@@ -17,12 +22,13 @@
    ============================================ */
 body {
   background-color: var(--background-color);
-  font-family: 'Inter', 'Times New Roman', serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   font-size: 16px;
   line-height: 1.6;
   padding: 0;
   margin: 0;
   margin-bottom: 3em;
+  overflow-x: hidden;
 }
 
 .content {
@@ -86,6 +92,36 @@ blockquote::before {
 
 section[role="doc-endnotes"] ol li a[role="doc-backlink"] {
   padding-right: 0.2em;
+}
+
+/* ============================================
+   Code Blocks
+   ============================================ */
+pre {
+  max-width: 100%;
+  overflow-x: auto;
+  margin: 1em 0;
+}
+
+code {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+pre code {
+  display: block;
+  white-space: pre;
+}
+
+@media (max-width: 768px) {
+  pre {
+    overflow-x: visible;
+  }
+
+  pre code {
+    white-space: pre-wrap;
+    word-break: break-all;
+  }
 }
 
 /* ============================================

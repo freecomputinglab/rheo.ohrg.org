@@ -3,7 +3,7 @@
 
 = What and why is rheo?
 
-Rheo (_ray-oh_) is a source static site engine for typst documents with source code that is openly #link("https://github.com/breezykermo/rheo")[available on GitHub].
+Rheo (_ree-oh_) is a source static site engine for typst documents with source code that is openly #link("https://github.com/breezykermo/rheo")[available on GitHub].
 Most static site engines these days employ Markdown, a markup format that is approachable and pretty generic, allowing folks who are not familiar with or otherwise don't want to deal directly with the required file formats of the web--- HTML, CSS, and Javascript--- to write blog posts and other content which can then be pumped into a static site.
 ('Static' here just means that the website produced doesn't require communication with a backend server to fill it out with content: the website is a self-sufficient set of files.)
 
