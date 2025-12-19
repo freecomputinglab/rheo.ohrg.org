@@ -1,5 +1,5 @@
-#import "index.typ": typbook 
-#show: typbook.with(current-page: "relative-linking")
+#import "index.typ": rheobook 
+#show: rheobook.with(current-page: "relative-linking")
 
 Rheo's design philosophy is to allow you to write pure #link("https://typst.app/docs/")[typst] as much as possible, without requiring any additional syntax or metadata. 
 Because rheo wants to make it easy to create a website or to split a large writing project up into multiple files, however, we need a way to reference other files in the same rheo project.

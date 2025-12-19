@@ -1,5 +1,5 @@
-#import "index.typ": typbook 
-#show: typbook.with(current-page: "what-and-why-is-rheo")
+#import "index.typ": rheobook 
+#show: rheobook.with(current-page: "what-and-why-is-rheo")
 
 = What and why is rheo?
 

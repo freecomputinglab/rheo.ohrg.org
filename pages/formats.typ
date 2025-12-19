@@ -1,5 +1,5 @@
-#import "index.typ": typbook 
-#show: typbook.with(current-page: "formats")
+#import "index.typ": rheobook 
+#show: rheobook.with(current-page: "formats")
 
 = Formats
 

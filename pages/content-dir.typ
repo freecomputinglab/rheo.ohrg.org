@@ -1,5 +1,5 @@
-#import "index.typ": typbook 
-#show: typbook.with(current-page: "content-dir")
+#import "index.typ": rheobook 
+#show: rheobook.with(current-page: "content-dir")
 
 
 = Content directory 

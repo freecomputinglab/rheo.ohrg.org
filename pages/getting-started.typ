@@ -1,5 +1,5 @@
-#import "index.typ": typbook, rheo-source-url, rheo-docs-url, rheo-docs-source-url
-#show: typbook.with(current-page: "getting-started")
+#import "index.typ": rheobook, rheo-source-url, rheo-docs-url, rheo-docs-source-url
+#show: rheobook.with(current-page: "getting-started")
 
 == Installation 
 The easiest way to install rheo is from #link("https://crates.io/")[crates.io], the Rust language's package manager.
@@ -10,6 +10,7 @@ Once you have, you can simply:
 cargo install rheo
 ```
 
+Rheo is packaged as a standalone binary, and doesn't require any version of typst on your system.
 Refer to rheo's #link(rheo-source-url)[source code] for more information and installation options. 
 
 // TODO: If you want to create a new Github repository that automatically runs rheo on the main branch to produce a Github Pages site, clone this repo.  

@@ -10,8 +10,8 @@
 #let rheo-docs-source-url = "https://github.com/breezykermo/rheo.ohrg.org"
 #let rheo-docs-url = "https://rheo.ohrg.org"
 
-#let typbook(current-page: none, doc) = {
-  // NOTE: in the future, this data structure can be provided by rheo
+// NOTE: in the future, this can perhaps be provided by rheo
+#let rheobook(current-page: none, doc) = {
   let title = "Rheo"
   let pages = (
     // (id: "index", title: "Home", file: "./"),
@@ -23,6 +23,7 @@
     (id: "content-dir", title: "Content directory", file: "./content-dir.typ"),
     (id: "formats", title: "Formats", file: "./formats.typ"),
     (id: "spines", title: "Spines", file: "./spines.typ"),
+    (id: "custom-css", title: "Custom CSS", file: "./custom-css.typ"),
   )
 
   div("topbar")[
@@ -55,7 +56,6 @@
     #doc
   ]
 
-
   // Sidebar toggle script
   // Source: sidebar-toggle-source.js (human-readable)
   // Encoded: sidebar-toggle.js (base64-encoded to avoid HTML entity escaping)
@@ -63,7 +63,7 @@
   html.elem("script")[#read("sidebar-toggle.js")];
 }
 
-#show: typbook.with(current-page: "index")
+#show: rheobook.with(current-page: "index")
 
 Rheo (_ray-oh_) is a static site and epub engine based on #link("https://typst.app/")[typst].
 It allows you to write books, blogs, documentation, and papers by producing three concurrent outputs from the same typst source files.
