@@ -44,6 +44,11 @@ fi
 echo "Compiling with rheo..."
 "$RHEO_BIN" compile .
 
+# Copy PDF and EPUB to html folder
+echo "Copying PDF and EPUB files..."
+cp build/pdf/*.pdf build/html/rheo-docs.pdf
+cp build/epub/*.epub build/html/rheo-docs.epub
+
 # Verify output
 if [ ! -f "build/html/index.html" ]; then
   echo "Error: build/html/index.html not found"

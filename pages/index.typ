@@ -76,8 +76,8 @@ It allows you to write books, blogs, documentation, and papers by producing thre
 The three outputs you can get from rheo are: 
 
 + A static site such as #link("https://rheo.ohrg.org")[rheo.ohrg.org].
-+ A pdf or set of pdfs. 
-+ An epub. // TODO: link examples
++ A #link("https://rheo.ohrg.org/rheo-docs.pdf")[pdf]. 
++ An #link("https://rheo.ohrg.org/rheo-docs.epub")[epub]. 
 
 == Quickstart
 
