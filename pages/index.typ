@@ -26,46 +26,52 @@
     (id: "custom-css", title: "Custom CSS", file: "./custom-css.typ"),
   )
 
-  div("topbar")[
-    #button("sidebar-toggle", "Toggle sidebar")[
-      #span("hamburger")
+  context if target() == "html" {
+    div("topbar")[
+      #button("sidebar-toggle", "Toggle sidebar")[
+        #span("hamburger")
+      ]
+      #div("topbar-title")[#title]
     ]
-    #div("topbar-title")[#title]
-  ]
 
-  nav("sidebar")[
-    // banner
-    #div("banner")[
-      #a("./")[
-        #image("img/rheo-header.png")
+    nav("sidebar")[
+      // banner
+      #div("banner")[
+        #a("./")[
+          #image("img/rheo-header.png")
+        ]
+      ]
+
+      // sidebar
+      #ul("sidebar-nav")[
+        #for page in pages {
+          let class = if page.id == current-page {"active"} else {""}
+          li(class)[
+            #a(page.file)[#page.title]
+          ]
+        }
       ]
     ]
 
-    // sidebar
-    #ul("sidebar-nav")[
-      #for page in pages {
-        let class = if page.id == current-page {"active"} else {""}
-        li(class)[
-          #a(page.file)[#page.title]
-        ]
-      }
+    div("content")[
+      #doc
     ]
-  ]
 
-  div("content")[
-    #doc
-  ]
+    // Sidebar toggle script
+    // Source: sidebar-toggle-source.js (human-readable)
+    // Encoded: sidebar-toggle.js (base64-encoded to avoid HTML entity escaping)
+    // To update: edit sidebar-toggle-source.js, then run: bash encode-js.sh
+    html.elem("script")[#read("sidebar-toggle.js")];
 
-  // Sidebar toggle script
-  // Source: sidebar-toggle-source.js (human-readable)
-  // Encoded: sidebar-toggle.js (base64-encoded to avoid HTML entity escaping)
-  // To update: edit sidebar-toggle-source.js, then run: bash encode-js.sh
-  html.elem("script")[#read("sidebar-toggle.js")];
+  } else { 
+    doc 
+  }
+
 }
 
 #show: rheobook.with(current-page: "index")
 
-Rheo (_ray-oh_) is a static site and epub engine based on #link("https://typst.app/")[typst].
+Rheo (_ree-oh_) is a static site and epub engine based on #link("https://typst.app/")[typst].
 It allows you to write books, blogs, documentation, and papers by producing three concurrent outputs from the same typst source files.
 The three outputs you can get from rheo are: 
 

@@ -56,6 +56,10 @@ Rheo aims to enable the easy publication of more books, blog posts, and papers w
 A website without any interactive elements (forms, online marketplaces, comments) should be simple to set up, as it isn't rocket science in 2025 thanks to all the hard work that folks have put into Internet protocols and web standards.
 It should be much easier than it is to create a PDF or EPUB for sharing with colleagues or collaborators--- and the process of collaboratively commenting on and co-constructing shared documents is something we at #link("https://free-computing-lab.ohrg.org")[the free computing lab] hope to work on more in the future.
 
-#bibliography("./img/refs.bib", style: "chicago-author-date")
+#context if target() == "html" {
+[== Bibliography
+#bibliography("./img/refs.bib", title: none, style: "chicago-author-date")
 
-= Footnotes
+== Footnotes]
+}
+

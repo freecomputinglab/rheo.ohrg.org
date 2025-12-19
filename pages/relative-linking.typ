@@ -7,7 +7,7 @@ Because rheo wants to make it easy to create a website or to split a large writi
 The syntax for relative links in rheo should be familiar, as it is just a regular typst link with a `.typ` file in the same directory as its target:
 
 ```typ
-#link("./another-section.typ")[Another section]
+#link\("./another-section.typ")[Another section]
 ```
 
 When you compile a project with rheo, relative links to other typst files in the same directory will be resolved and transformed in the output format.

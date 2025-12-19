@@ -2,8 +2,34 @@ content_dir = "pages"
 
 [pdf.merge]
 title = "Rheo Menual"
-spine = ["*.typ"]
+spine = [
+  "frontmatter.typ",
+  "index.typ",
+  "what-and-why-is-rheo.typ",
+  "getting-started.typ",
+  "relative-linking.typ",
+  "configuration.typ",
+  "build-dir.typ",
+  "content-dir.typ",
+  "formats.typ",
+  "spines.typ",
+  "custom-css.typ",
+  "endmatter.typ",
+]
 
 [epub.merge]
 title = "Rheo Manual"
-spine = ["*.typ"]
+spine = [
+  "frontmatter.typ",
+  "index.typ",
+  "what-and-why-is-rheo.typ",
+  "getting-started.typ",
+  "relative-linking.typ",
+  "configuration.typ",
+  "build-dir.typ",
+  "content-dir.typ",
+  "formats.typ",
+  "spines.typ",
+  "custom-css.typ",
+  "endmatter.typ",
+]
