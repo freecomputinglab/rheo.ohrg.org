@@ -1,4 +1,5 @@
 #context if target() != "html" {
+  set text(font: "Inter")
   set page(
     margin: (top: 0pt, bottom: 2cm, left: 0pt, right: 0pt),
   )
@@ -9,7 +10,7 @@
 
   pad(left: 3cm, right: 3cm)[
     #v(1em)
-    #outline(title: none) 
+    #outline(title: none)
   ]
 
   pagebreak()

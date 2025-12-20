@@ -40,6 +40,24 @@ else
   echo "Using cached rheo binary from previous build"
 fi
 
+# Download Inter font for typst (for PDF/EPUB generation)
+FONTS_DIR="$REPO_DIR/fonts"
+if [ ! -d "$FONTS_DIR" ] || [ ! -f "$FONTS_DIR/Inter.ttc" ]; then
+  echo "Downloading Inter font..."
+  mkdir -p "$FONTS_DIR"
+  cd "$FONTS_DIR"
+  curl -L https://github.com/rsms/inter/releases/download/v4.1/Inter-4.1.zip -o Inter.zip
+  unzip -q Inter.zip
+  rm Inter.zip
+  cd "$REPO_DIR"
+  echo "Inter font downloaded"
+else
+  echo "Inter font already available"
+fi
+
+# Set font path for typst (for PDF/EPUB generation)
+export TYPST_FONT_PATHS="$FONTS_DIR"
+
 # Compile with rheo
 echo "Compiling with rheo..."
 "$RHEO_BIN" compile .
