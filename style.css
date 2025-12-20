@@ -390,4 +390,8 @@ nav.sidebar {
   nav.sidebar:not(.hidden) {
     transform: translateX(0);
   }
+
+  [role="doc-endnotes"] {
+    margin-left: 0;
+  }
 }
