@@ -5,8 +5,14 @@
   )
 
   align(center)[
-    #image("img/rheo-header.png", width: 100%)
+    #box(
+      width: 100%,
+      height: 25%,
+      clip: true,
+      image("img/rheo-header.png", width: 100%, height: 100%, fit: "cover")
+    )
   ]
+
 
   pad(left: 3cm, right: 3cm)[
     #v(1em)

@@ -15,6 +15,7 @@ if ! command -v rustc &> /dev/null; then
   rustup default stable
 else
   echo "Rust toolchain already available"
+  rustup default stable
 fi
 
 # Build or use cached rheo binary
