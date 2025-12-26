@@ -1,8 +1,8 @@
 content_dir = "pages"
 
-[pdf.merge]
+[pdf.spine]
 title = "Rheo Menual"
-spine = [
+vertebrae = [
   "frontmatter.typ",
   "index.typ",
   "what-and-why-is-rheo.typ",
@@ -16,10 +16,11 @@ spine = [
   "custom-css.typ",
   "endmatter.typ",
 ]
+merge = true
 
-[epub.merge]
+[epub.spine]
 title = "Rheo Manual"
-spine = [
+vertebrae = [
   "frontmatter.typ",
   "index.typ",
   "what-and-why-is-rheo.typ",

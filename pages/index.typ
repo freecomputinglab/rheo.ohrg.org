@@ -77,11 +77,17 @@
 
 #show: rheobook.with(current-page: "index")
 
-Rheo (_ree-oh_) is a static site and epub engine based on #link("https://typst.app/")[typst].
-It allows you to write books, blogs, documentation, and papers by producing three concurrent outputs from the same typst source files.
-The three outputs you can get from rheo are: 
+Rheo (_ree-oh_) is an EPUB and static site engine based on #link("https://typst.app/")[typst].
+If 'static site engine' is all Greek to you---don't worry!
+We can also explain rheo through what it allows you to do.
 
-+ A static site such as #link("https://rheo.ohrg.org")[rheo.ohrg.org].
+Rheo allows you to produce a website, a PDF, and an EPUB from a single set of typst files.
+It's sort of like #link("https://www.latex-project.org/")[LaTeX]---except that typst is _much_ simpler to write, and we get both a website (a 'static site') and an EPUB 'for free' in addition to the PDF. 
+
+This documentation that you are reading now, for example, was produced with rheo.
+As a result, you can read it as:
+
++ A #link("https://rheo.ohrg.org")[website].
 + A #link("https://rheo.ohrg.org/rheo-docs.pdf")[pdf]. 
 + An #link("https://rheo.ohrg.org/rheo-docs.epub")[epub]. 
 
