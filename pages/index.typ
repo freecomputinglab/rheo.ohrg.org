@@ -12,18 +12,24 @@
 
 // NOTE: in the future, this can perhaps be provided by rheo
 #let rheobook(current-page: none, doc) = {
+
   let title = "Rheo"
+
+  // NOTE: this links cannot be specified as ".typ" currently, as rheo only transforms links that 
+  // are registered in Typst's AST. As these links are directly rendered into HTML using `html.elem`, 
+  // rheo will just reproduce the URLs as specified.
   let pages = (
+ 
     // (id: "index", title: "Home", file: "./"),
-    (id: "what-and-why-is-rheo", title: "What and why is rheo?", file: "./what-and-why-is-rheo.typ"),
-    (id: "getting-started", title: "Getting started", file: "./getting-started.typ"),
-    (id: "relative-linking", title: "Relative linking", file: "./relative-linking.typ"),
-    (id: "configuration", title: "Configuration", file: "./configuration.typ"),
-    (id: "build-dir", title: "Build directory", file: "./build-dir.typ"),
-    (id: "content-dir", title: "Content directory", file: "./content-dir.typ"),
-    (id: "formats", title: "Formats", file: "./formats.typ"),
-    (id: "spines", title: "Spines", file: "./spines.typ"),
-    (id: "custom-css", title: "Custom CSS", file: "./custom-css.typ"),
+    (id: "what-and-why-is-rheo", title: "What and why is rheo?", file: "./what-and-why-is-rheo.html"),
+    (id: "getting-started", title: "Getting started", file: "./getting-started.html"),
+    (id: "relative-linking", title: "Relative linking", file: "./relative-linking.html"),
+    (id: "configuration", title: "Configuration", file: "./configuration.html"),
+    (id: "build-dir", title: "Build directory", file: "./build-dir.html"),
+    (id: "content-dir", title: "Content directory", file: "./content-dir.html"),
+    (id: "formats", title: "Formats", file: "./formats.html"),
+    (id: "spines", title: "Spines", file: "./spines.html"),
+    (id: "custom-css", title: "Custom CSS", file: "./custom-css.html"),
   )
 
   context if target() == "html" {
