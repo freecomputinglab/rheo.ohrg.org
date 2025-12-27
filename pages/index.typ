@@ -6,13 +6,12 @@
 #let nav(_class, ..body) = html.elem("nav", attrs: (class: _class), ..body)
 #let span(_class, ..body) = html.elem("span", attrs: (class: _class), ..body)
 
-#let rheo-source-url = "https://github.com/breezykermo/rheo"
-#let rheo-docs-source-url = "https://github.com/breezykermo/rheo.ohrg.org"
+#let rheo-source-url = "https://github.com/freecomputinglab/rheo"
+#let rheo-docs-source-url = "https://github.com/freecomputinglab/rheo.ohrg.org"
 #let rheo-docs-url = "https://rheo.ohrg.org"
 
 // NOTE: in the future, this can perhaps be provided by rheo
 #let rheobook(current-page: none, doc) = {
-
   let title = "Rheo"
 
   // NOTE: this links cannot be specified as ".typ" currently, as rheo only transforms links that 
@@ -72,30 +71,33 @@
   } else { 
     doc 
   }
-
 }
 
 #show: rheobook.with(current-page: "index")
 
-Rheo (_ree-oh_) is an EPUB and static site engine based on #link("https://typst.app/")[typst].
+#div("quickstart")[
+  ```bash cargo install rheo```
+]
+
+Rheo (_ree-oh_) is a typesetting and static site engine based on #link("https://typst.app/")[typst].
 If 'static site engine' is all Greek to you---don't worry!
 We can also explain rheo through what it allows you to do.
 
-Rheo allows you to produce a website, a PDF, and an EPUB from a single set of typst files.
-It's sort of like #link("https://www.latex-project.org/")[LaTeX]---except that typst is _much_ simpler to write, and we get both a website (a 'static site') and an EPUB 'for free' in addition to the PDF. 
-
-This documentation that you are reading now, for example, was produced with rheo.
+Rheo allows you to produce a website, a fixed-size document, and an adaptive document from a single set of source typst files.
+It's sort of like #link("https://www.latex-project.org/")[LaTeX]---except that typst is _much_ simpler to write, and we can compile it to a greater number of formats. 
+The documentation that you are reading now, for example, was typeset with rheo.
 As a result, you can read it as:
 
-+ A #link("https://rheo.ohrg.org")[website].
-+ A #link("https://rheo.ohrg.org/rheo-docs.pdf")[pdf]. 
-+ An #link("https://rheo.ohrg.org/rheo-docs.epub")[epub]. 
+- #link("https://rheo.ohrg.org")[HTML] - A website for browsers.
+- #link("https://rheo.ohrg.org/rheo-docs.pdf")[PDF] - A fixed-size document for printing.
+- #link("https://rheo.ohrg.org/rheo-docs.epub")[EPUB] - An adaptive document for e-readers.
 
-== Quickstart
+== Who should use rheo?
+If you write anything as simple as a blog or as complex as a dissertation or monograph in typst, rheo enables you to publish it across the formats listed above.  
+Rheo is for anyone who is willing to learn #link("https://typst.app/docs/reference/syntax/")[a little bit of syntax] to turn a piece of writing into a website, an adaptive document, or a printable document. 
 
-#raw(lang: "bash", "# Install rheo\ncargo install rheo\n# Get some typst files\ngit clone " + rheo-docs-source-url + "\n# Flow them into outputs\nrheo watch rheo.ohrg.org --open")
+Rheo is for anyone who has ever spent regrettable hours formatting citatons in a bibliography or fighting with LaTeX, anyone who has experienced the limitatons of Markdown as a markup language, and anyone who wants to benefit from typst's richer features and capabilities in the writing experience (see #link("./pages/what-and-why-is-rheo.typ")[What and why is rheo?]).
+It is for students and teachers, humanists and scientists, bloggers and novelists.
 
-
-
-
-
+If you have only ever used Microsoft Word to author text, or haven't heard the phrase 'markup language' before, we recommend first familiarizing yourself with Markdown via #link("https://www.markdowntutorial.com")[the beginner's tutorial].   
+This should give you a good intuition for what typst is---a markup language similar to but also more powerful than Markdown---and why you might want to use rheo to typeset your documents.

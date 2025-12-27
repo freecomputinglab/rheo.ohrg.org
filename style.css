@@ -17,6 +17,21 @@
   --topbar-height: 50px;
 }
 
+.quickstart {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.quickstart code {
+  padding: 10px;
+  border-radius: 4px;
+  background-color: #232136; /* rose-pine base (darker) */
+  color: #e0def4; /* rose-pine text */
+  max-width: 600px;
+}
+
 /* ============================================
    Base Styles
    ============================================ */
