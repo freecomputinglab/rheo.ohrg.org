@@ -137,15 +137,15 @@ It's sort of like #link("https://www.latex-project.org/")[LaTeX]---except that t
 The documentation that you are reading now, for example, was typeset with rheo.
 As a result, you can read it as:
 
-- #link("https://rheo.ohrg.org")[HTML] - A website for browsers.
-- #link("https://rheo.ohrg.org/rheo-docs.pdf")[PDF] - A fixed-size document for printing.
-- #link("https://rheo.ohrg.org/rheo-docs.epub")[EPUB] - An adaptive document for e-readers.
+- #link("https://rheo.ohrg.org")[HTML] - as a website for browsers.
+- #link("https://rheo.ohrg.org/rheo-docs.pdf")[PDF] - as a fixed-size document for printing.
+- #link("https://rheo.ohrg.org/rheo-docs.epub")[EPUB] - as an adaptive document for e-readers.
 
 == Who should use rheo?
-If you write anything as simple as a blog or as complex as a dissertation or monograph in typst, rheo enables you to publish it across the formats listed above.  
-Rheo is for anyone who is willing to learn #link("https://typst.app/docs/reference/syntax/")[a little bit of syntax] to turn a piece of writing into a website, an adaptive document, or a printable document. 
+If you write anything as simple as a blog or as complex as a dissertation or monograph in typst, rheo enables you to publish it in multiple formats.  
+If you are willing to learn #link("https://typst.app/docs/reference/syntax/")[a little bit of syntax], you can turn a piece of writing into a website, an adaptive document, a printable document---or all three simultaneously.
 
-Rheo is for anyone who has ever spent regrettable hours formatting citatons in a bibliography or fighting with LaTeX, anyone who has experienced the limitatons of Markdown as a markup language, and anyone who wants to benefit from typst's richer features and capabilities in the writing experience (see #link("./pages/what-and-why-is-rheo.typ")[What and why is rheo?]).
+Rheo is for anyone who has ever spent regrettable hours formatting citatons in a bibliography or fighting with LaTeX, anyone who has experienced the limitatons of Markdown as a markup language, and anyone who wants to benefit from typst's richer features and capabilities in the writing experience (more on this in the next section).
 It is for students and teachers, humanists and scientists, bloggers and novelists.
 
 If you have only ever used Microsoft Word to author text, or haven't heard the phrase 'markup language' before, we recommend first familiarizing yourself with Markdown via #link("https://www.markdowntutorial.com")[the beginner's tutorial].   
