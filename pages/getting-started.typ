@@ -4,29 +4,29 @@
 == Installation 
 The easiest way to install rheo is from #link("https://crates.io/")[crates.io], the Rust language's package manager.
 If you don't already have Rust/cargo, you will need to #link("https://doc.rust-lang.org/cargo/getting-started/installation.html")[install those first].
-Once you have, you can simply:
+Open your terminal, and run the following command:
 
 ```bash
 cargo install rheo
 ```
 
 Rheo is packaged as a standalone binary, and doesn't require any version of typst on your system.
+(Note that even if you already have typst on your system, rheo will use its own embedded version of the compiler.)
 Refer to rheo's #link(rheo-source-url)[source code] for more information and installation options. 
 
-// TODO: If you want to create a new Github repository that automatically runs rheo on the main branch to produce a Github Pages site, clone this repo.  
-
-== Firing up rheo 
+== Firing up 
 The #link(rheo-docs-url)[source code for rheo's documentation] is a collection of typst files.
-Rheo allows us to produce a static site, a pdf document, and an epub, all from that same set of typst. 
+Rheo allows us to produce a static site, a pdf document, and an epub, all from that collection. 
 
 // TODO: walk through adding typst files one by one, more descriptive
-Let's clone the source code to understand what we can do with rheo:
+Let's clone the source code for this documentation to understand what we can do:
 
 #raw(lang: "bash", "git clone " + rheo-docs-source-url)
 
 Take a quick look at the structure of the source code.
 Besides some configuration files at the top level, it's almost entirely just typst files.
-Rheo doesn't require that you add any special syntax or metadata to your files to work: it keeps out of your way as much as possible.
+Rheo doesn't require that you add any special syntax or metadata to your files to work.
+It keeps out of your way as much as possible.
 
 Now that we have some typst on our system, we can see rheo at work:
 

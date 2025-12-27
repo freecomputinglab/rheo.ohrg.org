@@ -3,6 +3,7 @@
 #let ul(_class, ..body) = html.elem("ul", attrs: (class: _class), ..body)
 #let li(_class, ..body) = html.elem("li", attrs: (class: _class), ..body)
 #let a(_href, ..body) = html.elem("a", attrs: (href: _href), ..body)
+#let a-with-class(_href, _class, ..body) = html.elem("a", attrs: (href: _href, class: _class), ..body)
 #let nav(_class, ..body) = html.elem("nav", attrs: (class: _class), ..body)
 #let span(_class, ..body) = html.elem("span", attrs: (class: _class), ..body)
 
@@ -18,8 +19,8 @@
   // are registered in Typst's AST. As these links are directly rendered into HTML using `html.elem`, 
   // rheo will just reproduce the URLs as specified.
   let pages = (
- 
-    // (id: "index", title: "Home", file: "./"),
+
+    (id: "index", title: "Home", file: "./"),
     (id: "what-and-why-is-rheo", title: "What and why is rheo?", file: "./what-and-why-is-rheo.html"),
     (id: "getting-started", title: "Getting started", file: "./getting-started.html"),
     (id: "relative-linking", title: "Relative linking", file: "./relative-linking.html"),
@@ -30,6 +31,25 @@
     (id: "spines", title: "Spines", file: "./spines.html"),
     (id: "custom-css", title: "Custom CSS", file: "./custom-css.html"),
   )
+
+  // Calculate previous and next pages for navigation
+  let current-index = if current-page != none {
+    pages.position(p => p.id == current-page)
+  } else {
+    none
+  }
+
+  let prev-page = if current-index != none and current-index > 0 {
+    pages.at(current-index - 1)
+  } else {
+    none
+  }
+
+  let next-page = if current-index != none and current-index < pages.len() - 1 {
+    pages.at(current-index + 1)
+  } else {
+    none
+  }
 
   context if target() == "html" {
     div("topbar")[
@@ -59,7 +79,40 @@
     ]
 
     div("content")[
+      // Main content
       #doc
+    ]
+
+    // Desktop navigation arrows - after all content including footnotes
+    div("nav-arrows desktop-nav")[
+      #if prev-page != none {
+        a-with-class(prev-page.file, "nav-arrow prev-arrow")[
+          #span("arrow-icon")[←]
+          #span("arrow-text")[#prev-page.title]
+        ]
+      }
+      #if next-page != none {
+        a-with-class(next-page.file, "nav-arrow next-arrow")[
+          #span("arrow-text")[#next-page.title]
+          #span("arrow-icon")[→]
+        ]
+      }
+    ]
+
+    // Mobile navigation arrows - after all content including footnotes
+    div("nav-arrows mobile-nav")[
+      #if prev-page != none {
+        a-with-class(prev-page.file, "nav-arrow prev-arrow")[
+          #span("arrow-icon")[←]
+          #span("arrow-text")[Previous]
+        ]
+      }
+      #if next-page != none {
+        a-with-class(next-page.file, "nav-arrow next-arrow")[
+          #span("arrow-text")[Next]
+          #span("arrow-icon")[→]
+        ]
+      }
     ]
 
     // Sidebar toggle script
@@ -74,10 +127,6 @@
 }
 
 #show: rheobook.with(current-page: "index")
-
-#div("quickstart")[
-  ```bash cargo install rheo```
-]
 
 Rheo (_ree-oh_) is a typesetting and static site engine based on #link("https://typst.app/")[typst].
 If 'static site engine' is all Greek to you---don't worry!

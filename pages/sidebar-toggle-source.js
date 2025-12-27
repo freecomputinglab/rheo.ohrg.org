@@ -72,3 +72,30 @@ window.addEventListener('resize', () => {
   clearTimeout(resizeTimeout);
   resizeTimeout = setTimeout(initSidebar, 150);
 });
+
+// Wait for DOM to be fully loaded before moving arrows
+document.addEventListener('DOMContentLoaded', () => {
+  // Move navigation arrows after endnotes if they exist
+  const endnotes = document.querySelector('[role="doc-endnotes"]');
+  if (endnotes) {
+    const desktopNav = document.querySelector('.nav-arrows.desktop-nav');
+    const mobileNav = document.querySelector('.nav-arrows.mobile-nav');
+    // Insert in reverse order so they end up in the right order
+    if (mobileNav) endnotes.parentNode.insertBefore(mobileNav, endnotes.nextSibling);
+    if (desktopNav) endnotes.parentNode.insertBefore(desktopNav, endnotes.nextSibling);
+  }
+});
+
+// Keyboard navigation
+document.addEventListener('keydown', (e) => {
+  // Left arrow key - previous page
+  if (e.key === 'ArrowLeft') {
+    const prevLink = document.querySelector('.prev-arrow');
+    if (prevLink) prevLink.click();
+  }
+  // Right arrow key - next page
+  if (e.key === 'ArrowRight') {
+    const nextLink = document.querySelector('.next-arrow');
+    if (nextLink) nextLink.click();
+  }
+});
