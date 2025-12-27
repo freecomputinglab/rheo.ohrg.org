@@ -63,7 +63,7 @@
       // banner
       #div("banner")[
         #a("./")[
-          #image("img/rheo-header.svg")
+          // #image("img/rheo-header.svg")
         ]
       ]
 
@@ -128,7 +128,6 @@
 
 #show: rheobook.with(current-page: "index")
 
-%
 Rheo (_ree-oh_) is a typesetting and static site engine based on #link("https://typst.app/")[Typst].
 If 'static site engine' is all Greek to you---don't worry!
 We can also explain rheo through what it allows you to do.
