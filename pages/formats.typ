@@ -13,7 +13,7 @@ The pdf format is natively and fully supported by #link("https://typst.app/")[ty
 == html 
 
 The html format is #link("https://typst.app/docs/reference/html/")[experimentally supported] by typst.
-This means that not all typst syntax will translate to a meaningful html structure.
+This means that not all Typst syntax will translate to a meaningful html structure.
 The most common features in everyday prose are all supported, however, such as text markup, links, headings, footnotes, and citations.For more information on which features are currently supported in html export, refer to the #link("https://github.com/typst/typst/issues/5512")[HTML export tracking issue].
 
 == epub 

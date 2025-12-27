@@ -3,7 +3,7 @@
 
 = What and why is rheo?
 
-Rheo (_ree-oh_) is a source static site engine for typst documents with source code that is openly #link("https://github.com/breezykermo/rheo")[available on GitHub].
+Rheo (_ree-oh_) is a source static site engine for Typst documents with source code that is openly #link("https://github.com/breezykermo/rheo")[available on GitHub].
 Most static site engines these days employ Markdown, a markup format that is approachable and pretty generic, allowing folks who are not familiar with or otherwise don't want to deal directly with the required file formats of the web--- HTML, CSS, and Javascript--- to write blog posts and other content which can then be pumped into a static site.
 ('Static' here just means that the website produced doesn't require communication with a backend server to fill it out with content: the website is a self-sufficient set of files.)
 
@@ -19,24 +19,24 @@ It is also a Turing-complete programming language with a modern type system, mea
 Typst has a concrete and concise syntax for footnotes and citations, and can express visual constructs such as tables, figures, colors, and mathematical formulas. 
 It was developed as a modern alternative to LaTeX, Leslie Lamport's legendary 1980s addition to Donald Knuth's original '78 Tex typesetting system.
 For the past 40 years, LaTeX has been the most expressive way to produce pdf documents, rendering it the de facto standard for academic and scientific publication.
-In the past few years, typst has become the most promising and powerful alternative to LaTeX due to its maintainers' effort to build out a reliable and flexible typst-to-pdf compilation toolchain.
+In the past few years, Typst has become the most promising and powerful alternative to LaTeX due to its maintainers' effort to build out a reliable and flexible typst-to-pdf compilation toolchain.
 
 Typst's development in 2025 has seen html added as an experimentally supported compilation target.
-Though there are still many features in typst that will only produce meaningful output in the typst-to-pdf toolchain, typst-to-html now supports all of the essential features for academic documents in the humanities: text decoration, headings, hyperlinks, footnotes, and citations.
+Though there are still many features in Typst that will only produce meaningful output in the typst-to-pdf toolchain, typst-to-html now supports all of the essential features for academic documents in the humanities: text decoration, headings, hyperlinks, footnotes, and citations.
 #footnote[
   I qualify this with 'in the humanities' as scientific papers often require tables, figures, and mathematical markup.
   These features are on typst's roadmap for html, but are not yet available at time of writing (January 2026).]
 This makes it an extremely good replacement for Markdown as a markup language in a static site engine, and so: enter rheo.
 
-Rheo is a CLI (command line interface) that produces pdf, html, and epub simultaneously from a folder of typst source documents.
+Rheo is a CLI (command line interface) that produces pdf, html, and epub simultaneously from a folder of Typst source documents.
 It is a static site engine because it can produce a fully valid website, and all it needs is a folder containing some typst.
-Rheo also provides mechanisms to combine multiple typst files into a unified epub or pdf, making it feasible to write books or dissertations in typst, or to produce an offline version of a website such as a blog.
+Rheo also provides mechanisms to combine multiple Typst files into a unified epub or pdf, making it feasible to write books or dissertations in typst, or to produce an offline version of a website such as a blog.
 If you're already convinced, move straight on to #link("./getting-started.typ")[Getting Started]. 
 (Naturally, this site was made with rheo, and this blog post was written with typst.)
 
 == The philosophy of rheo
 Rheo is a prefix or combining form in English that originates from the Greek word _rheos_ (ῥέος), meaning flow, stream, or current.
-The most straightforward etymological interpretation here is that rheo flows typst source documents into a number of concurrent outputs in pdf, html, and epub.
+The most straightforward etymological interpretation here is that rheo flows Typst source documents into a number of concurrent outputs in pdf, html, and epub.
 But other meanings lurk beneath the surface of this basic idea.
 Sarah Pourciau has argued that the oceanic is a deep-rooted metaphor in computing, as all computation at some level seeks solid space in a sea of digital noise @pourciauDigitalOcean2022.
 From Alan Turing's partial solution to David Hilbert's _Entscheidungsproblem_ in the universal machine, to Claude Shannon's information theory, to Leslie Lamport's ordering of events in a distributed system, the key issue at hand is how to carve out clarity from uncertainty and confusion.

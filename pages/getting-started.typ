@@ -10,25 +10,25 @@ Open your terminal, and run the following command:
 cargo install rheo
 ```
 
-Rheo is packaged as a standalone binary, and doesn't require any version of typst on your system.
-(Note that even if you already have typst on your system, rheo will use its own embedded version of the compiler.)
+Rheo is packaged as a standalone binary, and doesn't require any version of Typst on your system.
+(Note that even if you already have Typst on your system, rheo will use its own embedded version of the compiler.)
 Refer to rheo's #link(rheo-source-url)[source code] for more information and installation options. 
 
 == Firing up 
-The #link(rheo-docs-url)[source code for rheo's documentation] is a collection of typst files.
+The #link(rheo-docs-url)[source code for rheo's documentation] is a collection of Typst files.
 Rheo allows us to produce a static site, a pdf document, and an epub, all from that collection. 
 
-// TODO: walk through adding typst files one by one, more descriptive
+// TODO: walk through adding Typst files one by one, more descriptive
 Let's clone the source code for this documentation to understand what we can do:
 
 #raw(lang: "bash", "git clone " + rheo-docs-source-url)
 
 Take a quick look at the structure of the source code.
-Besides some configuration files at the top level, it's almost entirely just typst files.
+Besides some configuration files at the top level, it's almost entirely just Typst files.
 Rheo doesn't require that you add any special syntax or metadata to your files to work.
 It keeps out of your way as much as possible.
 
-Now that we have some typst on our system, we can see rheo at work:
+Now that we have some Typst on our system, we can see rheo at work:
 
 ```bash
 rheo compile rheo.ohrg.org

@@ -63,7 +63,7 @@
       // banner
       #div("banner")[
         #a("./")[
-          #image("img/rheo-header.png")
+          #image("img/rheo-header.svg")
         ]
       ]
 
@@ -128,12 +128,13 @@
 
 #show: rheobook.with(current-page: "index")
 
-Rheo (_ree-oh_) is a typesetting and static site engine based on #link("https://typst.app/")[typst].
+%
+Rheo (_ree-oh_) is a typesetting and static site engine based on #link("https://typst.app/")[Typst].
 If 'static site engine' is all Greek to you---don't worry!
 We can also explain rheo through what it allows you to do.
 
-Rheo allows you to produce a website, a fixed-size document, and an adaptive document from a single set of source typst files.
-It's sort of like #link("https://www.latex-project.org/")[LaTeX]---except that typst is _much_ simpler to write, and we can compile it to a greater number of formats. 
+Rheo allows you to produce a website, a fixed-size document, and an adaptive document from a single set of source Typst files.
+It's sort of like #link("https://www.latex-project.org/")[LaTeX]---except that Typst is _much_ simpler to write, and we can compile it to a greater number of formats. 
 The documentation that you are reading now, for example, was typeset with rheo.
 As a result, you can read it as:
 
@@ -149,4 +150,4 @@ Rheo is for anyone who has ever spent regrettable hours formatting citatons in a
 It is for students and teachers, humanists and scientists, bloggers and novelists.
 
 If you have only ever used Microsoft Word to author text, or haven't heard the phrase 'markup language' before, we recommend first familiarizing yourself with Markdown via #link("https://www.markdowntutorial.com")[the beginner's tutorial].   
-This should give you a good intuition for what typst is---a markup language similar to but also more powerful than Markdown---and why you might want to use rheo to typeset your documents.
+This should give you a good intuition for what Typst is---a markup language similar to but also more powerful than Markdown---and why you might want to use rheo to typeset your documents.

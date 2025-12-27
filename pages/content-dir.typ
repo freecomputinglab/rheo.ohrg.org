@@ -4,7 +4,7 @@
 
 = Content directory 
 
-By default, rheo will search your entire project directory for typst source files.
+By default, rheo will search your entire project directory for Typst source files.
 You can, however, indicate a specific subdirectory that rheo should search if you prefer. 
 (This can be helpful for structuring projects, as it allows you for example to keep a separate drafts folder which rheo will not compile.)
 

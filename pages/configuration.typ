@@ -1,8 +1,8 @@
 #import "index.typ": rheobook 
 #show: rheobook.with(current-page: "configuration")
 
-Rheo is a CLI that produces pdf, html, and epub simultaneously from a directory of typst source documents.
-The directory that contains your typst is called the *project directory*, and you can compile it via rheo like so:
+Rheo is a CLI that produces pdf, html, and epub simultaneously from a directory of Typst source documents.
+The directory that contains your Typst is called the *project directory*, and you can compile it via rheo like so:
 
 ```bash
 rheo compile path/to/project
