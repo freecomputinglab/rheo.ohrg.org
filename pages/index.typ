@@ -62,7 +62,7 @@
     nav("sidebar")[
       // banner
       #div("banner")[
-        #a("./")[
+        #a("#")[
           // #image("img/rheo-header.svg")
         ]
       ]

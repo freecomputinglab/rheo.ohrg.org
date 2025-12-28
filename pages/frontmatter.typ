@@ -9,7 +9,7 @@
       width: 100%,
       height: 25%,
       clip: true,
-      image("img/rheo-header.svg", width: 100%, height: 100%, fit: "cover")
+      image("img/header.svg", width: 100%, height: 100%, fit: "cover")
     )
   ]
 
