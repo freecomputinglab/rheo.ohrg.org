@@ -1,8 +1,0 @@
-<svg viewBox="10 20 50 70" xmlns="http://www.w3.org/2000/svg">
-  <g transform="translate(15, 5)">
-    <!-- R - tau base -->
-    <path d="M0 20 H40 V25 H10 V80" stroke="#3d2645" stroke-width="6" fill="none"/>
-    <!-- R - rho flow -->
-    <path d="M40 25 C50 30, 50 60, 30 65 C20 67, 25 50, 35 50" stroke="#3d2645" stroke-width="6" fill="none"/>
-  </g>
-</svg>

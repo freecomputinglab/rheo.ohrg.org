@@ -56,7 +56,7 @@
       #button("sidebar-toggle", "Toggle sidebar")[
         #span("hamburger")
       ]
-      #div("topbar-title")[#title]
+      #div("topbar-title")[#image("img/header.svg", height: 24pt)]
     ]
 
     nav("sidebar")[

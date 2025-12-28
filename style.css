@@ -210,6 +210,16 @@ pre code {
   font-weight: 500;
   font-size: 16px;
   color: var(--text-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.topbar-title img {
+  height: 24px;
+  width: auto;
+  display: block;
+  object-fit: contain;
 }
 
 /* ============================================
