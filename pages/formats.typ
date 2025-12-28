@@ -3,27 +3,28 @@
 
 = Formats
 
-By default, rheo produces three different output formats simultaneously: *pdf*, *html*, and *epub*.
-There are cases in which you may only want to produce one of these formats, however, or to exclude one format because your project cannot support or does not require it. 
+By default, rheo produces three different output formats simultaneously: *PDF*, *HTML*, and *EPUB*.
+There are cases in which you may only want to produce one of these formats, however, or to exclude one format because your project either cannot support or does not require it. 
 
-== pdf 
+== PDF 
 
-The pdf format is natively and fully supported by #link("https://typst.app/")[typst], the programming language and compilation toolchain that underlies rheo. 
+The PDF format is natively and fully supported by #link("https://typst.app/")[Typst], the programming language and compilation toolchain that underwrites Rheo. 
 
-== html 
+== HTML 
 
-The html format is #link("https://typst.app/docs/reference/html/")[experimentally supported] by typst.
-This means that not all Typst syntax will translate to a meaningful html structure.
-The most common features in everyday prose are all supported, however, such as text markup, links, headings, footnotes, and citations.For more information on which features are currently supported in html export, refer to the #link("https://github.com/typst/typst/issues/5512")[HTML export tracking issue].
+The HTML format is #link("https://typst.app/docs/reference/html/")[experimentally supported] by Typst.
+This means that not all Typst syntax will translate to a meaningful HTML structure.
+The most common features in everyday prose are all supported, however, such as text markup, links, headings, footnotes, and citations.
+For more information on which features are currently supported in Typst's HTML export, refer to the #link("https://github.com/typst/typst/issues/5512")[HTML export tracking issue].
 
-== epub 
+== EPUB 
 
-The epub format is #link("https://github.com/typst/typst/issues/188")[not yet supported] in upstream typst, but is experimentally supported in rheo.
-As epub export is on typst's roadmap, rheo will track this feature closely and look to integrate with it when it lands in the future.
+The EPUB format is #link("https://github.com/typst/typst/issues/188")[not yet supported] in upstream Typst, but is experimentally supported in Rheo.
+As EPUB export is on Typst's roadmap, Rheo will track this feature closely and look to integrate with it when it lands in the future.
 
 == Configuration
 === CLI flag
-You can constrain rheo to producing one or more formats by passing one or more of the following flags to `compile` or `watch`:
+You can constrain Rheo to producing one or more formats by passing one or more of the following flags to `compile` or `watch`:
 
 ```bash
 rheo compile path/to/project --pdf

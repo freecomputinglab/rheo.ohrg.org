@@ -3,10 +3,10 @@
 
 = Spines
 
-A spine in rheo is the backbone, or table of contents, of Typst source files that should be included in an output format.
+A spine in rheo is the backbone or 'table of contents' of Typst source files that should be compiled to an output format.
 It takes its name from the #link("https://www.edrlab.org/open-standards/anatomy-of-an-epub-3-file/")[epub specification], in which the spine articulates---or _reticulates_--- the set and order of chapters included.
 
-You can specify a spine's vertebrae for an output format using an array of #link("https://www.man7.org/linux/man-pages/man7/glob.7.html")[glob] strings in `rheo.toml`:
+You can specify a spine's vertebrae for any output format using an array of #link("https://www.man7.org/linux/man-pages/man7/glob.7.html")[glob] strings in `rheo.toml`:
 
 ```toml
 [epub.spine]
@@ -25,13 +25,13 @@ By default, rheo will infer the following spine if not specified:
 ```toml
 [epub.spine]
 title = "[project folder name]"
-vertebrae = ["**/*typ"]
+vertebrae = ["**/*.typ"]
 ```
 
 == PDF 
 
 By default, rheo generates one PDF per Typst source file.
-You can specify a spine in order to reticulate multiple source files into a single PDF by indicating the vertebrae and setting `merge` to `true`:
+You can specify a spine for the PDF format in order to reticulate multiple source documents into a single output PDF by indicating the vertebrae and setting `merge` to `true`:
 
 ```toml
 [pdf.spine]
@@ -39,6 +39,8 @@ title = "My reticulated pdf"
 vertebrae = ["intro.typ", "*.typ"]
 merge = true
 ```
+
+In a PDF generated in this way, #link("./relative-linking.typ")[relative links] will resolve to internal document links that point to the relevant section.
 
 == HTML 
 
@@ -48,7 +50,5 @@ The default spine uses all Typst files:
 ```toml
 [html.spine]
 title = "[project folder name]"
-vertebrae = ["**/*typ"]
+vertebrae = ["**/*.typ"]
 ```
-
-

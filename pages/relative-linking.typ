@@ -1,22 +1,22 @@
 #import "index.typ": rheobook 
 #show: rheobook.with(current-page: "relative-linking")
 
-Rheo's design philosophy is to allow you to write pure #link("https://typst.app/docs/")[typst] as much as possible, without requiring any additional syntax or metadata. 
-Because rheo wants to make it easy to create a website or to split a large writing project up into multiple files, however, we need a way to reference other files in the same rheo project.
+Rheo allows you to write documents in plain #link("https://typst.app/docs/")[Typst] without requiring any additional syntax or metadata. 
+Because Rheo can combine multiple files into unified outputs, however, we need a way to reference other files in the same Rheo project.
 
-The syntax for relative links in rheo should be familiar, as it is just a regular Typst link with a `.typ` file in the same directory as its target:
+The syntax for these relative links in Rheo should be familiar, as they look just like regular Typst links, but reference a `.typ` file in the same directory as its target:
 
 ```typ
 #link("./another-section.typ")[Another section]
 ```
 
-When you compile a project with rheo, relative links to other Typst files in the same directory will be resolved and transformed in the output format.
-What a relative link transforms to depends on both the output format and your rheo configuration, as using features such as #link("./spines.typ")[spines] affects the control flow between your source Typst and your output formats.
+When you compile a project with Rheo, relative links to other Typst documents in the same directory will be resolved and transformed according to the output format.
+What a relative link transforms to depends on both the output format and your Rheo configuration, as using features such as #link("./spines.typ")[spines] affects the control flow between your source Typst and output formats.
 
-- In *html*, relative links become `<a>` tags that point to the relevant html page.
-- In *pdf*, relative links either become plain text (if each Typst source file maps to one output pdf), or become links to the relevant sections in the output document (if your rheo config specifies a pdf spine). 
-- In *epub*, relative links become links to the relevant sections in the epub (as a spine is required). 
+- In *HTML*, relative links become `<a>` tags that point to the relevant html page.
+- In *PDF*, relative links either become plain text (if input Typst is not combined, and thus produces one PDF per source document), or links to the relevant sections in the output document (if your config specifies a spine with the `merge` attribute set). 
+- In *EPUB*, relative links become links to the relevant sections in the EPUB. 
 
-Relative linking is what allows rheo to function as a static site engine.
-It is also a feature that you can use to help you organize large writing projects with rheo.
-(Note that the Typst #link("https://typst.app/docs/reference/foundations/module/")[`import`] keyword works as you would expect in rheo, and so can also/still be used to modularize projects.)
+Relative linking is what allows rheo to produce fully functinoal static sites.
+It is also a feature that you can use to help you organize large writing projects.
+(Note that the Typst #link("https://typst.app/docs/reference/foundations/module/")[`import`] keyword works as you would expect in Rheo, and so can also/still be used as a mechanism to modularize projects.)

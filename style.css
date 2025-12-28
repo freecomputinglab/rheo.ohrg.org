@@ -35,7 +35,7 @@ body {
 }
 
 .content {
-  margin: 2rem 2rem 0 2rem;
+  margin: 2rem 0 0 2rem;
   margin-left: var(--sidebar-width);
   margin-top: var(--topbar-height);
   min-height: calc(100vh - var(--topbar-height) - 14rem);
@@ -45,6 +45,7 @@ body {
 [role="doc-endnotes"] {
   margin-left: var(--sidebar-width);
   padding: 0 3rem;
+  max-width: 1400px;
 }
 
 h3 {
@@ -400,6 +401,7 @@ nav.sidebar {
 
   [role="doc-endnotes"] {
     margin-left: 0;
+    padding-left: 1rem;
   }
 }
 
@@ -503,6 +505,9 @@ nav.sidebar {
 
   .mobile-nav .arrow-text {
     font-size: 0.85rem;
+  }
+  .prev-arrow {
+    margin-left: 0;
   }
 }
 
