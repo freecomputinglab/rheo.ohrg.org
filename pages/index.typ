@@ -129,9 +129,8 @@
 #show: rheobook.with(current-page: "index")
 
 == What is Rheo?
-- *Simple answer:* Rheo (_ree-oh_) is a new and more flexible way to produce and publish digital documents.
-- *Less simple answer:* Rheo is a typesetting and static site engine based on #link("https://typst.app/")[Typst].
-
+The simple answer is that Rheo (_ree-oh_) is a new and more flexible way to produce and publish digital documents.
+The less simple answer is that Rheo is a typesetting and static site engine based on #link("https://typst.app/")[Typst].
 This guide explains both _how_ to use Rheo, and _why_ it might be for you.
 
 Rheo allows you to produce a website, a fixed-size document, and an adaptive document from a single set of source Typst files.
