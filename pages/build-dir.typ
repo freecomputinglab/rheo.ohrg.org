@@ -1,4 +1,4 @@
-#import "index.typ": rheobook 
+#import "index.typ": rheobook
 #show: rheobook.with(current-page: "build-dir")
 
 = Build directory  

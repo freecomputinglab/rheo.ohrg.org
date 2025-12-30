@@ -6,6 +6,19 @@
 #let a-with-class(_href, _class, ..body) = html.elem("a", attrs: (href: _href, class: _class), ..body)
 #let nav(_class, ..body) = html.elem("nav", attrs: (class: _class), ..body)
 #let span(_class, ..body) = html.elem("span", attrs: (class: _class), ..body)
+#let img(src, alt, height: none) = context if target() == "html" {
+  let attrs = (src: src, alt: alt)
+  if height != none {
+    attrs.insert("style", "height: " + repr(height))
+  }
+  html.elem("img", attrs: attrs)
+} else {
+  if height != none {
+    image(src, height: height)
+  } else {
+    image(src)
+  }
+}
 
 #let rheo-source-url = "https://github.com/freecomputinglab/rheo"
 #let rheo-docs-source-url = "https://github.com/freecomputinglab/rheo.ohrg.org"
@@ -13,8 +26,8 @@
 
 // NOTE: in the future, this can perhaps be provided by rheo
 #let rheobook(current-page: none, doc) = {
-  // NOTE: this links cannot be specified as ".typ" currently, as rheo only transforms links that 
-  // are registered in Typst's AST. As these links are directly rendered into HTML using `html.elem`, 
+  // NOTE: this links cannot be specified as ".typ" currently, as rheo only transforms links that
+  // are registered in Typst's AST. As these links are directly rendered into HTML using `html.elem`,
   // rheo will just reproduce the URLs as specified.
   let pages = (
 
@@ -37,6 +50,14 @@
     none
   }
 
+  // Set document title based on current page
+  let page-title = if current-index != none {
+    pages.at(current-index).title + " | Rheo"
+  } else {
+    "Rheo"
+  }
+  set document(title: page-title)
+
   let prev-page = if current-index != none and current-index > 0 {
     pages.at(current-index - 1)
   } else {
@@ -54,7 +75,7 @@
       #button("sidebar-toggle", "Toggle sidebar")[
         #span("hamburger")
       ]
-    #a("/")[#div("topbar-title")[#image("img/header.svg", height: 24pt)]]
+    #a("/")[#div("topbar-title")[#img("img/header.svg", "Rheo", height: 24pt)]]
     ]
 
     nav("sidebar")[
@@ -122,9 +143,6 @@
   }
 }
 
-#set document(
-  title: [Introduction]
-)
 #show: rheobook.with(current-page: "index")
 
 == What is Rheo?

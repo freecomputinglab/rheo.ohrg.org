@@ -22,7 +22,6 @@ merge = true
 [epub.spine]
 title = "Rheo Manual"
 vertebrae = [
-  "frontmatter.typ",
   "index.typ",
   "what-and-why-is-rheo.typ",
   "getting-started.typ",

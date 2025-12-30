@@ -1,6 +1,5 @@
 #context if target() != "html" {
-  // set text(font: ("Inter", "San Francisco", "Arial"))
-  set text(font: ("San Francisco", "Arial"))
+  set text(font: ("Inter", "San Francisco", "Arial"))
   set page(
     margin: (top: 0pt, bottom: 2cm, left: 0pt, right: 0pt),
   )

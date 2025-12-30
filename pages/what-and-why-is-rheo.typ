@@ -1,4 +1,4 @@
-#import "index.typ": rheobook 
+#import "index.typ": rheobook
 #show: rheobook.with(current-page: "what-and-why-is-rheo")
 
 = What and why is Rheo?

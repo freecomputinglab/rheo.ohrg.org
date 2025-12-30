@@ -1,4 +1,4 @@
-#import "index.typ": rheobook 
+#import "index.typ": rheobook
 #show: rheobook.with(current-page: "relative-linking")
 
 Rheo allows you to write documents in plain #link("https://typst.app/docs/")[Typst] without requiring any additional syntax or metadata. 
