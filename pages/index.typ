@@ -6,19 +6,6 @@
 #let a-with-class(_href, _class, ..body) = html.elem("a", attrs: (href: _href, class: _class), ..body)
 #let nav(_class, ..body) = html.elem("nav", attrs: (class: _class), ..body)
 #let span(_class, ..body) = html.elem("span", attrs: (class: _class), ..body)
-#let img(src, alt, height: none) = context if target() == "html" {
-  let attrs = (src: src, alt: alt)
-  if height != none {
-    attrs.insert("style", "height: " + repr(height))
-  }
-  html.elem("img", attrs: attrs)
-} else {
-  if height != none {
-    image(src, height: height)
-  } else {
-    image(src)
-  }
-}
 
 #let rheo-source-url = "https://github.com/freecomputinglab/rheo"
 #let rheo-docs-source-url = "https://github.com/freecomputinglab/rheo.ohrg.org"
@@ -75,7 +62,7 @@
       #button("sidebar-toggle", "Toggle sidebar")[
         #span("hamburger")
       ]
-    #a("/")[#div("topbar-title")[#img("img/header.svg", "Rheo", height: 24pt)]]
+    #a("/")[#div("topbar-title")[#image("img/header.svg", alt: "Rheo", height: 24pt)]]
     ]
 
     nav("sidebar")[
