@@ -3,7 +3,7 @@
 
 = Formats
 
-By default, rheo produces three different output formats simultaneously: *PDF*, *HTML*, and *EPUB*.
+By default, Rheo produces three different output formats simultaneously: *PDF*, *HTML*, and *EPUB*.
 There are cases in which you may only want to produce one of these formats, however, or to exclude one format because your project either cannot support or does not require it. 
 
 == PDF 

@@ -3,7 +3,7 @@
 
 = Spines
 
-A spine in rheo is the backbone or 'table of contents' of Typst source files that should be compiled to an output format.
+A spine in Rheo is the backbone or 'table of contents' of Typst source files that should be compiled to an output format.
 It takes its name from the #link("https://www.edrlab.org/open-standards/anatomy-of-an-epub-3-file/")[epub specification], in which the spine articulates---or _reticulates_--- the set and order of chapters included.
 
 You can specify a spine's vertebrae for any output format using an array of #link("https://www.man7.org/linux/man-pages/man7/glob.7.html")[glob] strings in `rheo.toml`:
@@ -20,7 +20,7 @@ When a glob string captures a range of source files, they will be ordered lexico
 == EPUB
 
 An EPUB must have a spine in order to be valid.
-By default, rheo will infer the following spine if not specified:
+By default, Rheo will infer the following spine if not specified:
 
 ```toml
 [epub.spine]
@@ -30,7 +30,7 @@ vertebrae = ["**/*.typ"]
 
 == PDF 
 
-By default, rheo generates one PDF per Typst source file.
+By default, Rheo generates one PDF per Typst source file.
 You can specify a spine for the PDF format in order to reticulate multiple source documents into a single output PDF by indicating the vertebrae and setting `merge` to `true`:
 
 ```toml

@@ -13,14 +13,12 @@
 
 // NOTE: in the future, this can perhaps be provided by rheo
 #let rheobook(current-page: none, doc) = {
-  let title = "Rheo"
-
   // NOTE: this links cannot be specified as ".typ" currently, as rheo only transforms links that 
   // are registered in Typst's AST. As these links are directly rendered into HTML using `html.elem`, 
   // rheo will just reproduce the URLs as specified.
   let pages = (
 
-    (id: "index", title: "Home", file: "./"),
+    (id: "index", title: "Introduction", file: "./"),
     (id: "what-and-why-is-rheo", title: "What and why is Rheo?", file: "./what-and-why-is-rheo.html"),
     (id: "getting-started", title: "Getting started", file: "./getting-started.html"),
     (id: "relative-linking", title: "Relative linking", file: "./relative-linking.html"),
@@ -56,15 +54,13 @@
       #button("sidebar-toggle", "Toggle sidebar")[
         #span("hamburger")
       ]
-      #div("topbar-title")[#image("img/header.svg", height: 24pt)]
+    #a("/")[#div("topbar-title")[#image("img/header.svg", height: 24pt)]]
     ]
 
     nav("sidebar")[
       // banner
       #div("banner")[
-        #a("#")[
-          // #image("img/rheo-header.svg")
-        ]
+        #a("#")[]
       ]
 
       // sidebar
@@ -126,6 +122,9 @@
   }
 }
 
+#set document(
+  title: [Introduction]
+)
 #show: rheobook.with(current-page: "index")
 
 == What is Rheo?
@@ -158,5 +157,5 @@ Some of the things you can write and publish with Rheo include:
 Rheo is for anyone who has ever spent regrettable hours formatting citatons, fighting with LaTeX, who has experienced the limitations of Markdown, or who wants to benefit from the richer writing experience that Typst makes possible (more on this in the next section).
 It is for students and teachers, humanists and scientists, bloggers and novelists.
 
-If you have only ever used Microsoft Word to author text, or haven't heard the phrase 'markup language' before, we recommend first familiarizing yourself with Markdown via #link("https://www.markdowntutorial.com")[the beginner's tutorial].   
+If you have only ever used Microsoft Word to author text, or haven't heard the phrase 'markup language' before, we recommend first familiarizing yourself with Typst via the #link("https://typst.app/docs/tutorial/")[excellent tutorial].   
 This should give you a good intuition for what Typst is---a markup language similar to but also more powerful than Markdown---and why you might want to use Rheo to typeset your documents.

@@ -3,7 +3,7 @@
 
 = Build directory  
 
-Rheo produces outputs a simple directory structure with one subdirectory for each kind of output.
+Rheo produces outputs in a simple directory structure with one subdirectory for each kind of output.
 By default, Rheo produces all outputs (PDF, HTML, and EPUB) in a `build` directory instide the project directory:
 
 ```

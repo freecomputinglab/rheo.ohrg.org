@@ -7,7 +7,7 @@ If you don't already have Rust/cargo, you will need to #link("https://doc.rust-l
 Open your terminal, and run the following command:
 
 ```bash
-cargo install rheo
+cargo install rheo --locked
 ```
 
 Rheo is packaged as a standalone binary, and doesn't require any version of Typst on your system.
@@ -15,7 +15,7 @@ Rheo is packaged as a standalone binary, and doesn't require any version of Typs
 Refer to #link(rheo-source-url)[Rheo's source code] for more information and installation options. 
 
 == Firing up 
-#link(rheo-docs-url)[Rheo's documentation] is a written in Typst.
+#link(rheo-docs-url)[Rheo's documentation] is written in Typst.
 With Rheo we can produce a static site, a PDF, and an EPUB from it. 
 Let's clone the documentation source to see how Rheo works:
 
