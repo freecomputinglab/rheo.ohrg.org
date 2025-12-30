@@ -8,18 +8,18 @@ There are cases in which you may only want to produce one of these formats, howe
 
 == PDF 
 
-The PDF format is natively and fully supported by #link("https://typst.app/")[Typst], the programming language and compilation toolchain that underwrites Rheo. 
+#link("https://typst.app/")[Typst], the programming language and compilation toolchain that underwrites Rheo, natively and fully supports PDF. 
 
 == HTML 
 
-The HTML format is #link("https://typst.app/docs/reference/html/")[experimentally supported] by Typst.
+Typst #link("https://typst.app/docs/reference/html/")[experimentally supports] HTML.
 This means that not all Typst syntax will translate to a meaningful HTML structure.
 The most common features in everyday prose are all supported, however, such as text markup, links, headings, footnotes, and citations.
 For more information on which features are currently supported in Typst's HTML export, refer to the #link("https://github.com/typst/typst/issues/5512")[HTML export tracking issue].
 
 == EPUB 
 
-The EPUB format is #link("https://github.com/typst/typst/issues/188")[not yet supported] in upstream Typst, but is experimentally supported in Rheo.
+Typst does #link("https://github.com/typst/typst/issues/188")[not yet support] EPUB, but it is supported in Rheo.
 As EPUB export is on Typst's roadmap, Rheo will track this feature closely and look to integrate with it when it lands in the future.
 
 == Configuration

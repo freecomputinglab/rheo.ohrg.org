@@ -21,7 +21,7 @@
   let pages = (
 
     (id: "index", title: "Home", file: "./"),
-    (id: "what-and-why-is-rheo", title: "What and why is rheo?", file: "./what-and-why-is-rheo.html"),
+    (id: "what-and-why-is-rheo", title: "What and why is Rheo?", file: "./what-and-why-is-rheo.html"),
     (id: "getting-started", title: "Getting started", file: "./getting-started.html"),
     (id: "relative-linking", title: "Relative linking", file: "./relative-linking.html"),
     (id: "rheotoml", title: "Rheo.toml", file: "./rheotoml.html"),
@@ -128,12 +128,14 @@
 
 #show: rheobook.with(current-page: "index")
 
-Rheo (_ree-oh_) is a typesetting and static site engine based on #link("https://typst.app/")[Typst].
-If 'static site engine' is all Greek to you---don't worry!
-We can also explain Rheo through what it allows you to do.
+== What is Rheo?
+- *Simple answer:* Rheo (_ree-oh_) is a new and more flexible way to produce and publish digital documents.
+- *Less simple answer:* Rheo is a typesetting and static site engine based on #link("https://typst.app/")[Typst].
+
+This guide explains both _how_ to use Rheo, and _why_ it might be for you.
 
 Rheo allows you to produce a website, a fixed-size document, and an adaptive document from a single set of source Typst files.
-It allows you to do something similar to #link("https://www.latex-project.org/")[LaTeX]---except that Typst is _much_ simpler to write, and we can compile it to a greater number of formats. 
+It allows you to do something similar to #link("https://www.latex-project.org/")[LaTeX]---except that Typst is _much_ simpler to write, and we can produce a greater number of formats with it. 
 The documentation that you are reading now, for example, was typeset with Rheo.
 As a result, you can read it as:
 
@@ -145,7 +147,16 @@ As a result, you can read it as:
 If you write anything as simple as a blog or as complex as a dissertation or monograph in Typst, Rheo enables you to publish it in multiple formats.  
 If you are willing to learn #link("https://typst.app/docs/reference/syntax/")[a little bit of syntax], you can turn a piece of writing into a website, an adaptive document, and/or a printable document.
 
-Rheo is for anyone who has ever spent regrettable hours formatting citatons, fighting with LaTeX, who has experienced the limitatons of Markdown, or who wants to benefit from the richer writing experience that Typst makes possible (more on this in the next section).
+Some of the things you can write and publish with Rheo include:
+- A blog
+- A paper
+- A dissertation
+- A book manuscript
+- A novel
+- A text book
+- Technical documentation
+
+Rheo is for anyone who has ever spent regrettable hours formatting citatons, fighting with LaTeX, who has experienced the limitations of Markdown, or who wants to benefit from the richer writing experience that Typst makes possible (more on this in the next section).
 It is for students and teachers, humanists and scientists, bloggers and novelists.
 
 If you have only ever used Microsoft Word to author text, or haven't heard the phrase 'markup language' before, we recommend first familiarizing yourself with Markdown via #link("https://www.markdowntutorial.com")[the beginner's tutorial].   
