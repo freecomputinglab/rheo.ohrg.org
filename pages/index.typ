@@ -144,7 +144,7 @@ As a result, you can read it as:
 
 - #link("https://rheo.ohrg.org")[HTML] - as a website for browsers.
 - #link("https://rheo.ohrg.org/rheo-docs.pdf")[PDF] - as a fixed-size document for printing.
-- #link("https://rheo.ohrg.org/rheo-docs.epub")[EPUB] - as an adaptive document for e-readers.
+- #link("https://nota-lang.github.io/bene/?preload=https%3A%2F%2Frheo.ohrg.org%2Frheo-docs.epub")[EPUB] - as an adaptive document for e-readers.
 
 == Who should use Rheo?
 If you write anything as simple as a blog or as complex as a dissertation or monograph in Typst, Rheo enables you to publish it in multiple formats.  
