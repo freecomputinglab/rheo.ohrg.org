@@ -22,7 +22,7 @@
   let pages = (
 
     (id: "index", title: "Introduction", file: "./"),
-    (id: "what-and-why-is-rheo", title: "Why Rheo?", file: "./what-and-why-is-rheo.html"),
+    (id: "why-is-rheo", title: "Why Rheo?", file: "./why-is-rheo.html"),
     (id: "getting-started", title: "Getting started", file: "./getting-started.html"),
     (id: "relative-linking", title: "Relative linking", file: "./relative-linking.html"),
     (id: "rheotoml", title: "Rheo.toml", file: "./rheotoml.html"),
@@ -128,9 +128,13 @@
     // To update: edit sidebar-toggle-source.js, then run: bash encode-js.sh
     html.elem("script")[#read("sidebar-toggle.js")];
 
-  } else { 
+  } else {
     set heading(numbering: "1.")
-    doc 
+
+    // Style code blocks with light border and background
+    show raw.where(block: true): set block(fill: luma(250), stroke: 0.5pt + luma(200), radius: 2pt, inset: 8pt)
+
+    doc
   }
 }
 

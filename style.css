@@ -114,7 +114,12 @@ code {
 
 pre code {
   display: block;
-  white-space: pre;
+  white-space: pre-wrap;
+  background-color: #fff;
+  border: 1px solid var(--wine-dark);
+  padding: 1rem;
+  border-radius: 4px;
+  word-break: break-word;
 }
 
 @media (max-width: 768px) {

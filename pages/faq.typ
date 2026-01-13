@@ -1,3 +1,4 @@
+= Frequently Asked Questions
 // And if we just need one format, such as a website, we can forego producing the other formats:
 //
 // ```bash

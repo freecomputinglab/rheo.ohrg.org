@@ -166,3 +166,7 @@ rheo watch project_uno --open
 ```
 
 Now we have a fully featured writing project, with nice-looking and orderly outputs in PDF, EPUB, and in HTML!
+
+#context if target() == "html" [== Footnotes]
+
+

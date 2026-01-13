@@ -6,7 +6,7 @@ title = "Rheo Menual"
 vertebrae = [
   "frontmatter.typ",
   "index.typ",
-  "what-and-why-is-rheo.typ",
+  "why-is-rheo.typ",
   "getting-started.typ",
   "relative-linking.typ",
   "rheotoml.typ",
@@ -23,7 +23,7 @@ merge = true
 title = "Rheo Manual"
 vertebrae = [
   "index.typ",
-  "what-and-why-is-rheo.typ",
+  "why-is-rheo.typ",
   "getting-started.typ",
   "relative-linking.typ",
   "rheotoml.typ",
