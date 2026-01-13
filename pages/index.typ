@@ -13,13 +13,16 @@
 
 // NOTE: in the future, this can perhaps be provided by rheo
 #let rheobook(current-page: none, doc) = {
+
+  set text(font: ("Inter", "San Francisco", "Arial"))
+
   // NOTE: this links cannot be specified as ".typ" currently, as rheo only transforms links that
   // are registered in Typst's AST. As these links are directly rendered into HTML using `html.elem`,
   // rheo will just reproduce the URLs as specified.
   let pages = (
 
     (id: "index", title: "Introduction", file: "./"),
-    (id: "what-and-why-is-rheo", title: "What and why is Rheo?", file: "./what-and-why-is-rheo.html"),
+    (id: "what-and-why-is-rheo", title: "Why Rheo?", file: "./what-and-why-is-rheo.html"),
     (id: "getting-started", title: "Getting started", file: "./getting-started.html"),
     (id: "relative-linking", title: "Relative linking", file: "./relative-linking.html"),
     (id: "rheotoml", title: "Rheo.toml", file: "./rheotoml.html"),
@@ -126,13 +129,14 @@
     html.elem("script")[#read("sidebar-toggle.js")];
 
   } else { 
+    set heading(numbering: "1.")
     doc 
   }
 }
 
 #show: rheobook.with(current-page: "index")
 
-== What is Rheo?
+= What is Rheo?
 The simple answer is that Rheo (_ree-oh_) is a new and more flexible way to produce and publish digital documents.
 The less simple answer is that Rheo is a typesetting and static site engine based on #link("https://typst.app/")[Typst].
 This guide explains both _how_ to use Rheo, and _why_ it might be for you.

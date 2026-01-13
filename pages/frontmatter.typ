@@ -1,5 +1,4 @@
 #context if target() != "html" {
-  set text(font: ("Inter", "San Francisco", "Arial"))
   set page(
     margin: (top: 0pt, bottom: 2cm, left: 0pt, right: 0pt),
   )
@@ -7,16 +6,15 @@
   align(center)[
     #box(
       width: 100%,
-      height: 25%,
+      height: auto,
       clip: true,
-      image("img/header.svg", width: 100%, height: 100%, fit: "cover")
+      image("img/header.svg", width: 15%, height: auto, fit: "cover")
     )
   ]
 
 
   pad(left: 3cm, right: 3cm)[
-    #v(1em)
-    #outline(title: none)
+    #outline(title: [Rheo documentation])
   ]
 
   pagebreak()

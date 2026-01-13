@@ -1,7 +1,7 @@
 #import "index.typ": rheobook
 #show: rheobook.with(current-page: "what-and-why-is-rheo")
 
-= What and why is Rheo?
+== Why do we need Rheo?
 
 Rheo (_ree-oh_) is an #link("https://github.com/freecomputinglab/rheo")[open source] typesetting and static site engine for Typst.
 It is a typesetting engine because it produces typeset digital documents such as PDF and EPUB, and a static site engine because it produces websites that don't require communication with a custom backend server, but rather are self-sufficient sets of files that can be natively opened a browser (static sites).  

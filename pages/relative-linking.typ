@@ -17,6 +17,6 @@ What a relative link transforms to depends on both the output format and your Rh
 - In *PDF*, relative links either become plain text (if input Typst is not combined, and thus produces one PDF per source document), or links to the relevant sections in the output document (if your config specifies a spine with the `merge` attribute set). 
 - In *EPUB*, relative links become links to the relevant sections in the EPUB. 
 
-Relative linking is what allows Rheo to produce fully functinoal static sites.
+Relative linking is what allows Rheo to produce fully functional static sites.
 It is also a feature that you can use to help you organize large writing projects.
 (Note that the Typst #link("https://typst.app/docs/reference/foundations/module/")[`import`] keyword works as you would expect in Rheo, and so can also/still be used as a mechanism to modularize projects.)
