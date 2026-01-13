@@ -1,9 +1,0 @@
-<svg viewBox="565 15 60 82" xmlns="http://www.w3.org/2000/svg">
-  <g transform="translate(550, 10)">
-    <!-- tau base -->
-    <path d="M30 20 V80 M30 25 H60" stroke="#3d2645" stroke-width="6" fill="none" stroke-linecap="round"/>
-    <!-- rho flow -->
-    <path d="M60 25 C70 30, 70 60, 50 65 C40 67, 45 50, 55 50" stroke="#3d2645" stroke-width="6" fill="none" stroke-linecap="round"/>
-  </g>
-</svg>
-

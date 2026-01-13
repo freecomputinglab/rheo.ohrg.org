@@ -63,7 +63,7 @@ It _should_ be simple to create a PDF or EPUB for sharing with colleagues or col
 This is the vision of the world to which we at #link("https://freecomputinglab.ohrg.org")[the free computing lab] aspire, and in search of which we have built Rheo.
 Rheo is the first installment in a larger set of writing tools we aim to build, which will include processes for collaboratively drafting documents, constructing and working with digital libraries, and more.
 
-#context if target() == "html" {
+#context if target() != "paged" {
 [== Bibliography
 #bibliography("./img/refs.bib", title: none, style: "chicago-author-date")
 

@@ -61,6 +61,9 @@
     none
   }
 
+  // RHEO_HACK: if_epub_start 
+  // RHEO_HACK: if_epub_end 
+
   context if target() == "html" {
     div("topbar")[
       #button("sidebar-toggle", "Toggle sidebar")[
