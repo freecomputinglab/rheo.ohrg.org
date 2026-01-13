@@ -15,6 +15,7 @@ vertebrae = [
   "formats.typ",
   "spines.typ",
   "custom-css.typ",
+  "faq.typ",
   "endmatter.typ",
 ]
 merge = true
@@ -32,5 +33,6 @@ vertebrae = [
   "formats.typ",
   "spines.typ",
   "custom-css.typ",
+  "faq.typ",
   "endmatter.typ",
 ]

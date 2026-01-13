@@ -10,6 +10,7 @@
 #let rheo-source-url = "https://github.com/freecomputinglab/rheo"
 #let rheo-docs-source-url = "https://github.com/freecomputinglab/rheo.ohrg.org"
 #let rheo-docs-url = "https://rheo.ohrg.org"
+#let fcl-zulip-join-url = "https://freecomputinglab.zulipchat.com/join/dit724hcwgbhic3xxwkdpkqs/"
 
 // NOTE: in the future, this can perhaps be provided by rheo
 #let rheobook(current-page: none, doc) = {
@@ -20,7 +21,6 @@
   // are registered in Typst's AST. As these links are directly rendered into HTML using `html.elem`,
   // rheo will just reproduce the URLs as specified.
   let pages = (
-
     (id: "index", title: "Introduction", file: "./"),
     (id: "why-is-rheo", title: "Why Rheo?", file: "./why-is-rheo.html"),
     (id: "getting-started", title: "Getting started", file: "./getting-started.html"),
@@ -31,6 +31,7 @@
     (id: "formats", title: "Formats", file: "./formats.html"),
     (id: "spines", title: "Spines", file: "./spines.html"),
     (id: "custom-css", title: "Custom CSS", file: "./custom-css.html"),
+    (id: "faq", title: "Frequently Asked Questions", file: "./faq.html"),
   )
 
   // Calculate previous and next pages for navigation
