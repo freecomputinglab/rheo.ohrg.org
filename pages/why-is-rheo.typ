@@ -17,7 +17,7 @@ Typst is a markup language that integrates with plain text, like Markdown, makin
 Unlike Markdown, however, it is also a Turing-complete programming language with a modern type system, meaning that it is possible (though not necessary) to express sophisticated conditional logic controlling where and how text is rendered.  
 Typst has a concrete and concise syntax for footnotes and citations, and can express visual constructs such as tables, figures, colors, and mathematical formulas. 
 It was developed as a modern alternative to LaTeX, Leslie Lamport's legendary 1980s addition to Donald Knuth's original '78 Tex typesetting system.
-For the past 40 years, LaTeX has been the most expressive way to produce pdf documents, rendering it the de facto standard for academic and scientific publication.
+For the past 40 years, LaTeX has been the most expressive way to produce PDF documents, rendering it the de facto standard for academic and scientific publication.
 In the past few years, Typst has become the most promising and powerful alternative to LaTeX due to its maintainers' effort to build out a reliable PDF compilation toolchain.
 
 In 2025, Typst added experimental support for HTML compilation.
@@ -35,8 +35,8 @@ On the other side of the same coin, Rheo allows you to produce an offline versio
 Rheo allows you to compile multiple Typst files that link to each other into a single output, adding what is needed (relative linking) in order to make Typst an ideal markup language for writing static sites. 
 Typst is the most elegant and flexible way to typeset PDF documents today; Rheo extends Typst's capabilities, allowing you to additionally typeset EPUBs and generate static sites from the same source.
 #footnote[EPUB is #link("https://github.com/typst/typst/issues/188")[on Typst's roadmap], but is not yet natively supported.]  
-Naturally, this blog post was #link("https://github.com/freecomputinglab/rheo.ohrg.org/pages/why-is-rheo.typ")[written with Typst], and this site was made with Rheo.
-If you're already convinced, feel free to jump ahead to #link("./getting-started.typ")[Getting Started] to download Rheo on your system and get building. 
+Naturally, this blog post was #link("https://github.com/freecomputinglab/rheo.ohrg.org/blob/main/pages/why-is-rheo.typ")[written in Typst], and this site was #link("https://github.com/freecomputinglab/rheo.ohrg.org/")[made with Rheo].
+If you're already convinced, feel free to jump ahead to #link("./getting-started.typ")[Getting Started] to download Rheo on your system and start writing. 
 
 == The philosophy of Rheo
 Rheo is a prefix or combining form in English that originates from the Greek word _rheos_ (ῥέος), meaning flow, stream, or current.

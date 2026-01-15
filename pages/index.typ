@@ -168,7 +168,7 @@ Some of the things you can write and publish with Rheo include:
 - A dissertation
 - A book manuscript
 - A novel
-- A text book
+- A textbook
 - Technical documentation
 
 Rheo is for anyone who has ever spent regrettable hours formatting citatons, fighting with LaTeX, who has experienced the limitations of Markdown, or who wants to benefit from the richer writing experience that Typst makes possible (more on this in the next section).
