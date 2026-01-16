@@ -27,6 +27,7 @@ As one of Rheo's outputs is a static site, the landing page will default to one 
 (If this file doesn't exist, Rheo will present you with a basic listing of all the other files in the site.)
 Let's put some Typst in the `index.typ` file:
 
+`project_uno/index.typ`
 ```typ
 = Project uno
 
@@ -76,7 +77,7 @@ Let's kill that process (with Ctrl-C).
 Rheo compiles documents from across your project directory towards EPUB, PDF, and HTML simultaneously, whereas the Typst compiler typically takes just one Typst file and produces one kind of output.#footnote[Typst allows you to break up your projects using #link("https://typst.app/docs/reference/foundations/module/")[modules], but still requires one entrypoint. Rheo, by contrast, enables multiple entrypoint files, corresponding to multiple standalone pages in a static site.] 
 Let's add a couple of files to our project and link between them:
 
-*project_uno/about.typ*
+`project_uno/about.typ`
 ```typ
 = About
 
@@ -84,7 +85,7 @@ Project uno is an incredible writing project that will transform the way we unde
 If you want to be involved, see the #link("./contact.typ")[Contact page].
 ```
 
-*project_uno/contact.typ*
+`project_uno/contact.typ`
 ```typ
 #let email = "myemail@mydomain.com"
 = Contact 
@@ -94,7 +95,7 @@ To learn more about project uno, email me at #link("mailto:" + email)[#email]
 
 And let's also link to the two new pages on the index page:
 
-*project_uno/index.typ*
+`project_uno/index.typ`
 ```typ
 = Project uno
 
@@ -120,7 +121,7 @@ This is probably not what we want, as the index page acts as a sort of table of 
 
 To sophisticate the way that Rheo produces outputs, we can add a #link("./rheotoml.typ")[rheo.toml config] at the base of the project directory:
 
-*project_uno/rheo.toml*
+`project_uno/rheo.toml`
 ```toml
 version = "0.1.0"
 
@@ -144,7 +145,7 @@ We now, however, have three distinct PDFs that are being created: one for each p
 This is because Rheo defaults to producing one PDF per file in the project directory.
 We can configure Rheo to merge files together into a single PDF output by specifying a PDF spine, as we did with EPUB, and setting the `merge` attribute to `true`:
 
-*project_uno/rheo.toml*
+`project_uno/rheo.toml`
 ```toml
 version = "0.1.0"
 

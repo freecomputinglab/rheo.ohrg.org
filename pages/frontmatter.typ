@@ -1,6 +1,6 @@
 #context if target() != "html" {
   set page(
-    margin: (top: 0pt, bottom: 2cm, left: 0pt, right: 0pt),
+    margin: (top: 1in, bottom: 2cm, left: 0pt, right: 0pt),
   )
 
   align(center)[
@@ -13,8 +13,8 @@
   ]
 
 
-  pad(left: 3cm, right: 3cm)[
-    #outline(title: [Rheo documentation])
+  pad(left: 1.5in, right: 1.5in)[
+    #outline(title: none)
   ]
 
   pagebreak()
