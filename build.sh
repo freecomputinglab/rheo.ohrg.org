@@ -30,12 +30,7 @@ fi
 if [ ! -f "$RHEO_BIN" ]; then
   echo "Building rheo from source..."
 
-  if [ -z "$GITHUB_TOKEN" ]; then
-    echo "Error: GITHUB_TOKEN environment variable not set"
-    exit 1
-  fi
-
-  git clone https://${GITHUB_TOKEN}@github.com/breezykermo/rheo /tmp/rheo
+  git clone https://github.com/freecomputinglab/rheo /tmp/rheo
   cd /tmp/rheo
   cargo build --release
 
