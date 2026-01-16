@@ -43,7 +43,8 @@
 
   // Set document title based on current page
   let page-title = if current-index != none {
-    pages.at(current-index).title + " | Rheo"
+    let ext = context if target() == "html" { "| Rheo" } else { "" }
+    pages.at(current-index).title + ext 
   } else {
     "Rheo"
   }
@@ -133,7 +134,9 @@
     html.elem("script")[#read("sidebar-toggle.js")];
 
   } else {
-    set heading(numbering: "1.")
+    context if target() == "paged" {
+      set heading(numbering: "1.")
+    }
 
     // Style code blocks with light border and background
     show raw.where(block: true): set block(fill: luma(250), stroke: 0.5pt + luma(200), radius: 2pt, inset: 8pt)
@@ -158,7 +161,7 @@ As a result, you can read it as:
 - #link("https://rheo.ohrg.org/rheo-docs.pdf")[PDF] - as a fixed-size document for printing.
 - #link("https://nota-lang.github.io/bene/?preload=https%3A%2F%2Frheo.ohrg.org%2Frheo-docs.epub")[EPUB] - as an adaptive document for e-readers.
 
-== Who should use Rheo?
+= Who should use Rheo?
 If you write anything as simple as a blog or as complex as a dissertation or monograph in Typst, Rheo enables you to publish it in multiple formats.  
 If you are willing to learn #link("https://typst.app/docs/reference/syntax/")[a little bit of syntax], you can turn a piece of writing into a website, an adaptive document, and/or a printable document.
 

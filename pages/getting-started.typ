@@ -14,7 +14,7 @@ Rheo is packaged as a standalone binary, and doesn't require any version of Typs
 (Note that even if you already have Typst on your system, Rheo will use its own embedded version of the compiler.)
 Refer to #link(rheo-source-url)[Rheo's source code] for more information and installation options. 
 
-== Firing up 
+= Firing up 
 With Rheo we can produce a static site, a PDF, and an EPUB from a Typst document. 
 Let's create a directory with a single Typst file in it:
 
@@ -71,7 +71,7 @@ The `--open` flag here indicates that we'd like to open the output using our sys
 Provided you have an EPUB reader on your system (if you don't, we recommend installing #link("https://github.com/nota-lang/bene")[bene]), you should now have a PDF, an EPUB, and a website in front of you.
 As simple as that!
 
-== Scaling up 
+= Scaling up 
 
 Let's kill that process (with Ctrl-C).
 Rheo compiles documents from across your project directory towards EPUB, PDF, and HTML simultaneously, whereas the Typst compiler typically takes just one Typst file and produces one kind of output.#footnote[Typst allows you to break up your projects using #link("https://typst.app/docs/reference/foundations/module/")[modules], but still requires one entrypoint. Rheo, by contrast, enables multiple entrypoint files, corresponding to multiple standalone pages in a static site.] 
@@ -114,7 +114,7 @@ Note how the relative links are working across both the EPUB and the PDF.
 #link("./relative-linking.typ")[Relative linking] is one of the key features in Rheo that enables you to build richer static sites and EPUBs beyond using just Typst.
 All of #link("https://typst.app/docs/reference/scripting/")[Typst's other features] such as variables are fair game, too, as Rheo just uses Typst's compiler under the hood.
 
-== Adding a config 
+= Adding a config 
 
 One issue with the EPUB that is currently being produced is that the `index.typ` section shows up last, after the `about.typ` and `contact.typ`, as Rheo orders files lexicographically by default.
 This is probably not what we want, as the index page acts as a sort of table of contents in our writing project currently.

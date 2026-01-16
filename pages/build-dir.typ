@@ -20,15 +20,15 @@ build/
 The build directory path is calculated _relative to the content directory_.
 This is important, as if you change the #link("./content-dir.typ")[content directory], then your build directory path will become relevant to that directory.  
 
-== Configuration 
-=== CLI flag 
+= Configuration 
+== CLI flag 
 You can specify a build directory with either the `compile` and `watch` commands:
 
 ```bash
 rheo compile path/to/project --build-dir path/to/build
 ```
 
-=== `rheo.toml` 
+== `rheo.toml` 
 The build directory is specified at the top level of the `rheo.toml`:
 
 ```toml

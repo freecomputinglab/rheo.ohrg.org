@@ -10,8 +10,8 @@ This can be helpful for structuring projects, as it allows you, for example, to 
 The default content directory is the same path as the Rheo project directory. 
 It is important to note that if you specify a custom content directory, all other configuration such as `build_dir` and `spine` globs will operate _relative to the content directory_.
 
-== Configuration
-=== `rheo.toml` 
+= Configuration
+== `rheo.toml` 
 A custom content directory can be specified at the top level of the `rheo.toml`.
 The path is calculated relative to the project directory:
 
