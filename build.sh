@@ -30,7 +30,7 @@ fi
 if [ ! -f "$RHEO_BIN" ]; then
   echo "Building rheo from source..."
 
-  git clone https://github.com/freecomputinglab/rheo /tmp/rheo
+  git clone -b dev https://github.com/freecomputinglab/rheo /tmp/rheo
   cd /tmp/rheo
   cargo build --release
 
