@@ -24,6 +24,7 @@
     (id: "index", title: "Introduction", file: "./"),
     (id: "why-is-rheo", title: "Why Rheo?", file: "./why-is-rheo.html"),
     (id: "getting-started", title: "Getting started", file: "./getting-started.html"),
+    (id: "init", title: "Initializing a project", file: "./init.html"),
     (id: "relative-linking", title: "Relative linking", file: "./relative-linking.html"),
     (id: "rheotoml", title: "Rheo.toml", file: "./rheotoml.html"),
     (id: "build-dir", title: "Build directory", file: "./build-dir.html"),
