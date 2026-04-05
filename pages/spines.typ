@@ -44,7 +44,7 @@ In a PDF generated in this way, #link("./relative-linking.typ")[relative links] 
 
 == HTML 
 
-Rheo does not currently support customizing HTML spines.
+An HTML spine refers to the source Typst documents that should be compiled.
 The default spine uses all Typst files: 
 
 ```toml
@@ -52,3 +52,5 @@ The default spine uses all Typst files:
 title = "[project folder name]"
 vertebrae = ["**/*.typ"]
 ```
+
+You can customize the spine if you want to exclude certain files from being compiled to HTML documents.
