@@ -2,7 +2,14 @@
 #show: rheobook.with(current-page: "getting-started")
 
 = Installation 
-The easiest way to install Rheo is from #link("https://crates.io/")[crates.io], the Rust language's package manager.
+The easiest way to install Rheo is using #link("https://github.com/cargo-bins/cargo-binstall")[cargo-binstall].
+Install it, and then run:
+
+```bash
+cargo binstall rheo
+```
+
+Alternatively, you can build Rheo from #link("https://crates.io/")[crates.io], the Rust language's package manager.
 If you don't already have Rust/cargo, you will need to #link("https://doc.rust-lang.org/cargo/getting-started/installation.html")[install those first].
 Open your terminal, and run the following command:
 
@@ -44,7 +51,7 @@ rheo compile project_uno
 ```
 
 This command produces a `build` subdirectory inside the base directory which contains a PDF, an EPUB, and a static site (HTML and CSS).
-Your project folder should now look like so:
+Your project folder should now look something like this:
 
 ```
 .
