@@ -16,7 +16,8 @@ Unlike the PDF and HTML formats, EPUB always produces a single merged output fro
 Rheo handles the full EPUB packaging pipeline: it converts your Typst source files to XHTML, generates a table of contents from your document headings, and bundles everything into a standards-compliant EPUB archive.
 
 The #link("./spines.typ")[spine] determines which files are included and in what order.
-If you don't specify one, Rheo infers a default spine that includes all Typst files in the project:
+An EPUB must have a spine in order to be valid; if you don't specify one, Rheo infers a default that includes all Typst files ordered lexicographically.
+You can customize it to control the set and order of sections:
 
 ```toml
 [epub.spine]

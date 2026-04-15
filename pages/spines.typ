@@ -17,40 +17,5 @@ vertebrae = ["intro.typ", "*.typ"]
 Notice how the first entry `intro.typ` is a specific file, whereas the second `*.typ` captures a range of files.
 When a glob string captures a range of source files, they will be ordered lexicographically in the spine.
 
-== EPUB
-
-An EPUB must have a spine in order to be valid.
-By default, Rheo will infer the following spine if not specified:
-
-```toml
-[epub.spine]
-title = "[project folder name]"
-vertebrae = ["**/*.typ"]
-```
-
-== PDF 
-
-By default, Rheo generates one PDF per Typst source file.
-You can specify a spine for the PDF format in order to reticulate multiple source documents into a single output PDF by indicating the vertebrae and setting `merge` to `true`:
-
-```toml
-[pdf.spine]
-title = "My reticulated pdf"
-vertebrae = ["intro.typ", "*.typ"]
-merge = true
-```
-
-In a PDF generated in this way, #link("./relative-linking.typ")[relative links] will resolve to internal document links that point to the relevant section.
-
-== HTML 
-
-An HTML spine refers to the source Typst documents that should be compiled.
-The default spine uses all Typst files: 
-
-```toml
-[html.spine]
-title = "[project folder name]"
-vertebrae = ["**/*.typ"]
-```
-
-You can customize the spine if you want to exclude certain files from being compiled to HTML documents.
+Each format uses its spine slightly differently.
+See the #link("./format-pdf.typ")[PDF], #link("./format-html.typ")[HTML], and #link("./format-epub.typ")[EPUB] format pages for details on how spines are configured and what defaults are applied for each output.
