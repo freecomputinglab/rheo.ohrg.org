@@ -19,25 +19,40 @@
   // NOTE: this links cannot be specified as ".typ" currently, as rheo only transforms links that
   // are registered in Typst's AST. As these links are directly rendered into HTML using `html.elem`,
   // rheo will just reproduce the URLs as specified.
-  let pages = (
-    (id: "index", title: "Introduction", file: "./"),
-    (id: "why-is-rheo", title: "Why Rheo?", file: "./why-is-rheo.html"),
-    (id: "getting-started", title: "Getting started", file: "./getting-started.html"),
-    (id: "init", title: "Initializing a project", file: "./init.html"),
-    (id: "relative-linking", title: "Relative linking", file: "./relative-linking.html"),
-    (id: "rheotoml", title: "Rheo.toml", file: "./rheotoml.html"),
-    (id: "build-dir", title: "Build directory", file: "./build-dir.html"),
-    (id: "content-dir", title: "Content directory", file: "./content-dir.html"),
-    (id: "formats", title: "Formats", file: "./formats.html"),
-    (id: "spines", title: "Spines", file: "./spines.html"),
-    (id: "custom-js-css", title: "Custom JS/CSS", file: "./custom-js-css.html"),
-    (id: "assets", title: "Assets", file: "./assets.html"),
-    (id: "faq", title: "Frequently Asked Questions", file: "./faq.html"),
+  let sections = (
+    (id: "intro", title: "Basics", pages: (
+      (id: "index", title: "Introduction", file: "./"),
+      (id: "why-is-rheo", title: "Why Rheo?", file: "./why-is-rheo.html"),
+      (id: "getting-started", title: "Getting started", file: "./getting-started.html"),
+      (id: "init", title: "Initializing a project", file: "./init.html"),
+      (id: "faq", title: "Frequently Asked Questions", file: "./faq.html"),
+    )),
+    (id: "core", title: "Core", pages: (
+      (id: "core", title: "Core", file: "./core.html"),
+      (id: "relative-linking", title: "Relative linking", file: "./relative-linking.html"),
+      (id: "rheotoml", title: "Rheo.toml", file: "./rheotoml.html"),
+      (id: "build-dir", title: "Build directory", file: "./build-dir.html"),
+      (id: "content-dir", title: "Content directory", file: "./content-dir.html"),
+      (id: "spines", title: "Spines", file: "./spines.html"),
+      (id: "assets", title: "Assets", file: "./assets.html"),
+    )),
+    (id: "pdf", title: "PDF", pages: (
+      (id: "format-pdf", title: "PDF", file: "./format-pdf.html"),
+    )),
+    (id: "epub", title: "EPUB", pages: (
+      (id: "format-epub", title: "EPUB", file: "./format-epub.html"),
+    )),
+    (id: "html", title: "HTML", pages: (
+      (id: "format-html", title: "HTML", file: "./format-html.html"),
+      (id: "custom-js-css", title: "Custom JS/CSS", file: "./custom-js-css.html"),
+    )),
   )
+
+  let flat-pages = sections.map(s => s.pages).flatten()
 
   // Calculate previous and next pages for navigation
   let current-index = if current-page != none {
-    pages.position(p => p.id == current-page)
+    flat-pages.position(p => p.id == current-page)
   } else {
     none
   }
@@ -45,20 +60,20 @@
   // Set document title based on current page
   let page-title = if current-index != none {
     let ext = context if target() == "html" { "| Rheo" } else { "" }
-    pages.at(current-index).title + ext
+    flat-pages.at(current-index).title + ext
   } else {
     "Rheo"
   }
   set document(title: page-title)
 
   let prev-page = if current-index != none and current-index > 0 {
-    pages.at(current-index - 1)
+    flat-pages.at(current-index - 1)
   } else {
     none
   }
 
-  let next-page = if current-index != none and current-index < pages.len() - 1 {
-    pages.at(current-index + 1)
+  let next-page = if current-index != none and current-index < flat-pages.len() - 1 {
+    flat-pages.at(current-index + 1)
   } else {
     none
   }
@@ -82,10 +97,17 @@
 
       // sidebar
       #ul("sidebar-nav")[
-        #for page in pages {
-          let class = if page.id == current-page { "active" } else { "" }
-          li(class)[
-            #a(page.file)[#page.title]
+        #for section in sections {
+          li("section-label")[
+            #span("section-title")[#section.title]
+            #ul("subsection-nav")[
+              #for page in section.pages {
+                let class = if page.id == current-page { "active" } else { "" }
+                li(class)[
+                  #a(page.file)[#page.title]
+                ]
+              }
+            ]
           ]
         }
       ]
