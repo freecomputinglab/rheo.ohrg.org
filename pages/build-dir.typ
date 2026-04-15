@@ -4,7 +4,7 @@
 = Build directory  
 
 Rheo produces outputs in a simple directory structure with one subdirectory for each kind of output.
-By default, Rheo produces all outputs (PDF, HTML, and EPUB) in a `build` directory instide the project directory:
+By default, Rheo produces all outputs (PDF, HTML, and EPUB) in a `build` directory inside the project directory:
 
 ```
 build/
@@ -18,7 +18,7 @@ build/
 ```
 
 The build directory path is calculated _relative to the content directory_.
-This is important, as if you change the #link("./content-dir.typ")[content directory], then your build directory path will become relevant to that directory.  
+This is important, as if you change the #link("./content-dir.typ")[content directory], then your build directory path will become relative to that directory.  
 
 = Configuration 
 == CLI flag 

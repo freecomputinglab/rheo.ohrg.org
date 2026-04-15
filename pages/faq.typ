@@ -32,6 +32,6 @@ If you're interested to learn more or get involved, you can #link(fcl-zulip-join
 
 == Can I contribute to Rheo?
 Yes!
-Rheo is written in Rust and developed in public through #link(rheo-source-url)[Github].
+Rheo is written in Rust and developed in public through #link(rheo-source-url)[GitHub].
 You can track development and submit issues or requests for features through that platform.
 While in principle we welcome community pull requests, it's best to #link(fcl-zulip-join-url)[join our Zulip] and ask about it first, to confirm that your work will not go to waste.

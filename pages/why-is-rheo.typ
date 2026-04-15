@@ -4,7 +4,7 @@
 == Why do we need Rheo?
 
 Rheo (_ree-oh_) is an #link("https://github.com/freecomputinglab/rheo")[open source] typesetting and static site engine for Typst.
-It is a typesetting engine because it produces typeset digital documents such as PDF and EPUB, and a static site engine because it produces websites that don't require communication with a custom backend server, but rather are self-sufficient sets of files that can be natively opened a browser (static sites).  
+It is a typesetting engine because it produces typeset digital documents such as PDF and EPUB, and a static site engine because it produces websites that don't require communication with a custom backend server, but rather are self-sufficient sets of files that can be natively opened in a browser (static sites).  
 Most static site engines these days employ Markdown, a markup format that is approachable and pretty generic, allowing folks who are not familiar with or otherwise don't want to deal directly with the required file formats of the web--- HTML, CSS, and Javascript--- to write blog posts and other content which can then be pumped into a static site.
 
 As useful as it is, Markdown has its ambiguities.
@@ -16,7 +16,7 @@ It's not so great when it comes to things like tables, figures, and math.
 Typst is a markup language that integrates with plain text, like Markdown, making it easy to adopt and joyful to write.
 Unlike Markdown, however, it is also a Turing-complete programming language with a modern type system, meaning that it is possible (though not necessary) to express sophisticated conditional logic controlling where and how text is rendered.  
 Typst has a concrete and concise syntax for footnotes and citations, and can express visual constructs such as tables, figures, colors, and mathematical formulas. 
-It was developed as a modern alternative to LaTeX, Leslie Lamport's legendary 1980s addition to Donald Knuth's original '78 Tex typesetting system.
+It was developed as a modern alternative to LaTeX, Leslie Lamport's legendary 1980s addition to Donald Knuth's original '78 TeX typesetting system.
 For the past 40 years, LaTeX has been the most expressive way to produce PDF documents, rendering it the de facto standard for academic and scientific publication.
 In the past few years, Typst has become the most promising and powerful alternative to LaTeX due to its maintainers' effort to build out a reliable PDF compilation toolchain.
 
@@ -45,15 +45,15 @@ But other meanings lurk beneath the surface of this basic idea.
 Sarah Pourciau has argued that the oceanic is a deep-rooted metaphor in computing, as all computation at some level seeks solid space in a sea of digital noise @pourciauDigitalOcean2022.
 From Alan Turing's partial solution to David Hilbert's _Entscheidungsproblem_ in the universal machine, to Claude Shannon's information theory, to Leslie Lamport's ordering of events in a distributed system, the key issue at hand is how to carve out clarity from uncertainty and confusion.
 Writing has played a magisterial role in calming the storm of imprecise thought.
-Long before computation arrived on the scene, the written word has served as the steward of reason, in the Western world and beyond, from Mesopotamian cunieform to Twitter.
+Long before computation arrived on the scene, the written word has served as the steward of reason, in the Western world and beyond, from Mesopotamian cuneiform to Twitter.
 _Nota bene_ ('Take note'): that writing can also herald chaos and confusion doesn't invalidate its capacity for spreading sensibility.
 
 Rheo is a tool that facilitates the production and publication of documents following from the original vision of the Internet as a mechanism for lively and reasonably unfettered academic exchange, rather than the densely commercial space of platform capitalism that it has become. 
-It should not be so difficult, given the extraordinary capacities of software and hardware today, to make a piece of writing publically available in a plain and pleasant format.
+It should not be so difficult, given the extraordinary capacities of software and hardware today, to make a piece of writing publicly available in a plain and pleasant format.
 That there exist digital humanities initiatives measured in months and years to bring books to the web as basic websites is a clear sign that something has gone awry.
 #footnote[
-  There are many exciting and experimental ways of presenting text and other conent in the digital humanities.
-  But we think that it should be easier that it currently is to publish and distribute books digitally, simply and straightforwardly.
+  There are many exciting and experimental ways of presenting text and other content in the digital humanities.
+  But we think that it should be easier than it currently is to publish and distribute books digitally, simply and straightforwardly.
 ]
 
 Rheo aims to enable the publication of more books, blog posts, and papers without the necessary capitalist ceremony of creating an account on Substack, Medium, or Squarespace.
