@@ -15,7 +15,7 @@ vertebrae = [
   "content-dir.typ",
   "formats.typ",
   "spines.typ",
-  "custom-css.typ",
+  "custom-js-css.typ",
   "faq.typ",
   "endmatter.typ",
 ]
@@ -34,6 +34,6 @@ vertebrae = [
   "content-dir.typ",
   "formats.typ",
   "spines.typ",
-  "custom-css.typ",
+  "custom-js-css.typ",
   "faq.typ",
 ]

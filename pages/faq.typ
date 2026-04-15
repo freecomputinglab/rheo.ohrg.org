@@ -1,4 +1,4 @@
-#import "index.typ": rheobook, rheo-source-url, fcl-zulip-join-url
+#import "index.typ": fcl-zulip-join-url, rheo-source-url, rheobook
 #show: rheobook.with(current-page: "FAQ")
 
 = Frequently Asked Questions
@@ -14,7 +14,7 @@ typst compile --features html --format html source.typ # compile to HTML
 ```
 
 Rheo compiles a _project folder_ to three outputs---PDF, HTML, and EPUB---concurrently.
-It allows you to configure how certain source files should be merged (to produce a 'combined' EPUB or PDF file, for example, via #link("./spines.typ")[spines]), and also allows you to enrich certain outputs (such as HTML via #link("./custom-css.typ")[custom CSS]) with non-Typst content.
+It allows you to configure how certain source files should be merged (to produce a 'combined' EPUB or PDF file, for example, via #link("./spines.typ")[spines]), and also allows you to enrich certain outputs (such as HTML via #link("./custom-js-css.typ")[custom CSS]) with non-Typst content.
 Rheo supports EPUB natively, which is not currently supported by the upstream Typst CLI (though it is #link("https://github.com/typst/typst/issues/188")[on the roadmap]).
 
 Since 0.2.0, Rheo has a plugin architecture, which means that it can be extended to compile to additional formats.
@@ -30,7 +30,7 @@ If you don't have a good EPUB reading experience currently, we recommend using #
 Rheo is developed by the #link("https://freecomputinglab.ohrg.org/")[Free Computing Lab], an academic research consortium that researches the nature of computing freedom.
 If you're interested to learn more or get involved, you can #link(fcl-zulip-join-url)[join our Zulip].
 
-== Can I contribute to Rheo? 
+== Can I contribute to Rheo?
 Yes!
 Rheo is written in Rust and developed in public through #link(rheo-source-url)[Github].
 You can track development and submit issues or requests for features through that platform.

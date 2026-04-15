@@ -14,7 +14,6 @@
 
 // NOTE: in the future, this can perhaps be provided by rheo
 #let rheobook(current-page: none, doc) = {
-
   set text(font: ("Inter", "San Francisco", "Arial"))
 
   // NOTE: this links cannot be specified as ".typ" currently, as rheo only transforms links that
@@ -31,7 +30,7 @@
     (id: "content-dir", title: "Content directory", file: "./content-dir.html"),
     (id: "formats", title: "Formats", file: "./formats.html"),
     (id: "spines", title: "Spines", file: "./spines.html"),
-    (id: "custom-css", title: "Custom CSS", file: "./custom-css.html"),
+    (id: "custom-js-css", title: "Custom JS/CSS", file: "./custom-js-css.html"),
     (id: "faq", title: "Frequently Asked Questions", file: "./faq.html"),
   )
 
@@ -45,7 +44,7 @@
   // Set document title based on current page
   let page-title = if current-index != none {
     let ext = context if target() == "html" { "| Rheo" } else { "" }
-    pages.at(current-index).title + ext 
+    pages.at(current-index).title + ext
   } else {
     "Rheo"
   }
@@ -63,15 +62,15 @@
     none
   }
 
-  // RHEO_HACK: if_epub_start 
-  // RHEO_HACK: if_epub_end 
+  // RHEO_HACK: if_epub_start
+  // RHEO_HACK: if_epub_end
 
   context if target() == "html" {
     div("topbar")[
       #button("sidebar-toggle", "Toggle sidebar")[
         #span("hamburger")
       ]
-    #a("/")[#div("topbar-title")[#image("img/header.svg", alt: "Rheo", height: 24pt)]]
+      #a("/")[#div("topbar-title")[#image("img/header.svg", alt: "Rheo", height: 24pt)]]
     ]
 
     nav("sidebar")[
@@ -83,7 +82,7 @@
       // sidebar
       #ul("sidebar-nav")[
         #for page in pages {
-          let class = if page.id == current-page {"active"} else {""}
+          let class = if page.id == current-page { "active" } else { "" }
           li(class)[
             #a(page.file)[#page.title]
           ]
@@ -132,8 +131,7 @@
     // Source: sidebar-toggle-source.js (human-readable)
     // Encoded: sidebar-toggle.js (base64-encoded to avoid HTML entity escaping)
     // To update: edit sidebar-toggle-source.js, then run: bash encode-js.sh
-    html.elem("script")[#read("sidebar-toggle.js")];
-
+    html.elem("script")[#read("sidebar-toggle.js")]
   } else {
     context if target() == "paged" {
       set heading(numbering: "1.")
@@ -154,7 +152,7 @@ The less simple answer is that Rheo is a typesetting and static site engine base
 This guide explains both _how_ to use Rheo, and _why_ it might be for you.
 
 Rheo allows you to produce a website, a fixed-size document, and an adaptive document from a single set of source Typst files.
-It allows you to do something similar to #link("https://www.latex-project.org/")[LaTeX]---except that Typst is _much_ simpler to write, and we can produce a greater number of formats with it. 
+It allows you to do something similar to #link("https://www.latex-project.org/")[LaTeX]---except that Typst is _much_ simpler to write, and we can produce a greater number of formats with it.
 The documentation that you are reading now, for example, was typeset with Rheo.
 As a result, you can read it as:
 
@@ -163,7 +161,7 @@ As a result, you can read it as:
 - #link("https://nota-lang.github.io/bene/?preload=https%3A%2F%2Frheo.ohrg.org%2Frheo-docs.epub")[EPUB] - as an adaptive document for e-readers.
 
 = Who should use Rheo?
-If you write anything as simple as a blog or as complex as a dissertation or monograph in Typst, Rheo enables you to publish it in multiple formats.  
+If you write anything as simple as a blog or as complex as a dissertation or monograph in Typst, Rheo enables you to publish it in multiple formats.
 If you are willing to learn #link("https://typst.app/docs/reference/syntax/")[a little bit of syntax], you can turn a piece of writing into a website, an adaptive document, and/or a printable document.
 
 Some of the things you can write and publish with Rheo include:
@@ -178,5 +176,5 @@ Some of the things you can write and publish with Rheo include:
 Rheo is for anyone who has ever spent regrettable hours formatting citatons, fighting with LaTeX, who has experienced the limitations of Markdown, or who wants to benefit from the richer writing experience that Typst makes possible (more on this in the next section).
 It is for students and teachers, humanists and scientists, bloggers and novelists.
 
-If you have only ever used Microsoft Word to author text, or haven't heard the phrase 'markup language' before, we recommend first familiarizing yourself with Typst via the #link("https://typst.app/docs/tutorial/")[excellent tutorial].   
+If you have only ever used Microsoft Word to author text, or haven't heard the phrase 'markup language' before, we recommend first familiarizing yourself with Typst via the #link("https://typst.app/docs/tutorial/")[excellent tutorial].
 This should give you a good intuition for what Typst is---a markup language similar to but also more powerful than Markdown---and why you might want to use Rheo to typeset your documents.

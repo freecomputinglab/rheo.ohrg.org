@@ -1,7 +1,7 @@
 #import "index.typ": rheobook
 #show: rheobook.with(current-page: "init")
 
-The `init` command scaffolds a fully functional Rheo project that demonstrates relative linking, custom CSS, bibliographic references, and conditional targeting for HTML/PDF/EPUB.
+The `init` command scaffolds a fully functional Rheo project that demonstrates the most common features for Rheo projects that produce HTML, PDF, and/or EPUB.
 
 = Usage
 
@@ -18,18 +18,20 @@ Running `rheo init my_project` produces the following structure:
 
 ```
 my_project/
-├── content/
-│   ├── img/
-│   │   └── header.svg
-│   ├── about.typ
-│   ├── index.typ
-│   └── references.bib
+├── content
+│   ├── about.typ
+│   ├── img
+│   │   └── header.svg
+│   ├── index.typ
+│   └── references.bib
+├── index.js
 ├── rheo.toml
 └── style.css
 ```
 
 - *`rheo.toml`* -- the project configuration, with a #link("./content-dir.typ")[content directory] set to `content/`, and #link("./spines.typ")[spines] for both PDF and EPUB.
-- *`style.css`* -- a #link("./custom-css.typ")[custom stylesheet] for the HTML output.
+- *`style.css`* -- a #link("./custom-js-css.typ")[custom stylesheet] for the HTML output.
+- *`index.js`* -- a #link("./custom-js-css.typ")[script entrypoint] for the HTML output.
 - *`content/index.typ`* -- the landing page, which defines a reusable `template` show rule and demonstrates conditional rendering for HTML vs PDF.
 - *`content/about.typ`* -- a second page that imports the template and links back to the index.
 - *`content/references.bib`* -- a sample bibliography file, referenced from `index.typ` using Typst's `#bibliography` function.
