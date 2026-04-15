@@ -3,4 +3,5 @@
 
 = Core
 
-Core concepts for configuring and structuring Rheo projects.
+Rheo's core engine is the basis on which specific format plugins can be built.
+

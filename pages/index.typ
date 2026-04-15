@@ -20,32 +20,52 @@
   // are registered in Typst's AST. As these links are directly rendered into HTML using `html.elem`,
   // rheo will just reproduce the URLs as specified.
   let sections = (
-    (id: "intro", title: "Basics", pages: (
-      (id: "index", title: "Introduction", file: "./"),
-      (id: "why-is-rheo", title: "Why Rheo?", file: "./why-is-rheo.html"),
-      (id: "getting-started", title: "Getting started", file: "./getting-started.html"),
-      (id: "init", title: "Initializing a project", file: "./init.html"),
-      (id: "faq", title: "Frequently Asked Questions", file: "./faq.html"),
-    )),
-    (id: "core", title: "Core", pages: (
-      (id: "core", title: "Core", file: "./core.html"),
-      (id: "relative-linking", title: "Relative linking", file: "./relative-linking.html"),
-      (id: "rheotoml", title: "Rheo.toml", file: "./rheotoml.html"),
-      (id: "build-dir", title: "Build directory", file: "./build-dir.html"),
-      (id: "content-dir", title: "Content directory", file: "./content-dir.html"),
-      (id: "spines", title: "Spines", file: "./spines.html"),
-      (id: "assets", title: "Assets", file: "./assets.html"),
-    )),
-    (id: "pdf", title: "PDF", pages: (
-      (id: "format-pdf", title: "PDF", file: "./format-pdf.html"),
-    )),
-    (id: "epub", title: "EPUB", pages: (
-      (id: "format-epub", title: "EPUB", file: "./format-epub.html"),
-    )),
-    (id: "html", title: "HTML", pages: (
-      (id: "format-html", title: "HTML", file: "./format-html.html"),
-      (id: "custom-js-css", title: "Custom JS/CSS", file: "./custom-js-css.html"),
-    )),
+    (
+      id: "intro",
+      title: "Basics",
+      pages: (
+        (id: "index", title: "Introduction", file: "./"),
+        (id: "why-is-rheo", title: "Why Rheo?", file: "./why-is-rheo.html"),
+        (id: "getting-started", title: "Getting started", file: "./getting-started.html"),
+        (id: "init", title: "Initializing a project", file: "./init.html"),
+        (id: "faq", title: "Frequently Asked Questions", file: "./faq.html"),
+      ),
+    ),
+    (
+      id: "core",
+      title: "Core",
+      pages: (
+        (id: "core", title: "Basics", file: "./core.html"),
+        (id: "relative-linking", title: "Relative linking", file: "./relative-linking.html"),
+        (id: "build-dir", title: "Build directory", file: "./build-dir.html"),
+        (id: "content-dir", title: "Content directory", file: "./content-dir.html"),
+        (id: "spines", title: "Spines", file: "./spines.html"),
+        (id: "rheotoml", title: "Rheo.toml", file: "./rheotoml.html"),
+        (id: "assets", title: "Assets", file: "./assets.html"),
+      ),
+    ),
+    (
+      id: "pdf",
+      title: "PDF",
+      pages: (
+        (id: "format-pdf", title: "Basics of PDF", file: "./format-pdf.html"),
+      ),
+    ),
+    (
+      id: "epub",
+      title: "EPUB",
+      pages: (
+        (id: "format-epub", title: "Basics of EPUB", file: "./format-epub.html"),
+      ),
+    ),
+    (
+      id: "html",
+      title: "HTML",
+      pages: (
+        (id: "format-html", title: "Basics of HTML", file: "./format-html.html"),
+        (id: "custom-js-css", title: "Custom JS/CSS", file: "./custom-js-css.html"),
+      ),
+    ),
   )
 
   let flat-pages = sections.map(s => s.pages).flatten()
