@@ -31,6 +31,7 @@
     (id: "formats", title: "Formats", file: "./formats.html"),
     (id: "spines", title: "Spines", file: "./spines.html"),
     (id: "custom-js-css", title: "Custom JS/CSS", file: "./custom-js-css.html"),
+    (id: "assets", title: "Assets", file: "./assets.html"),
     (id: "faq", title: "Frequently Asked Questions", file: "./faq.html"),
   )
 
