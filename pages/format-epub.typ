@@ -3,6 +3,9 @@
 
 = EPUB
 
+EPUB is, in our view, the most promising document format for the future of digital reading.
+It combines the portability of PDF -- a document encapsulated in a single file that renders reliably -- with the flexibility of HTML -- dynamic layout that adapts to different screens, and the ability to support interactivity and extensions.#footnote[For more on why we believe EPUB deserves wider adoption, see #link("https://willcrichton.net/notes/portable-epubs/")[Portable EPUBs].]
+
 Typst does #link("https://github.com/typst/typst/issues/188")[not yet support] EPUB.
 The Rheo EPUB format bridges the gap, allowing you to compile fully functional EPUB documents from a Rheo project directory.
 As EPUB export is on Typst's roadmap, we will track this feature closely in the upstream and look to integrate with it when it lands in the future.

@@ -61,6 +61,10 @@ A website without any interactive elements such as forms, online marketplaces, o
 It _should_ be simple to create a PDF or EPUB for sharing with colleagues or collaborators---as simple as it is to send an email.
 
 This is the vision of the world to which we at #link("https://freecomputinglab.ohrg.org")[the free computing lab] aspire, and in search of which we have built Rheo.
+Beyond making publishing simpler, we believe that better document infrastructure lays the groundwork for richer ways of _reading_.
+When documents are produced in structured, portable formats like EPUB and HTML, they become augmentable --- researchers and developers can build reading experiences on top of them, such as contextual definitions, explorable explanations, and interactive figures.
+The flow in Rheo's name isn't only about getting documents out into the world; it's also about what readers can do with them when they arrive.
+
 Rheo is the first installment in a larger set of writing tools we aim to build, which will include processes for collaboratively drafting documents, constructing and working with digital libraries, and more.
 
 #context if target() != "paged" {

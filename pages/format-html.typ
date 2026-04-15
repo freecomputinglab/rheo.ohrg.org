@@ -19,7 +19,8 @@ Rheo also provides a development server with live reloading when you use the `wa
 rheo watch my-project --html --open
 ```
 
-The HTML format supports configurable #link("./custom-js-css.typ")[CSS and JavaScript] entrypoints, as well as #link("./assets.typ")[asset copying] for additional files your site needs.#footnote[Note that there is an experimental #link("https://github.com/typst/typst/pull/7964")[bundle format] in upstream Typst which allows you to achieve similar results. We are tracking this closely, but for the time being have not incorporated this feature/format into Rheo on account of some critical deficiencies such as #link("https://github.com/typst/typst/issues/1097")[the inability to have multiple bibliographies in the same source file].]
+The HTML format supports configurable #link("./custom-js-css.typ")[CSS and JavaScript] entrypoints, as well as #link("./assets.typ")[asset copying] for additional files your site needs.
+These entrypoints are also the mechanism through which reading augmentations can be delivered -- the #link("https://github.com/freecomputinglab/rheo/tree/main/examples/tooltip_html")[tooltip example], for instance, uses a custom Typst function and a JavaScript entrypoint to provide inline tooltips in the HTML output.#footnote[Note that there is an experimental #link("https://github.com/typst/typst/pull/7964")[bundle format] in upstream Typst which allows you to achieve similar results. We are tracking this closely, but for the time being have not incorporated this feature/format into Rheo on account of some critical deficiencies such as #link("https://github.com/typst/typst/issues/1097")[the inability to have multiple bibliographies in the same source file].]
 
 You can customize which files are included in the HTML output using a #link("./spines.typ")[spine]:
 
