@@ -4,5 +4,22 @@
 = PDF
 
 #link("https://typst.app/")[Typst], the programming language and compilation toolchain that underwrites Rheo, natively and fully supports PDF.
-Rheo adds the additional ability to merge multiple different Typst files into a single PDF.
-This is useful when you want to separate sections of your book in individual files, or show the sections of your book as separate web pages in the HTML output.
+By default, Rheo generates one PDF per Typst source file in your project -- much like running the Typst compiler directly.
+
+== What Rheo adds
+
+Where Rheo goes beyond the standard Typst CLI is in its ability to merge multiple source files into a single PDF.
+This is useful when you want to separate sections of your book into individual files -- for example, so that each section can also appear as its own web page in the HTML output -- while still producing a unified document for print.
+
+To merge files, specify a #link("./spines.typ")[spine] in your `rheo.toml` with the `merge` attribute set to `true`:
+
+```toml
+[pdf.spine]
+title = "My book"
+vertebrae = ["intro.typ", "chapters/*.typ"]
+merge = true
+```
+
+When files are merged in this way, #link("./relative-linking.typ")[relative links] between source files are automatically resolved to internal document links that point to the relevant section in the output PDF.
+
+Rheo also copies any #link("./assets.typ")[assets] matched by your `copy` patterns into the PDF build directory.
