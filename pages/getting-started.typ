@@ -42,7 +42,7 @@ Project uno is a writing project.
 ```
 
 Rheo aims to keep out of your way as much as possible, and doesn't require that you add any special syntax or metadata to your files to work.
-This single Typst file we need to get started.
+This single Typst file is all we need to get started.
 Provided you've already installed Rheo on your system, we can compile the project.
 You can tell Rheo to compile a folder by pointing the `compile` command at it: 
 
@@ -117,7 +117,7 @@ Now let's run Rheo again, but this time let's only build the HTML and EPUB outpu
 rheo watch project_uno --html --epub --open
 ```
 
-Note how the relative links are working across both the EPUB and the PDF. 
+Note how the relative links are working across both the HTML and the EPUB. 
 #link("./relative-linking.typ")[Relative linking] is one of the key features in Rheo that enables you to build richer static sites and EPUBs beyond using just Typst.
 All of #link("https://typst.app/docs/reference/scripting/")[Typst's other features] such as variables are fair game, too, as Rheo just uses Typst's compiler under the hood.
 
