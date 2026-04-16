@@ -1,5 +1,5 @@
 #import "index.typ": fcl-zulip-join-url, rheo-source-url, rheobook
-#show: rheobook.with(current-page: "FAQ")
+#show: rheobook.with(current-page: "faq")
 
 = Frequently Asked Questions
 
