@@ -42,6 +42,7 @@
         (id: "content-dir", title: "Content directory", file: "./content-dir.html"),
         (id: "spines", title: "Spines", file: "./spines.html"),
         (id: "assets", title: "Assets", file: "./assets.html"),
+        (id: "packages", title: "Packages", file: "./packages.html"),
       ),
     ),
     (
