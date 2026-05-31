@@ -7,6 +7,8 @@
 #let nav(_class, ..body) = html.elem("nav", attrs: (class: _class), ..body)
 #let span(_class, ..body) = html.elem("span", attrs: (class: _class), ..body)
 
+#let rheo-version = "0.3.0"
+
 #let rheo-source-url = "https://github.com/freecomputinglab/rheo"
 #let rheo-docs-source-url = "https://github.com/freecomputinglab/rheo.ohrg.org"
 #let rheo-docs-url = "https://rheo.ohrg.org"

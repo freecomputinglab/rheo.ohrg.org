@@ -1,4 +1,4 @@
-#import "index.typ": rheobook 
+#import "index.typ": rheobook, rheo-version
 #show: rheobook.with(current-page: "rheotoml")
 
 Rheo is a CLI that produces PDF, HTML, and EPUB simultaneously from a directory of Typst source documents.
@@ -15,16 +15,8 @@ In general, there are two ways to configure Rheo:
 
 If you compile a Rheo project directory without a `rheo.toml` file, the following default settings will be applied to compile your project.
 
-```toml
-version = "0.1.0"
-content_dir = "./"
-build_dir = "build"
-formats = ["pdf", "html", "epub"]
-
-[epub.spine]
-vertebrae = ["**/*.typ"]
-title = "[project directory name]"
-```
+#raw(lang: "toml", block: true,
+  "version = \"" + rheo-version + "\"\ncontent_dir = \"./\"\nbuild_dir = \"build\"\nformats = [\"pdf\", \"html\", \"epub\"]\n\n[epub.spine]\nvertebrae = [\"**/*.typ\"]\ntitle = \"[project directory name]\"")
 
 To point Rheo to a rheo.toml file that is not at the root of the project directory, specify it directly via the CLI:
 
