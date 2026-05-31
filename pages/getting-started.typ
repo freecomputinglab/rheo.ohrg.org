@@ -1,4 +1,4 @@
-#import "index.typ": rheobook, rheo-source-url, rheo-docs-url, rheo-docs-source-url, rheo-version
+#import "index.typ": rheobook, rheo-source-url, rheo-docs-url, rheo-docs-source-url, rheo-version, code-with-version
 #show: rheobook.with(current-page: "getting-started")
 
 = Installation 
@@ -129,8 +129,11 @@ This is probably not what we want, as the index page acts as a sort of table of 
 To sophisticate the way that Rheo produces outputs, we can add a #link("./rheotoml.typ")[rheo.toml config] at the base of the project directory:
 
 `project_uno/rheo.toml`
-#raw(lang: "toml", block: true,
-  "version = \"" + rheo-version + "\"\n\n[epub.spine]\ntitle = \"Project Uno\"\nvertebrae = [\"index.typ\", \"about.typ\", \"contact.typ\"]")
+#code-with-version(lang: "toml", `version = "{version}"
+
+[epub.spine]
+title = "Project Uno"
+vertebrae = ["index.typ", "about.typ", "contact.typ"]`)
 
 This config uses the notion of a #link("./spines.typ")[spine] to indicate a custom order for the sections.
 We'll learn more about these later on in this documentation.
@@ -148,8 +151,16 @@ This is because Rheo defaults to producing one PDF per file in the project direc
 We can configure Rheo to merge files together into a single PDF output by specifying a PDF spine, as we did with EPUB, and setting the `merge` attribute to `true`:
 
 `project_uno/rheo.toml`
-#raw(lang: "toml", block: true,
-  "version = \"" + rheo-version + "\"\n\n[epub.spine]\ntitle = \"Project Uno\"\nvertebrae = [\"index.typ\", \"about.typ\", \"contact.typ\"]\n\n[pdf.spine]\ntitle = \"Project Uno\"\nvertebrae = [\"index.typ\", \"about.typ\", \"contact.typ\"]\nmerge = true")
+#code-with-version(lang: "toml", `version = "{version}"
+
+[epub.spine]
+title = "Project Uno"
+vertebrae = ["index.typ", "about.typ", "contact.typ"]
+
+[pdf.spine]
+title = "Project Uno"
+vertebrae = ["index.typ", "about.typ", "contact.typ"]
+merge = true`)
 
 Before we run this again, let's also clean the outputs in the build directory, as we don't need those individual PDFs that we produced anymore:
 

@@ -8,6 +8,11 @@
 #let span(_class, ..body) = html.elem("span", attrs: (class: _class), ..body)
 
 #let rheo-version = "0.3.0"
+#let code-with-version(lang: none, body) = raw(
+  lang: lang,
+  block: true,
+  body.text.replace("{version}", rheo-version)
+)
 
 #let rheo-source-url = "https://github.com/freecomputinglab/rheo"
 #let rheo-docs-source-url = "https://github.com/freecomputinglab/rheo.ohrg.org"
