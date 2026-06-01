@@ -1,5 +1,5 @@
-#import "index.typ": rheobook, rheo-source-url, rheo-docs-url, rheo-docs-source-url, rheo-version, code-with-version
-#show: rheobook.with(current-page: "getting-started")
+#import "index.typ": sidebar-site, rheo-source-url, rheo-docs-url, rheo-docs-source-url, rheo-version, code-with-version
+#show: sidebar-site.with(current: "getting-started")
 
 = Installation 
 The easiest way to install Rheo is using #link("https://github.com/cargo-bins/cargo-binstall")[cargo-binstall].

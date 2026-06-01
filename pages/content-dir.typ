@@ -1,5 +1,5 @@
-#import "index.typ": rheobook 
-#show: rheobook.with(current-page: "content-dir")
+#import "index.typ": sidebar-site
+#show: sidebar-site.with(current: "content-dir")
 
 = Content directory 
 

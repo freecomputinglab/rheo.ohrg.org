@@ -1,5 +1,5 @@
-#import "index.typ": rheobook
-#show: rheobook.with(current-page: "relative-linking")
+#import "index.typ": sidebar-site
+#show: sidebar-site.with(current: "relative-linking")
 
 Rheo allows you to write documents in plain #link("https://typst.app/docs/")[Typst] without requiring any additional syntax or metadata. 
 Because Rheo can combine multiple files into unified outputs, however, we need a way to reference other files in the same Rheo project.

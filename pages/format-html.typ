@@ -1,5 +1,5 @@
-#import "index.typ": rheobook
-#show: rheobook.with(current-page: "format-html")
+#import "index.typ": sidebar-site
+#show: sidebar-site.with(current: "format-html")
 
 = HTML
 

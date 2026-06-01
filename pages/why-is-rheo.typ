@@ -1,5 +1,5 @@
-#import "index.typ": rheobook
-#show: rheobook.with(current-page: "why-is-rheo")
+#import "index.typ": sidebar-site
+#show: sidebar-site.with(current: "why-is-rheo")
 
 == Why do we need Rheo?
 

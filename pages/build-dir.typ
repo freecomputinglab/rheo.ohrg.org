@@ -1,5 +1,5 @@
-#import "index.typ": rheobook
-#show: rheobook.with(current-page: "build-dir")
+#import "index.typ": sidebar-site
+#show: sidebar-site.with(current: "build-dir")
 
 = Build directory  
 

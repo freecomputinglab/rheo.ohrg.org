@@ -1,6 +1,9 @@
 version = "0.3.0"
 content_dir = "pages"
 
+[html.assets]
+css_stylesheet = "./style.css"
+
 [pdf.spine]
 title = "Rheo Menual"
 vertebrae = [

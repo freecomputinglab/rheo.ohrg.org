@@ -1,5 +1,5 @@
-#import "index.typ": rheo-source-url, rheobook
-#show: rheobook.with(current-page: "custom-js-css")
+#import "index.typ": rheo-source-url, sidebar-site
+#show: sidebar-site.with(current: "custom-js-css")
 
 = HTML Assets
 

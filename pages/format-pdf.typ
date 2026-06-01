@@ -1,5 +1,5 @@
-#import "index.typ": rheobook
-#show: rheobook.with(current-page: "format-pdf")
+#import "index.typ": sidebar-site
+#show: sidebar-site.with(current: "format-pdf")
 
 = PDF
 

@@ -1,5 +1,5 @@
-#import "index.typ": rheobook
-#show: rheobook.with(current-page: "spines")
+#import "index.typ": sidebar-site
+#show: sidebar-site.with(current: "spines")
 
 = Spines
 

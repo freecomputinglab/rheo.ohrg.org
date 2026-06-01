@@ -1,11 +1,4 @@
-#let div(_class, ..body) = html.elem("div", attrs: (class: _class), ..body)
-#let button(_class, _aria, ..body) = html.elem("button", attrs: (class: _class, aria-label: _aria), ..body)
-#let ul(_class, ..body) = html.elem("ul", attrs: (class: _class), ..body)
-#let li(_class, ..body) = html.elem("li", attrs: (class: _class), ..body)
-#let a(_href, ..body) = html.elem("a", attrs: (href: _href), ..body)
-#let a-with-class(_href, _class, ..body) = html.elem("a", attrs: (href: _href, class: _class), ..body)
-#let nav(_class, ..body) = html.elem("nav", attrs: (class: _class), ..body)
-#let span(_class, ..body) = html.elem("span", attrs: (class: _class), ..body)
+#import "@rheo/sidebar:0.1.0": sidebar
 
 #let rheo-version = "0.3.0"
 #let code-with-version(lang: none, body) = raw(
@@ -19,183 +12,62 @@
 #let rheo-docs-url = "https://rheo.ohrg.org"
 #let fcl-zulip-join-url = "https://freecomputinglab.zulipchat.com/join/dit724hcwgbhic3xxwkdpkqs/"
 
-// NOTE: in the future, this can perhaps be provided by rheo
-#let rheobook(current-page: none, doc) = {
-  set text(font: ("Inter", "San Francisco", "Arial"))
-
-  // NOTE: this links cannot be specified as ".typ" currently, as rheo only transforms links that
-  // are registered in Typst's AST. As these links are directly rendered into HTML using `html.elem`,
-  // rheo will just reproduce the URLs as specified.
-  let sections = (
-    (
-      id: "intro",
-      title: "Basics",
-      pages: (
-        (id: "index", title: "Introduction", file: "./"),
-        (id: "why-is-rheo", title: "Why Rheo?", file: "./why-is-rheo.html"),
-        (id: "getting-started", title: "Getting started", file: "./getting-started.html"),
-        (id: "init", title: "Initializing a project", file: "./init.html"),
-        (id: "faq", title: "Frequently Asked Questions", file: "./faq.html"),
-      ),
+#let site-nav = (
+  (
+    title: "Basics",
+    items: (
+      (id: "index", title: "Introduction", url: "./"),
+      (id: "why-is-rheo", title: "Why Rheo?", url: "./why-is-rheo.html"),
+      (id: "getting-started", title: "Getting started", url: "./getting-started.html"),
+      (id: "init", title: "Initializing a project", url: "./init.html"),
+      (id: "faq", title: "Frequently Asked Questions", url: "./faq.html"),
     ),
-    (
-      id: "core",
-      title: "Core",
-      pages: (
-        (id: "core", title: "Basics", file: "./core.html"),
-        (id: "rheotoml", title: "Rheo.toml", file: "./rheotoml.html"),
-        (id: "relative-linking", title: "Relative linking", file: "./relative-linking.html"),
-        (id: "build-dir", title: "Build directory", file: "./build-dir.html"),
-        (id: "content-dir", title: "Content directory", file: "./content-dir.html"),
-        (id: "spines", title: "Spines", file: "./spines.html"),
-        (id: "assets", title: "Assets", file: "./assets.html"),
-        (id: "packages", title: "Packages", file: "./packages.html"),
-      ),
+  ),
+  (
+    title: "Core",
+    items: (
+      (id: "core", title: "Basics", url: "./core.html"),
+      (id: "rheotoml", title: "Rheo.toml", url: "./rheotoml.html"),
+      (id: "relative-linking", title: "Relative linking", url: "./relative-linking.html"),
+      (id: "build-dir", title: "Build directory", url: "./build-dir.html"),
+      (id: "content-dir", title: "Content directory", url: "./content-dir.html"),
+      (id: "spines", title: "Spines", url: "./spines.html"),
+      (id: "assets", title: "Assets", url: "./assets.html"),
+      (id: "packages", title: "Packages", url: "./packages.html"),
     ),
-    (
-      id: "pdf",
-      title: "PDF",
-      pages: (
-        (id: "format-pdf", title: "Basics of PDF", file: "./format-pdf.html"),
-      ),
+  ),
+  (
+    title: "PDF",
+    items: (
+      (id: "format-pdf", title: "Basics of PDF", url: "./format-pdf.html"),
     ),
-    (
-      id: "epub",
-      title: "EPUB",
-      pages: (
-        (id: "format-epub", title: "Basics of EPUB", file: "./format-epub.html"),
-      ),
+  ),
+  (
+    title: "EPUB",
+    items: (
+      (id: "format-epub", title: "Basics of EPUB", url: "./format-epub.html"),
     ),
-    (
-      id: "html",
-      title: "HTML",
-      pages: (
-        (id: "format-html", title: "Basics of HTML", file: "./format-html.html"),
-        (id: "custom-js-css", title: "Custom JS/CSS", file: "./custom-js-css.html"),
-      ),
+  ),
+  (
+    title: "HTML",
+    items: (
+      (id: "format-html", title: "Basics of HTML", url: "./format-html.html"),
+      (id: "custom-js-css", title: "Custom JS/CSS", url: "./custom-js-css.html"),
     ),
-  )
+  ),
+)
 
-  let flat-pages = sections.map(s => s.pages).flatten()
+#let sidebar-site = sidebar.with(
+  nav: site-nav,
+  title: "Rheo",
+  home-url: "/",
+  logo: image("img/header.svg", alt: "Rheo", height: 24pt),
+)
 
-  // Calculate previous and next pages for navigation
-  let current-index = if current-page != none {
-    flat-pages.position(p => p.id == current-page)
-  } else {
-    none
-  }
+// RHEO_HACK: if_epub_start
+// RHEO_HACK: if_epub_end
 
-  // Set document title based on current page
-  let page-title = if current-index != none {
-    let ext = context if target() == "html" { "| Rheo" } else { "" }
-    flat-pages.at(current-index).title + ext
-  } else {
-    "Rheo"
-  }
-  set document(title: page-title)
-
-  let prev-page = if current-index != none and current-index > 0 {
-    flat-pages.at(current-index - 1)
-  } else {
-    none
-  }
-
-  let next-page = if current-index != none and current-index < flat-pages.len() - 1 {
-    flat-pages.at(current-index + 1)
-  } else {
-    none
-  }
-
-  // RHEO_HACK: if_epub_start
-  // RHEO_HACK: if_epub_end
-
-  context if target() == "html" {
-    div("topbar")[
-      #button("sidebar-toggle", "Toggle sidebar")[
-        #span("hamburger")
-      ]
-      #a("/")[#div("topbar-title")[#image("img/header.svg", alt: "Rheo", height: 24pt)]]
-    ]
-
-    nav("sidebar")[
-      // banner
-      #div("banner")[
-        #a("#")[]
-      ]
-
-      // sidebar
-      #ul("sidebar-nav")[
-        #for section in sections {
-          li("section-label")[
-            #span("section-title")[#section.title]
-            #ul("subsection-nav")[
-              #for page in section.pages {
-                let class = if page.id == current-page { "active" } else { "" }
-                li(class)[
-                  #a(page.file)[#page.title]
-                ]
-              }
-            ]
-          ]
-        }
-      ]
-    ]
-
-    div("content")[
-      // Main content
-      #doc
-    ]
-
-    // Desktop navigation arrows - after all content including footnotes
-    div("nav-arrows desktop-nav")[
-      #if prev-page != none {
-        a-with-class(prev-page.file, "nav-arrow prev-arrow")[
-          #span("arrow-icon")[←]
-          #span("arrow-text")[#prev-page.title]
-        ]
-      }
-      #if next-page != none {
-        a-with-class(next-page.file, "nav-arrow next-arrow")[
-          #span("arrow-text")[#next-page.title]
-          #span("arrow-icon")[→]
-        ]
-      }
-    ]
-
-    // Mobile navigation arrows - after all content including footnotes
-    div("nav-arrows mobile-nav")[
-      #if prev-page != none {
-        a-with-class(prev-page.file, "nav-arrow prev-arrow")[
-          #span("arrow-icon")[←]
-          #span("arrow-text")[Previous]
-        ]
-      }
-      #if next-page != none {
-        a-with-class(next-page.file, "nav-arrow next-arrow")[
-          #span("arrow-text")[Next]
-          #span("arrow-icon")[→]
-        ]
-      }
-    ]
-
-    // Sidebar toggle script
-    // Source: sidebar-toggle-source.js (human-readable)
-    // Encoded: sidebar-toggle.js (base64-encoded to avoid HTML entity escaping)
-    // To update: edit sidebar-toggle-source.js, then run: bash encode-js.sh
-    html.elem("script")[#read("sidebar-toggle.js")]
-  } else {
-    context if target() == "paged" {
-      set heading(numbering: "1.")
-    }
-
-    // Style code blocks with light border and background
-    show raw.where(block: true): set block(fill: luma(250), stroke: 0.5pt + luma(200), radius: 2pt, inset: 8pt)
-
-    doc
-  }
-}
-
-#show: rheobook.with(current-page: "index")
+#show: sidebar-site.with(current: "index")
 
 = What is Rheo?
 The simple answer is that Rheo (_ree-oh_) is document infrastructure that makes #link("https://typst.app/")[Typst] a viable foundation for multi-format publishing.

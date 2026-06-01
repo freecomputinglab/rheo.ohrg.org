@@ -1,5 +1,5 @@
-#import "index.typ": rheobook
-#show: rheobook.with(current-page: "format-epub")
+#import "index.typ": sidebar-site
+#show: sidebar-site.with(current: "format-epub")
 
 = EPUB
 

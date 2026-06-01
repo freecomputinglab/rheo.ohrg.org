@@ -1,5 +1,5 @@
-#import "index.typ": rheobook
-#show: rheobook.with(current-page: "init")
+#import "index.typ": sidebar-site
+#show: sidebar-site.with(current: "init")
 
 The `init` command scaffolds a fully functional Rheo project that demonstrates the most common features for Rheo projects that produce HTML, PDF, and/or EPUB.
 
