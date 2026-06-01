@@ -7,7 +7,7 @@ echo "Timestamp: $(date)"
 
 # Setup paths
 REPO_DIR="$(pwd)"
-RHEO_VERSION="v0.2.0"
+RHEO_VERSION="v0.3.0"
 RHEO_CACHE="$REPO_DIR/.rheo-binary"
 RHEO_BIN="$RHEO_CACHE/rheo"
 
