@@ -30,6 +30,26 @@ export PATH="$RHEO_CACHE:$PATH"
 # Verify rheo is accessible
 rheo --version || echo "Warning: rheo --version failed, but continuing..."
 
+# Install @rheo packages into Typst package cache
+TYPST_PKG_CACHE="${XDG_CACHE_HOME:-$HOME/.cache}/typst/packages"
+RHEO_PKGS_DIR="$TYPST_PKG_CACHE/rheo"
+if [ ! -d "$RHEO_PKGS_DIR" ]; then
+  echo "Cloning rheo-packages..."
+  mkdir -p "$TYPST_PKG_CACHE"
+  git clone https://github.com/freecomputinglab/rheo-packages.git "$RHEO_PKGS_DIR"
+else
+  echo "Using cached rheo-packages"
+fi
+
+# Build @rheo/sidebar dist if not already built
+SIDEBAR_DIST="$RHEO_PKGS_DIR/sidebar/0.1.0/dist"
+if [ ! -d "$SIDEBAR_DIST" ]; then
+  echo "Building @rheo/sidebar..."
+  (cd "$RHEO_PKGS_DIR/sidebar/0.1.0" && pnpm install && pnpm run build)
+else
+  echo "Using cached @rheo/sidebar dist"
+fi
+
 # Compile with rheo
 echo "Compiling with rheo..."
 rheo compile .

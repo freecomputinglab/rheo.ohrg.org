@@ -1,7 +1,7 @@
-#import "index.typ": sidebar-site, rheo-source-url, rheo-docs-url, rheo-docs-source-url, rheo-version, code-with-version
+#import "index.typ": code-with-version, rheo-docs-source-url, rheo-docs-url, rheo-source-url, rheo-version, sidebar-site
 #show: sidebar-site.with(current: "getting-started")
 
-= Installation 
+= Installation
 The easiest way to install Rheo is using #link("https://github.com/cargo-bins/cargo-binstall")[cargo-binstall].
 Install it, and then run:
 
@@ -19,10 +19,10 @@ cargo install rheo --locked
 
 Rheo is packaged as a standalone binary, and doesn't require any version of Typst on your system.
 (Note that even if you already have Typst on your system, Rheo will use its own embedded version of the compiler.)
-Refer to #link(rheo-source-url)[Rheo's source code] for more information and installation options. 
+Refer to #link(rheo-source-url)[Rheo's source code] for more information and installation options.
 
-= Firing up 
-With Rheo we can produce a static site, a PDF, and an EPUB from a Typst document. 
+= Firing up
+With Rheo we can produce a static site, a PDF, and an EPUB from a Typst document.
 Let's create a directory with a single Typst file in it:
 
 ```bash
@@ -44,10 +44,10 @@ Project uno is a writing project.
 Rheo aims to keep out of your way as much as possible, and doesn't require that you add any special syntax or metadata to your files to work.
 This single Typst file is all we need to get started.
 Provided you've already installed Rheo on your system, we can compile the project.
-You can tell Rheo to compile a folder by pointing the `compile` command at it: 
+You can tell Rheo to compile a folder by pointing the `compile` command at it:
 
 ```bash
-rheo compile project_uno 
+rheo compile project_uno
 ```
 
 This command produces a `build` subdirectory inside the base directory which contains a PDF, an EPUB, and a static site (HTML and CSS).
@@ -67,7 +67,7 @@ Your project folder should now look something like this:
 
 ```
 
-It's a little tiring to have to run the compile command every time we make a change, though. 
+It's a little tiring to have to run the compile command every time we make a change, though.
 Let's spin up a development server to see live changes across all output formats as we edit the source:
 
 ```bash
@@ -75,13 +75,13 @@ rheo watch project_uno --open
 ```
 
 The `--open` flag here indicates that we'd like to open the output using our system's default applications.
-Provided you have an EPUB reader on your system (if you don't, we recommend installing #link("https://github.com/nota-lang/bene")[bene]), you should now have a PDF, an EPUB, and a website in front of you.
+Provided you have an EPUB reader on your system (if you don't, we recommend installing #link("https://github.com/nota-lang/bene")[Bene]), you should now have a PDF, an EPUB, and a website in front of you.
 As simple as that!
 
-= Scaling up 
+= Scaling up
 
 Let's kill that process (with Ctrl-C).
-Rheo compiles documents from across your project directory towards EPUB, PDF, and HTML simultaneously, whereas the Typst compiler typically takes just one Typst file and produces one kind of output.#footnote[Typst allows you to break up your projects using #link("https://typst.app/docs/reference/foundations/module/")[modules], but still requires one entrypoint. Rheo, by contrast, enables multiple entrypoint files, corresponding to multiple standalone pages in a static site.] 
+Rheo compiles documents from across your project directory towards EPUB, PDF, and HTML simultaneously, whereas the Typst compiler typically takes just one Typst file and produces one kind of output.#footnote[Typst allows you to break up your projects using #link("https://typst.app/docs/reference/foundations/module/")[modules], but still requires one entrypoint. Rheo, by contrast, enables multiple entrypoint files, corresponding to multiple standalone pages in a static site.]
 Let's add a couple of files to our project and link between them:
 
 `project_uno/about.typ`
@@ -95,7 +95,7 @@ If you want to be involved, see the #link("./contact.typ")[Contact page].
 `project_uno/contact.typ`
 ```typ
 #let email = "myemail@mydomain.com"
-= Contact 
+= Contact
 
 To learn more about project uno, email me at #link("mailto:" + email)[#email]
 ```
@@ -112,16 +112,16 @@ Project uno is a writing project.
 - #link("./contact.typ")[Contact]
 ```
 
-Now let's run Rheo again, but this time let's only build the HTML and EPUB outputs: 
+Now let's run Rheo again, but this time let's only build the HTML and EPUB outputs:
 ```bash
 rheo watch project_uno --html --epub --open
 ```
 
-Note how the relative links are working across both the HTML and the EPUB. 
+Note how the relative links are working across both the HTML and the EPUB.
 #link("./relative-linking.typ")[Relative linking] is one of the key features in Rheo that enables you to build richer static sites and EPUBs beyond using just Typst.
 All of #link("https://typst.app/docs/reference/scripting/")[Typst's other features] such as variables are fair game, too, as Rheo just uses Typst's compiler under the hood.
 
-= Adding a config 
+= Adding a config
 
 One issue with the EPUB that is currently being produced is that the `index.typ` section shows up last, after the `about.typ` and `contact.typ`, as Rheo orders files lexicographically by default.
 This is probably not what we want, as the index page acts as a sort of table of contents in our writing project currently.
@@ -129,11 +129,14 @@ This is probably not what we want, as the index page acts as a sort of table of 
 To sophisticate the way that Rheo produces outputs, we can add a #link("./rheotoml.typ")[rheo.toml config] at the base of the project directory:
 
 `project_uno/rheo.toml`
-#code-with-version(lang: "toml", `version = "{version}"
+#code-with-version(
+  lang: "toml",
+  `version = "{version}"
 
 [epub.spine]
 title = "Project Uno"
-vertebrae = ["index.typ", "about.typ", "contact.typ"]`)
+vertebrae = ["index.typ", "about.typ", "contact.typ"]`,
+)
 
 This config uses the notion of a #link("./spines.typ")[spine] to indicate a custom order for the sections.
 We'll learn more about these later on in this documentation.
@@ -151,7 +154,9 @@ This is because Rheo defaults to producing one PDF per file in the project direc
 We can configure Rheo to merge files together into a single PDF output by specifying a PDF spine, as we did with EPUB, and setting the `merge` attribute to `true`:
 
 `project_uno/rheo.toml`
-#code-with-version(lang: "toml", `version = "{version}"
+#code-with-version(
+  lang: "toml",
+  `version = "{version}"
 
 [epub.spine]
 title = "Project Uno"
@@ -160,7 +165,8 @@ vertebrae = ["index.typ", "about.typ", "contact.typ"]
 [pdf.spine]
 title = "Project Uno"
 vertebrae = ["index.typ", "about.typ", "contact.typ"]
-merge = true`)
+merge = true`,
+)
 
 Before we run this again, let's also clean the outputs in the build directory, as we don't need those individual PDFs that we produced anymore:
 

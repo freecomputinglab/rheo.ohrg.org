@@ -4,7 +4,7 @@
 == Why do we need Rheo?
 
 Rheo (_ree-oh_) is an #link("https://github.com/freecomputinglab/rheo")[open source] typesetting and static site engine for Typst.
-It is a typesetting engine because it produces typeset digital documents such as PDF and EPUB, and a static site engine because it produces websites that don't require communication with a custom backend server, but rather are self-sufficient sets of files that can be natively opened in a browser (static sites).  
+It is a typesetting engine because it produces typeset digital documents such as PDF and EPUB, and a static site engine because it produces websites that don't require communication with a custom backend server, but rather are self-sufficient sets of files that can be natively opened in a browser (static sites).
 Most static site engines these days employ Markdown, a markup format that is approachable and pretty generic, allowing folks who are not familiar with or otherwise don't want to deal directly with the required file formats of the web--- HTML, CSS, and Javascript--- to write blog posts and other content which can then be pumped into a static site.
 
 As useful as it is, Markdown has its ambiguities.
@@ -14,8 +14,8 @@ Markdown is great when using hypertext (hyperlinks, images, etc).
 It's not so great when it comes to things like tables, figures, and math.
 
 Typst is a markup language that integrates with plain text, like Markdown, making it easy to adopt and joyful to write.
-Unlike Markdown, however, it is also a Turing-complete programming language with a modern type system, meaning that it is possible (though not necessary) to express sophisticated conditional logic controlling where and how text is rendered.  
-Typst has a concrete and concise syntax for footnotes and citations, and can express visual constructs such as tables, figures, colors, and mathematical formulas. 
+Unlike Markdown, however, it is also a Turing-complete programming language with a modern type system, meaning that it is possible (though not necessary) to express sophisticated conditional logic controlling where and how text is rendered.
+Typst has a concrete and concise syntax for footnotes and citations, and can express visual constructs such as tables, figures, colors, and mathematical formulas.
 It was developed as a modern alternative to LaTeX, Leslie Lamport's legendary 1980s addition to Donald Knuth's original '78 TeX typesetting system.
 For the past 40 years, LaTeX has been the most expressive way to produce PDF documents, rendering it the de facto standard for academic and scientific publication.
 In the past few years, Typst has become the most promising and powerful alternative to LaTeX due to its maintainers' effort to build out a reliable PDF compilation toolchain.
@@ -32,11 +32,11 @@ It is a static site engine because it can produce a fully valid website: all it 
 Rheo also provides mechanisms to combine multiple Typst files into a unified EPUB or PDF, making it a tool that improves the experience of writing books, dissertations, or any other long-form text in Typst.
 On the other side of the same coin, Rheo allows you to produce an offline version of a website such as a blog written in Typst through its PDF/EPUB toolchain.
 
-Rheo allows you to compile multiple Typst files that link to each other into a single output, adding what is needed (relative linking) in order to make Typst an ideal markup language for writing static sites. 
+Rheo allows you to compile multiple Typst files that link to each other into a single output, adding what is needed (relative linking) in order to make Typst an ideal markup language for writing static sites.
 Typst is the most elegant and flexible way to typeset PDF documents today; Rheo extends Typst's capabilities, allowing you to additionally typeset EPUBs and generate static sites from the same source.
-#footnote[EPUB is #link("https://github.com/typst/typst/issues/188")[on Typst's roadmap], but is not yet natively supported.]  
+#footnote[EPUB is #link("https://github.com/typst/typst/issues/188")[on Typst's roadmap], but is not yet natively supported.]
 Naturally, this blog post was #link("https://github.com/freecomputinglab/rheo.ohrg.org/blob/main/pages/why-is-rheo.typ")[written in Typst], and this site was #link("https://github.com/freecomputinglab/rheo.ohrg.org/")[made with Rheo].
-If you're already convinced, feel free to jump ahead to #link("./getting-started.typ")[Getting Started] to download Rheo on your system and start writing. 
+If you're already convinced, feel free to jump ahead to #link("./getting-started.typ")[Getting Started] to download Rheo on your system and start writing.
 
 == The philosophy of Rheo
 Rheo is a prefix or combining form in English that originates from the Greek word _rheos_ (ῥέος), meaning flow, stream, or current.
@@ -48,7 +48,7 @@ Writing has played a magisterial role in calming the storm of imprecise thought.
 Long before computation arrived on the scene, the written word has served as the steward of reason, in the Western world and beyond, from Mesopotamian cuneiform to Twitter.
 _Nota bene_ ('Take note'): that writing can also herald chaos and confusion doesn't invalidate its capacity for spreading sensibility.
 
-Rheo is a tool that facilitates the production and publication of documents following from the original vision of the Internet as a mechanism for lively and reasonably unfettered academic exchange, rather than the densely commercial space of platform capitalism that it has become. 
+Rheo is a tool that facilitates the production and publication of documents following from the original vision of the Internet as a mechanism for lively and reasonably unfettered academic exchange, rather than the densely commercial space of platform capitalism that it has become.
 It should not be so difficult, given the extraordinary capacities of software and hardware today, to make a piece of writing publicly available in a plain and pleasant format.
 That there exist digital humanities initiatives measured in months and years to bring books to the web as basic websites is a clear sign that something has gone awry.
 #footnote[
@@ -62,15 +62,16 @@ It _should_ be simple to create a PDF or EPUB for sharing with colleagues or col
 
 This is the vision of the world to which we at #link("https://freecomputinglab.ohrg.org")[the free computing lab] aspire, and in search of which we have built Rheo.
 Beyond making publishing simpler, we believe that better document infrastructure lays the groundwork for richer ways of _reading_.
-When documents are produced in structured, portable formats like EPUB and HTML, they become augmentable --- researchers and developers can build reading experiences on top of them, such as contextual definitions, explorable explanations, and interactive figures.
-The flow in Rheo's name isn't only about getting documents out into the world; it's also about what readers can do with them when they arrive.
+When documents are produced in structured, portable formats like EPUB and HTML, they become augmentable.
+Researchers and developers can build reading experiences on top of them, such as contextual definitions, explorable explanations, and interactive figures.
+(This is exactly what we are trying to do with EPUB through #link("https://github.com/nota-lang/bene/")[Bene].)
 
 Rheo is the first installment in a larger set of writing tools we aim to build, which will include processes for collaboratively drafting documents, constructing and working with digital libraries, and more.
 
 #context if target() != "paged" {
-[== Bibliography
-#bibliography("./img/refs.bib", title: none, style: "chicago-author-date")
+  [== Bibliography
+    #bibliography("./img/refs.bib", title: none, style: "chicago-author-date")
 
-== Footnotes]
+    == Footnotes]
 }
 
