@@ -1,7 +1,7 @@
 version = "0.3.0"
 content_dir = "pages"
 
-[html.assets]
+[[html.assets]]
 css_stylesheet = "./style.css"
 
 [pdf.spine]
