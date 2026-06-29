@@ -66,3 +66,5 @@ The Atom feed uses two such variables:
 
 The body of each entry is taken from the first `<main>` element in the page, else the first element carrying the `rheo-feed-content` class, else the entire `<body>`.
 To keep page chrome such as headers and navigation out of your feed entries, wrap the article in `<main>` (for example `html.elem("main", doc)`) and keep the chrome outside it; with no marker, the full body is used.
+As an alternative to `<main>`---useful when your template already reserves `<main>` for another purpose, or when the feed content is not the page's main landmark---mark the element you want included with the `rheo-feed-content` class (for example `html.elem("div", attrs: (class: "rheo-feed-content"), doc)`).
+The generator prefers `<main>` first, then the first element carrying `rheo-feed-content`, then the entire `<body>`.

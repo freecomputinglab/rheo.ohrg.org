@@ -15,6 +15,9 @@ rheo migrate path/to/project --apply  # applies changes and bumps rheo.toml vers
 
 Always run the dry run first to review what will be rewritten, then pass `--apply` to write the changes.
 
+`migrate` is best-effort: it applies the mechanical rewrites it knows about, but it does not guarantee that your project will build or behave correctly on the new version.
+After migrating, rebuild and check the output yourself, and consult the changelog for breaking changes that require manual attention.
+
 == What it migrates
 
 *Link syntax (projects with version < 0.4.0):* Before 0.4.0, cross-file links used file paths directly:

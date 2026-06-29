@@ -69,6 +69,8 @@ The scaffolded `index.typ` includes a `template` function that applies a header 
 }
 ```
 
+Alongside Typst's native `"html"` and `"paged"`, Rheo synthesizes a `"epub"` target so you can branch on EPUB output specifically -- see #link(<format-epub>)[the EPUB page] for details.
+
 Other pages in the project import and apply this template with a show rule:
 
 ```typ

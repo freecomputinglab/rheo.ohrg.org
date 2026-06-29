@@ -29,3 +29,18 @@ The `title` field sets the EPUB's metadata title.
 Rheo also generates a unique identifier for the document and populates other metadata fields such as language and publication date.
 
 #link(<relative-linking>)[Relative links] between source files are resolved to internal links that navigate between sections in the EPUB.
+
+== Detecting the EPUB target
+
+EPUB compiles through Typst's HTML target, so Typst's native `target()` returns `"html"` for both HTML and EPUB output -- the two are indistinguishable to standard Typst.
+Rheo synthesizes an extra value so you can tell them apart: inside an EPUB build, `target()` returns `"epub"`.
+
+```typ
+#context if target() == "epub" {
+  // EPUB-only markup
+} else if target() == "html" {
+  // plain HTML output
+}
+```
+
+Rheo polyfills `target()` to report one of three values: `"paged"` (PDF), `"html"` (HTML), and `"epub"` (EPUB).
