@@ -28,7 +28,7 @@ If one format fails to compile a particular file, the others continue uninterrup
 Our hope is that this plugin architecture will inspire innovation at the format level.
 Typst is a remarkably expressive document language, and we believe its utility extends well beyond the formats it natively targets.
 
-We have built Rheo as infrastructure for #link("https://chi-star-workshop.github.io/")[augmented reading research].
+We have built Rheo as infrastructure for #link("https://chi-star-workshop.github.io/src/assets/pdf/papers/DocumentInfrastructureForAugmentedReading%20-%20Will%20Crichton.pdf")[augmented reading research].
 Reading augmentations -- features like hyperlink previews, contextual definitions, interactive visualizations, and explorable explanations -- can be implemented either as Typst library functions (at the language level) or as Rheo format plugins (at the compiler level).
 The existing #link(rheo-source-url + "/tree/main/examples/tooltip_html")[tooltip example], for instance, delivers an augmentation through a custom Typst function and a JavaScript entrypoint, compiled to the browser via Rheo's HTML plugin.
 By making it straightforward to implement new format plugins and to extend existing ones with custom assets, Rheo opens the door to richer ways of reading documents -- not just new ways of producing them.
