@@ -4,29 +4,57 @@
 Rheo allows you to write documents in plain #link("https://typst.app/docs/")[Typst] without requiring any additional syntax or metadata.
 Because Rheo can combine multiple files into unified outputs, however, we need a way to reference other files in the same Rheo project.
 
-Rheo assigns every source document a _handle_ --- a short label derived from its filename --- and you link between documents using standard Typst label syntax:
+Rheo assigns every source document a _handle_ --- a short label derived from its path --- and you link between documents using standard Typst label syntax:
 
 ```typ
-#link(<another-section>)[Another section]
+#link(<intro>)[Introduction]
+#link(<chapters:intro>)[Chapter introduction]
 ```
 
-Here `another-section` is the handle for `another-section.typ` in your content directory.
-The handle is the file's stem (its name without the `.typ` extension), taken relative to the #link(<content-dir>)[content directory].
-
-+ *Bare handle:* when a stem is unique across the project, the handle is just the stem: `content/intro.typ` → `#link(<intro>)`.
-+ *Path-qualified handle:* if two files share a stem (say `content/intro.typ` and `content/chapters/intro.typ`), rheo qualifies the nested one to disambiguate: `#link(<chapters-intro>)` (using `-` as the separator). The root-level file keeps the bare handle.
-+ *Escape form:* the alias `#link(<intro.typ>)` --- handle plus `.typ` suffix --- is always available, regardless of collisions.
-
 When you compile a project with Rheo, these links are resolved and transformed according to the output format.
-What a link transforms to depends on the output format and your Rheo configuration, as using features such as #link(<spines>)[spines] affects the control flow between your source Typst and output formats.
 
 - In *HTML*, relative links become `<a>` tags that point to the relevant html page.
 - In *PDF*, relative links become internal links to the relevant section in the single combined output PDF.
 - In *EPUB*, relative links become links to the relevant sections in the EPUB.
 
-Relative linking is what allows Rheo to produce fully functional static sites.
-It is also a feature that you can use to help you organize large writing projects.
-(Note that the Typst #link("https://typst.app/docs/reference/foundations/module/")[`import`] keyword works as you would expect in Rheo, and so can also/still be used as a mechanism to modularize projects.)
+== Handle assignment
+
+Every `.typ` file in your content directory gets a canonical handle derived from its path relative to that directory.
+
+- *Root-level files* get a bare handle: `content/intro.typ` → `<intro>`.
+- *Nested files* get a path-qualified handle using `:` as the path separator: `content/chapters/intro.typ` → `<chapters:intro>`, `content/a/b/notes.typ` → `<a:b:notes>`.
+
+`:` and `.` are valid Typst label characters; `/` is not, which is why `:` is used as the separator.
+
+== Escape form
+
+The alias `<handle.typ>` is always available for every vertebra, regardless of other labels in the project:
+
+```typ
+#link(<intro.typ>)[Introduction]         // root file
+#link(<chapters:intro.typ>)[Chapter intro] // nested file
+```
+
+Use the escape form when the canonical handle would be ambiguous or when you want to be explicit about which file you are linking to.
+
+== Canonical-skip rule
+
+If you have authored a label in your source that matches the canonical handle for a file, Rheo silently skips injecting the automatic label for that file.
+The file remains reachable via its escape form.
+
+```typ
+// chapters/intro.typ
+= Chapter Introduction <chapters:intro>  // user-authored; Rheo skips auto-injection
+
+// elsewhere
+#link(<chapters:intro>)[...]    // resolves to the user label
+#link(<chapters:intro.typ>)[...] // escape form also works
+```
+
+== Escape-label collision error
+
+If any source file defines a label that matches the escape form of another file (e.g. `<chapters:intro.typ>`), Rheo aborts the build with an error naming the offending file and label.
+This prevents silent ambiguity.
 
 == Migrating from older Rheo versions
 
@@ -37,10 +65,4 @@ Before 0.4.0, relative links were written by pointing at the target's file path 
 ```
 
 This syntax still works, but the handle form above is now preferred.
-To move an existing project onto the new syntax, run the `migrate` command from within the project directory:
-
-```bash
-rheo migrate path/to/project
-```
-
-By default this is a dry run that reports each link it would rewrite; pass `--apply` to write the changes.
+See #link(<migrate>)[Migrating projects] for how to upgrade an existing project automatically.
