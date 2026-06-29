@@ -14,11 +14,11 @@ typst compile --features html --format html source.typ # compile to HTML
 ```
 
 Rheo compiles a _project folder_ to three outputs---PDF, HTML, and EPUB---concurrently.
-It allows you to configure how certain source files should be merged (to produce a 'combined' EPUB or PDF file, for example, via #link("./spines.typ")[spines]), and also allows you to enrich certain outputs (such as HTML via #link("./custom-js-css.typ")[custom CSS]) with non-Typst content.
+It allows you to configure how certain source files should be merged (to produce a 'combined' EPUB or PDF file, for example, via #link(<spines>)[spines]), and also allows you to enrich certain outputs (such as HTML via #link(<custom-js-css>)[custom CSS]) with non-Typst content.
 Rheo supports EPUB natively, which is not currently supported by the upstream Typst CLI (though it is #link("https://github.com/typst/typst/issues/188")[on the roadmap]).
 
 Since 0.2.0, Rheo has a plugin architecture, which means that it can be extended to compile to additional formats.
-We have built Rheo as infrastructure for #link("https://chi-star-workshop.github.io/")[augmented reading research] in Typst -- see the #link("./core.typ")[Core] page for more on how the plugin architecture enables this.
+We have built Rheo as infrastructure for #link("https://chi-star-workshop.github.io/")[augmented reading research] in Typst -- see the #link(<core>)[Core] page for more on how the plugin architecture enables this.
 
 == How do I read EPUBs on my system?
 Mileage varies greatly on EPUB reading niceness across systems.

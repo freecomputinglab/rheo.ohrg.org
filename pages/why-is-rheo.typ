@@ -36,7 +36,7 @@ Rheo allows you to compile multiple Typst files that link to each other into a s
 Typst is the most elegant and flexible way to typeset PDF documents today; Rheo extends Typst's capabilities, allowing you to additionally typeset EPUBs and generate static sites from the same source.
 #footnote[EPUB is #link("https://github.com/typst/typst/issues/188")[on Typst's roadmap], but is not yet natively supported.]
 Naturally, this blog post was #link("https://github.com/freecomputinglab/rheo.ohrg.org/blob/main/pages/why-is-rheo.typ")[written in Typst], and this site was #link("https://github.com/freecomputinglab/rheo.ohrg.org/")[made with Rheo].
-If you're already convinced, feel free to jump ahead to #link("./getting-started.typ")[Getting Started] to download Rheo on your system and start writing.
+If you're already convinced, feel free to jump ahead to #link(<getting-started>)[Getting Started] to download Rheo on your system and start writing.
 
 == The philosophy of Rheo
 Rheo is a prefix or combining form in English that originates from the Greek word _rheos_ (ῥέος), meaning flow, stream, or current.

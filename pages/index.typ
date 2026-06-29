@@ -1,6 +1,6 @@
 #import "@rheo/sidebar:0.1.0": sidebar
 
-#let rheo-version = "0.3.0"
+#let rheo-version = "0.4.0"
 #let code-with-version(lang: none, body) = raw(
   lang: lang,
   block: true,

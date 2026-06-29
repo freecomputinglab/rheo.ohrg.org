@@ -18,4 +18,4 @@ Notice how the first entry `intro.typ` is a specific file, whereas the second `*
 When a glob string captures a range of source files, they will be ordered lexicographically in the spine.
 
 Each format uses its spine slightly differently.
-See the #link("./format-pdf.typ")[PDF], #link("./format-html.typ")[HTML], and #link("./format-epub.typ")[EPUB] format pages for details on how spines are configured and what defaults are applied for each output.
+See the #link(<format-pdf>)[PDF], #link(<format-html>)[HTML], and #link(<format-epub>)[EPUB] format pages for details on how spines are configured and what defaults are applied for each output.
