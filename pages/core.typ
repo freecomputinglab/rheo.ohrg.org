@@ -4,7 +4,7 @@
 = Core
 
 Rheo is built around a plugin architecture.
-At its center is a core engine that embeds the Typst compiler and provides shared infrastructure -- #link("./spines.typ")[spine] resolution, #link("./assets.typ")[asset] management, #link("./relative-linking.typ")[relative link] rewriting, and a development server with live reloading.
+At its center is a core engine that embeds the Typst compiler and provides shared infrastructure -- #link(<spines>)[spine] resolution, #link(<assets>)[asset] management, #link(<relative-linking>)[relative link] rewriting, and a development server with live reloading.
 On top of this core, each output format is implemented as a _format plugin_.
 
 == Format plugins

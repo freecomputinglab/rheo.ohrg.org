@@ -1,6 +1,6 @@
 #import "@rheo/sidebar:0.1.0": sidebar
 
-#let rheo-version = "0.3.0"
+#let rheo-version = "0.4.0"
 #let code-with-version(lang: none, body) = raw(
   lang: lang,
   block: true,
@@ -29,6 +29,7 @@
       (id: "core", title: "Basics", url: "./core.html"),
       (id: "rheotoml", title: "Rheo.toml", url: "./rheotoml.html"),
       (id: "relative-linking", title: "Relative linking", url: "./relative-linking.html"),
+      (id: "migrate", title: "Migrating projects", url: "./migrate.html"),
       (id: "build-dir", title: "Build directory", url: "./build-dir.html"),
       (id: "content-dir", title: "Content directory", url: "./content-dir.html"),
       (id: "spines", title: "Spines", url: "./spines.html"),

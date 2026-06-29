@@ -4,23 +4,23 @@
 = PDF
 
 #link("https://typst.app/")[Typst], the programming language and compilation toolchain that underwrites Rheo, natively and fully supports PDF.
-By default, Rheo generates one PDF per Typst source file in your project -- much like running the Typst compiler directly.
 
 == What Rheo adds
 
-Where Rheo goes beyond the standard Typst CLI is in its ability to merge multiple source files into a single PDF.
+Where Rheo goes beyond the standard Typst CLI is in its ability to reticulate multiple source files into a single, unified PDF.
 This is useful when you want to separate sections of your book into individual files -- for example, so that each section can also appear as its own web page in the HTML output -- while still producing a unified document for print.
 
-By default, Rheo does not use a #link("./spines.typ")[spine] for PDF -- each source file is compiled independently.
-You can specify a spine in order to reticulate multiple source documents into a single output PDF by indicating the vertebrae and setting `merge` to `true`:
+The PDF format always produces a single combined document: every source file is merged into one output PDF.
+You can specify a #link(<spines>)[spine] to control which files are included and in what order:
 
 ```toml
 [pdf.spine]
 title = "My book"
 vertebrae = ["intro.typ", "chapters/*.typ"]
-merge = true
 ```
 
-When files are merged in this way, #link("./relative-linking.typ")[relative links] between source files are automatically resolved to internal document links that point to the relevant section in the output PDF.
+The `merge` attribute is specific to the PDF format (it lives under `[pdf.spine]` and is not a general setting). PDF always combines into a single document, so `merge` is included only for explicit control and is rarely needed.
 
-Rheo also copies any #link("./assets.typ")[assets] matched by your `copy` patterns into the PDF build directory.
+Because the source files are combined, #link(<relative-linking>)[relative links] between them are automatically resolved to internal document links that point to the relevant section in the output PDF.
+
+Rheo also copies any #link(<assets>)[assets] matched by your `copy` patterns into the PDF build directory.

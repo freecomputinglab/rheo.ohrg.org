@@ -14,7 +14,7 @@ You can specify a top-level `copy` in your `rheo.toml` to copy files into every 
 copy = ["assets/**/*.png", "fonts/**"]
 ```
 
-Paths are relative to the project root (not the #link("./content-dir.typ")[content directory]), and directory structure is preserved in the output.
+Paths are relative to the project root (not the #link(<content-dir>)[content directory]), and directory structure is preserved in the output.
 Only files are copied; parent directories are created automatically.
 
 For example, if your project looks like this:
@@ -27,7 +27,7 @@ my-project/
 └── chapter.typ
 ```
 
-Then `assets/logo.png` will be copied into each format's #link("./build-dir.typ")[build directory] at the same relative path.
+Then `assets/logo.png` will be copied into each format's #link(<build-dir>)[build directory] at the same relative path.
 
 == Format-specific copies
 
@@ -46,4 +46,4 @@ You can combine global and format-specific copies; both will be applied when bui
 == Format-specific assets
 
 Format plugins can expose additional asset configuration beyond `copy`.
-For HTML, this includes CSS and JavaScript entrypoints and support for multiple asset blocks --- see #link("./custom-js-css.typ")[Custom JS/CSS].
+For HTML, this includes CSS and JavaScript entrypoints and support for multiple asset blocks --- see #link(<custom-js-css>)[Custom JS/CSS].

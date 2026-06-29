@@ -29,9 +29,9 @@ my_project/
 └── style.css
 ```
 
-- *`rheo.toml`* -- the project configuration, with a #link("./content-dir.typ")[content directory] set to `content/`, and #link("./spines.typ")[spines] for both PDF and EPUB.
-- *`style.css`* -- a #link("./custom-js-css.typ")[custom stylesheet] for the HTML output.
-- *`index.js`* -- a #link("./custom-js-css.typ")[script entrypoint] for the HTML output.
+- *`rheo.toml`* -- the project configuration, with a #link(<content-dir>)[content directory] set to `content/`, and #link(<spines>)[spines] for both PDF and EPUB.
+- *`style.css`* -- a #link(<custom-js-css>)[custom stylesheet] for the HTML output.
+- *`index.js`* -- a #link(<custom-js-css>)[script entrypoint] for the HTML output.
 - *`content/index.typ`* -- the landing page, which defines a reusable `template` show rule and demonstrates conditional rendering for HTML vs PDF.
 - *`content/about.typ`* -- a second page that imports the template and links back to the index.
 - *`content/references.bib`* -- a sample bibliography file, referenced from `index.typ` using Typst's `#bibliography` function.
@@ -68,6 +68,8 @@ The scaffolded `index.typ` includes a `template` function that applies a header 
   doc
 }
 ```
+
+Alongside Typst's native `"html"` and `"paged"`, Rheo synthesizes a `"epub"` target so you can branch on EPUB output specifically -- see #link(<format-epub>)[the EPUB page] for details.
 
 Other pages in the project import and apply this template with a show rule:
 

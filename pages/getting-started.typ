@@ -89,7 +89,7 @@ Let's add a couple of files to our project and link between them:
 = About
 
 Project uno is an incredible writing project that will transform the way we understand the world.
-If you want to be involved, see the #link("./contact.typ")[Contact page].
+If you want to be involved, see the #link(<contact>)[Contact page].
 ```
 
 `project_uno/contact.typ`
@@ -108,8 +108,8 @@ And let's also link to the two new pages on the index page:
 
 Project uno is a writing project.
 
-- #link("./about.typ")[About]
-- #link("./contact.typ")[Contact]
+- #link(<about>)[About]
+- #link(<contact>)[Contact]
 ```
 
 Now let's run Rheo again, but this time let's only build the HTML and EPUB outputs:
@@ -118,7 +118,7 @@ rheo watch project_uno --html --epub --open
 ```
 
 Note how the relative links are working across both the HTML and the EPUB.
-#link("./relative-linking.typ")[Relative linking] is one of the key features in Rheo that enables you to build richer static sites and EPUBs beyond using just Typst.
+#link(<relative-linking>)[Relative linking] is one of the key features in Rheo that enables you to build richer static sites and EPUBs beyond using just Typst.
 All of #link("https://typst.app/docs/reference/scripting/")[Typst's other features] such as variables are fair game, too, as Rheo just uses Typst's compiler under the hood.
 
 = Adding a config
@@ -126,7 +126,7 @@ All of #link("https://typst.app/docs/reference/scripting/")[Typst's other featur
 One issue with the EPUB that is currently being produced is that the `index.typ` section shows up last, after the `about.typ` and `contact.typ`, as Rheo orders files lexicographically by default.
 This is probably not what we want, as the index page acts as a sort of table of contents in our writing project currently.
 
-To sophisticate the way that Rheo produces outputs, we can add a #link("./rheotoml.typ")[rheo.toml config] at the base of the project directory:
+To sophisticate the way that Rheo produces outputs, we can add a #link(<rheotoml>)[rheo.toml config] at the base of the project directory:
 
 `project_uno/rheo.toml`
 #code-with-version(
@@ -138,7 +138,7 @@ title = "Project Uno"
 vertebrae = ["index.typ", "about.typ", "contact.typ"]`,
 )
 
-This config uses the notion of a #link("./spines.typ")[spine] to indicate a custom order for the sections.
+This config uses the notion of a #link(<spines>)[spine] to indicate a custom order for the sections.
 We'll learn more about these later on in this documentation.
 
 Let's run the `watch` command again, this time with all outputs like the first time:
@@ -149,9 +149,8 @@ rheo watch project_uno --open
 
 Great!
 The EPUB order is fixed.
-We now, however, have three distinct PDFs that are being created: one for each page.
-This is because Rheo defaults to producing one PDF per file in the project directory.
-We can configure Rheo to merge files together into a single PDF output by specifying a PDF spine, as we did with EPUB, and setting the `merge` attribute to `true`:
+The PDF output already combines every source file into a single document, but its sections are ordered lexicographically by default, so `index.typ` appears last there too.
+We can fix the PDF ordering the same way we did for EPUB, by adding a PDF spine that lists the vertebrae in the order we want:
 
 `project_uno/rheo.toml`
 #code-with-version(
@@ -164,11 +163,12 @@ vertebrae = ["index.typ", "about.typ", "contact.typ"]
 
 [pdf.spine]
 title = "Project Uno"
-vertebrae = ["index.typ", "about.typ", "contact.typ"]
-merge = true`,
+vertebrae = ["index.typ", "about.typ", "contact.typ"]`,
 )
 
-Before we run this again, let's also clean the outputs in the build directory, as we don't need those individual PDFs that we produced anymore:
+(The PDF format always merges into a single output; `merge` is a PDF-specific attribute under `[pdf.spine]`, not a general setting, so we don't need to set it here.)
+
+Before we run this again, let's also clean the outputs in the build directory:
 
 ```sh
 rheo clean project_uno
