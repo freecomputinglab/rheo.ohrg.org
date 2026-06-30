@@ -56,6 +56,12 @@
       (id: "custom-js-css", title: "Custom JS/CSS", url: "./custom-js-css.html"),
     ),
   ),
+  (
+    title: "Packages",
+    items: (
+      (id: "pkg-slides", title: "Slides", url: "./pkg-slides.html"),
+    ),
+  ),
 )
 
 #let sidebar-site = sidebar.with(

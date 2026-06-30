@@ -26,6 +26,7 @@ vertebrae = [
   "format-epub.typ",
   "format-html.typ",
   "custom-js-css.typ",
+  "pkg-slides.typ",
   "endmatter.typ",
 ]
 merge = true
@@ -51,4 +52,5 @@ vertebrae = [
   "format-epub.typ",
   "format-html.typ",
   "custom-js-css.typ",
+  "pkg-slides.typ",
 ]
