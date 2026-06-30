@@ -25,6 +25,7 @@ vertebrae = [
   "format-pdf.typ",
   "format-epub.typ",
   "format-html.typ",
+  "atom-feeds.typ",
   "custom-js-css.typ",
   "pkg-slides.typ",
   "endmatter.typ",
@@ -51,6 +52,7 @@ vertebrae = [
   "format-pdf.typ",
   "format-epub.typ",
   "format-html.typ",
+  "atom-feeds.typ",
   "custom-js-css.typ",
   "pkg-slides.typ",
 ]

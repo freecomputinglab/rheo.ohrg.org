@@ -47,3 +47,11 @@ You can combine global and format-specific copies; both will be applied when bui
 
 Format plugins can expose additional asset configuration beyond `copy`.
 For HTML, this includes CSS and JavaScript entrypoints and support for multiple asset blocks --- see #link(<custom-js-css>)[Custom JS/CSS].
+
+== Relation to Typst's bundle format
+
+Typst has an experimental #link("https://typst.app/docs/reference/bundle/")[bundle format] that handles assets programmatically: you call `asset("output/path", read("source/file", encoding: none))` inside your Typst source to declare files that should be written alongside the document output.
+
+Rheo's `copy` serves the same purpose but declaratively, at the project level via `rheo.toml`.
+Rather than writing `asset()` calls in every source file, you declare glob patterns once and Rheo copies the matched files into every (or a specific) format's output directory.
+The two approaches are complementary: `copy` handles static files known at project-configuration time, while `asset()` is available for files that need to be generated or selected dynamically from within Typst.
