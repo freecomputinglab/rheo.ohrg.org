@@ -10,7 +10,7 @@ Most static site engines these days employ Markdown, a markup format that is app
 As useful as it is, Markdown has its ambiguities.
 For one, there isn't a standardized syntax for citations or footnotes.
 Though extensions exist that can produce these, they are not supported in the core Markdown syntax, meaning that it's not _really_ Markdown and can't be relied upon to work in all contexts that support Markdown.
-Markdown is great when using hypertext (hyperlinks, images, etc).
+Markdown is great when using hypertext (hyperlinks, images, etc.).
 It's not so great when it comes to things like tables, figures, and math.
 
 Typst is a markup language that integrates with plain text, like Markdown, making it easy to adopt and joyful to write.

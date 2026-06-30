@@ -22,7 +22,7 @@ This is important, as if you change the #link(<content-dir>)[content directory],
 
 = Configuration 
 == CLI flag 
-You can specify a build directory with either the `compile` and `watch` commands:
+You can specify a build directory with either the `compile` or `watch` commands:
 
 ```bash
 rheo compile path/to/project --build-dir path/to/build

@@ -20,7 +20,7 @@ When Rheo compiles your project, it reads every `#import` statement in your cont
 A Rheo package is essentially a Typst package that can also provide #link(<assets>)[assets].
 A package can declare assets that will be injected into a format's build folder automatically --- behaving exactly like a manually configured `[[html.assets]]` block.
 
-This is particulary useful in HTML, as it means that we can essentially expose JS/CSS libraries through a Typst API to our project, as the #link(<pkg-slides>)[slides package] does for #link("https://revealjs.com/")[RevealJS].
+This is particularly useful in HTML, as it means that we can essentially expose JS/CSS libraries through a Typst API to our project, as the #link(<pkg-slides>)[slides package] does for #link("https://revealjs.com/")[RevealJS].
 (See #link(<custom-js-css>)[Custom JS/CSS] for details on what that means for the build output in HTML.)
 
 == Creating a Rheo-compatible package

@@ -4,7 +4,7 @@
 = Spines
 
 A spine in Rheo is the backbone or 'table of contents' of Typst source files that should be compiled to an output format.
-It takes its name from the #link("https://www.edrlab.org/open-standards/anatomy-of-an-epub-3-file/")[epub specification], in which the spine articulates---or _reticulates_--- the set and order of chapters included.
+It takes its name from the #link("https://www.edrlab.org/open-standards/anatomy-of-an-epub-3-file/")[EPUB specification], in which the spine articulates---or _reticulates_--- the set and order of chapters included.
 
 You can specify a spine's vertebrae for any output format using an array of #link("https://www.man7.org/linux/man-pages/man7/glob.7.html")[glob] strings in `rheo.toml`:
 
