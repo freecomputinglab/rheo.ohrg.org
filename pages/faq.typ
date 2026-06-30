@@ -30,6 +30,14 @@ If you don't have a good EPUB reading experience currently, we recommend using #
 Rheo is developed by the #link("https://freecomputinglab.ohrg.org/")[Free Computing Lab], an academic research consortium that researches the nature of computing freedom.
 If you're interested to learn more or get involved, you can #link(fcl-zulip-join-url)[join our Zulip].
 
+== Does Rheo work with CI/CD and static site hosting?
+
+Yes.
+Since Rheo is distributed as a self-contained binary, it integrates cleanly with CI environments without any additional toolchain setup.
+Rheo has been tested with #link("https://pages.github.com/")[GitHub Pages], #link("https://pages.cloudflare.com/")[Cloudflare Pages], and #link("https://www.netlify.com/")[Netlify], and should work with any similar platform.
+
+For a concrete example of a build script that uses Rheo to publish a website, see #link("https://github.com/freecomputinglab/freecomputinglab.ohrg.org/blob/main/build.sh")[this build.sh from the Free Computing Lab site].
+
 == Can I contribute to Rheo?
 Yes!
 Rheo is written in Rust and developed in public through #link(rheo-source-url)[GitHub].
