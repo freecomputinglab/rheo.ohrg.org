@@ -4,8 +4,7 @@
 = Slides
 
 The `@rheo/slides` package turns your Typst source file into two outputs simultaneously: a printable PDF script and an interactive #link("https://revealjs.com/")[RevealJS] presentation in the browser.
-This means that after writing a talk's script in Typst, you can insert slides into sections of it (also written in Typst) and get a readable version.
-You can always still export the script alone, meaning that you can keep both a publishable typeset paper and its presentational form with accompanying slides in the same Typst document.
+This means that after writing a talk's script in Typst, you can insert slides into sections of it (also written in Typst) and produce a slide deck alongside a script that is also annotated with markers noting when to go to the next slide.
 
 == Installation
 
@@ -56,17 +55,41 @@ Wrap your document with the `template` show rule to activate the layout:
 `theme` accepts any #link("https://revealjs.com/themes/")[built-in RevealJS theme] name.
 `transition` accepts any RevealJS transition name (`none`, `fade`, `slide`, `convex`, `concave`, `zoom`).
 
+== Keeping paper and slides together
+
+You can always still export the script alone, meaning that this package essentially allows you to keep both a publishable, typeset paper _and_ its script/slides in the same Typst document.
+The key is overloading the `slide` function so that it returns an empty block when you are building the paper output.
+Define a global boolean and shadow `slide` at the top of your document:
+
+```typst
+#let is-presentation = false
+
+#let slide = if is-presentation { slide } else { (..args) => [] }
+```
+
+When `is-presentation` is `false`, every `#slide[...]` call produces no content, so the document compiles as a clean paper with none of the slide scaffolding visible.
+Set it to `true` (and apply the `template` show rule) to build the presentation instead.
+Both outputs live in the same source file — switch between them by toggling one variable.
+The same boolean can drive other conditional styling.
+For example, a paper might use double spacing while the script uses single spacing:
+
+```typst
+#set par(leading: if is-presentation { 0.65em } else { 1.3em })
+```
+
+Any show or set rule that differs between outputs can be gated on `is-presentation` in the same way.
+
 == Configuring the spine
 
 Add your document to both spines in `rheo.toml`:
 
 ```toml
 [html.spine]
-vertebrae = ["slides.typ"]
+vertebrae = ["paper.typ"]
 
 [pdf.spine]
 title = "My Presentation"
-vertebrae = ["slides.typ"]
+vertebrae = ["paper.typ"]
 ```
 
 == PDF script output
