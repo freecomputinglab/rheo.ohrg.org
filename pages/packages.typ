@@ -10,14 +10,18 @@ A Rheo package is a standard #link("https://typst.app/universe/")[Typst Universe
 To use a Rheo-compatible package, import it in your Typst source files as you normally would:
 
 ```typ
-#import "@preview/rheo-tooltip:0.1.0": tooltip
+#import "@rheo/tooltip:0.1.0": tooltip
 ```
 
-That is all you need to do.
-When Rheo compiles your project, it reads every `#import` statement in your content files, identifies any Typst Universe packages, pre-warms them, and checks whether their `typst.toml` contains a `[tool.rheo.html]` section.
+That's all!
+Just like the Typst CLI, Rheo will prewarm the `@rheo` namespace so that all of the #link("https://github.com/freecomputinglab/rheo-packages")[existing packages] are available.
+When Rheo compiles your project, it reads every `#import` statement in your content files, identifies any Typst Universe and Rheo packages, and makes them available in your project.
 
-If it does, the declared assets are injected into the HTML output automatically --- behaving exactly like a manually configured `[[html.assets]]` block.
-See #link(<custom-js-css>)[Custom JS/CSS] for details on what that means for the build output.
+A Rheo package is essentially a Typst package that can also provide #link(<assets>)[assets].
+A package can declare assets that will be injected into a format's build folder automatically --- behaving exactly like a manually configured `[[html.assets]]` block.
+
+This is particulary useful in HTML, as it means that we can essentially expose JS/CSS libraries through a Typst API to our project, as the #link(<pkg-slides>)[slides package] does for #link("https://revealjs.com/")[RevealJS].
+(See #link(<custom-js-css>)[Custom JS/CSS] for details on what that means for the build output in HTML.)
 
 == Creating a Rheo-compatible package
 
