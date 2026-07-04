@@ -19,7 +19,7 @@ title = "My book"
 vertebrae = ["intro.typ", "chapters/*.typ"]
 ```
 
-The `merge` attribute is specific to the PDF format (it lives under `[pdf.spine]` and is not a general setting). PDF always combines into a single document, so `merge` is included only for explicit control and is rarely needed.
+PDF always combines the spine into a single document by default, so there is nothing extra to configure.
 
 Because the source files are combined, #link(<relative-linking>)[relative links] between them are automatically resolved to internal document links that point to the relevant section in the output PDF.
 

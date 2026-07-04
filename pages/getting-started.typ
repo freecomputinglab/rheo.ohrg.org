@@ -166,7 +166,7 @@ title = "Project Uno"
 vertebrae = ["index.typ", "about.typ", "contact.typ"]`,
 )
 
-(The PDF format always merges into a single output; `merge` is a PDF-specific attribute under `[pdf.spine]`, not a general setting, so we don't need to set it here.)
+(The PDF format always combines its spine into a single output.)
 
 Before we run this again, let's also clean the outputs in the build directory:
 

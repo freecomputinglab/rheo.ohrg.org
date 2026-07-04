@@ -30,7 +30,6 @@ vertebrae = [
   "pkg-slides.typ",
   "endmatter.typ",
 ]
-merge = true
 
 [epub.spine]
 title = "Rheo Manual"
