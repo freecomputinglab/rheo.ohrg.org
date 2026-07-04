@@ -17,7 +17,7 @@ Import the package at the top of your slides source file:
 == Defining slides
 
 Use the `slide` function to mark each slide.
-Each call becomes one RevealJS slide in the browser and one section in the PDF:
+Each call becomes one RevealJS slide in the browser and a 'slide' marker in the PDF:
 
 ```typst
 #slide(title: [Introduction])[
@@ -51,33 +51,9 @@ Wrap your document with the `template` show rule to activate the layout:
 )
 ```
 
-`first-slide` accepts arbitrary Typst content and is rendered as the opening slide.
-`theme` accepts any #link("https://revealjs.com/themes/")[built-in RevealJS theme] name.
-`transition` accepts any RevealJS transition name (`none`, `fade`, `slide`, `convex`, `concave`, `zoom`).
-
-== Keeping paper and slides together
-
-You can always still export the script alone, meaning that this package essentially allows you to keep both a publishable, typeset paper _and_ its script/slides in the same Typst document.
-The key is overloading the `slide` function so that it returns an empty block when you are building the paper output.
-Define a global boolean and shadow `slide` at the top of your document:
-
-```typst
-#let is-presentation = false
-
-#let slide = if is-presentation { slide } else { (..args) => [] }
-```
-
-When `is-presentation` is `false`, every `#slide[...]` call produces no content, so the document compiles as a clean paper with none of the slide scaffolding visible.
-Set it to `true` (and apply the `template` show rule) to build the presentation instead.
-Both outputs live in the same source file — switch between them by toggling one variable.
-The same boolean can drive other conditional styling.
-For example, a paper might use double spacing while the script uses single spacing:
-
-```typst
-#set par(leading: if is-presentation { 0.65em } else { 1.3em })
-```
-
-Any show or set rule that differs between outputs can be gated on `is-presentation` in the same way.
+- `first-slide` accepts arbitrary Typst content and is rendered as the opening slide.
+- `theme` accepts any #link("https://revealjs.com/themes/")[built-in RevealJS theme] name.
+- `transition` accepts any RevealJS transition name (`none`, `fade`, `slide`, `convex`, `concave`, `zoom`).
 
 == Configuring the spine
 
@@ -149,3 +125,33 @@ Use them to keep your overrides theme-agnostic:
 .reveal .slides figure       { font-size: 1.5em; }
 .reveal .slides figcaption   { font-size: 0.4em; }
 ```
+
+== Adding slides without losing your original paper styling
+
+Typst's conditional rendering makes it easy to keep both a publishable, typeset paper _as well as_ its script and slides in the same Typst document.
+The key is overloading the `slide` function, so that it simply returns an empty block when you're not building the presentational format of your paper.
+This means that you can use the same Typst document and render via Rheo to both:
+- Publishable PDF/HTML/EPUB
+- A presentation with a PDF script with slide markers, and a RevealJS (HTML) slide deck.
+
+For example, you can define a global boolean and shadow `slide` at the top of your document:
+
+```typst
+#let is-presentation = false
+
+#let slide = if is-presentation { slide } else { (..args) => [] }
+```
+
+When `is-presentation` is `false`, every `#slide[...]` call produces no content, so the document compiles as a clean paper with none of the slide scaffolding visible.
+Set it to `true` (and apply the `template` show rule) to build the presentation instead.
+Both outputs live in the same source file — switch between them by toggling one variable.
+The same boolean can drive other conditional styling.
+For example, a paper might use double spacing while the script uses single spacing:
+
+```typst
+#set par(leading: if is-presentation { 0.65em } else { 1.3em })
+```
+
+Any show or set rule that differs between outputs can be gated on `is-presentation` in the same way.
+
+
