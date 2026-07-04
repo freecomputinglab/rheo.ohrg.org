@@ -12,7 +12,7 @@ When set, the HTML build writes `build/html/feed.xml` (Atom 1.0) and injects an 
 feed_base_url = "https://example.com"
 ```
 
-The feed contains one `<entry>` per vertebra that declares a feed title (see #link(<rheo-variables>)[the variables below]).
+The feed contains one `<entry>` per vertebra by default (see #link(<rheo-variables>)[the variables below] to override entry metadata or opt a page out).
 Two further `[html]` fields customize the feed itself:
 
 - `feed_author` --- the feed's author. Defaults to `Rheo`.
@@ -20,19 +20,19 @@ Two further `[html]` fields customize the feed itself:
 
 Without `feed_base_url`, no feed is emitted.
 
-== rheo-\* variables <rheo-variables>
+== Feed variables <rheo-variables>
 
-Rheo harvests any top-level `#let` whose name begins with `rheo-` from each source file, provided its value is a string literal --- a non-string value is a compile error.
-Plugins read these per-file values with the `rheo-` prefix stripped, so `rheo-feed-title` is available to a plugin as `feed-title`.
+Every vertebra appears in the feed by default.
+To tune how a page is represented, set any of these top-level variables in its source; Rheo reads them when composing the feed. All are optional:
 
-The Atom feed uses two such variables:
-
-- `rheo-feed-title` --- the entry's title. A vertebra must declare this to appear in the feed.
-- `rheo-feed-updated` --- the entry's timestamp in #link("https://www.rfc-editor.org/rfc/rfc3339")[RFC 3339] format. Optional; falls back to the source file's modification time.
+- `rheo-feed-title` --- overrides the entry's title. Defaults to the document title from `#set document(title: ...)`.
+- `rheo-feed-updated` --- overrides the entry's timestamp, in #link("https://www.rfc-editor.org/rfc/rfc3339")[RFC 3339] format. Defaults to the document date from `#set document(date: ...)`, then the source file's modification time.
+- `rheo-feed-exclude` --- set to the boolean `true` to omit this vertebra from the feed (its page is still generated). Handy for cover or index pages.
 
 ```typst
 #let rheo-feed-title = "A new chapter"
 #let rheo-feed-updated = "2026-06-29T12:00:00Z"
+#let rheo-feed-exclude = true
 ```
 
 The body of each entry is taken from the first `<main>` element in the page, else the first element carrying the `rheo-feed-content` class, else the entire `<body>`.
