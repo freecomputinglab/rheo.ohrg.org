@@ -149,8 +149,9 @@ rheo watch project_uno --open
 
 Great!
 The EPUB order is fixed.
-The PDF output already combines every source file into a single document, but its sections are ordered lexicographically by default, so `index.typ` appears last there too.
-We can fix the PDF ordering the same way we did for EPUB, by adding a PDF spine that lists the vertebrae in the order we want:
+The PDF output, like EPUB, also combines every source file in its spine into a single document.
+Its sections are ordered lexicographically by default, however, so `index.typ` appears after the other two pages; which is probably not what we want.
+We can fix the PDF ordering the same way we did for EPUB: by adding a PDF spine that lists the vertebrae in the order we want:
 
 `project_uno/rheo.toml`
 #code-with-version(
@@ -165,8 +166,6 @@ vertebrae = ["index.typ", "about.typ", "contact.typ"]
 title = "Project Uno"
 vertebrae = ["index.typ", "about.typ", "contact.typ"]`,
 )
-
-(The PDF format always combines its spine into a single output.)
 
 Before we run this again, let's also clean the outputs in the build directory:
 

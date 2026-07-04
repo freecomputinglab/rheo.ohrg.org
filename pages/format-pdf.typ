@@ -7,7 +7,7 @@
 
 == What Rheo adds
 
-Where Rheo goes beyond the standard Typst CLI is in its ability to reticulate multiple source files into a single, unified PDF.
+Where Rheo goes beyond the standard Typst CLI by 'reticulating' multiple source files into a single, unified PDF.
 This is useful when you want to separate sections of your book into individual files -- for example, so that each section can also appear as its own web page in the HTML output -- while still producing a unified document for print.
 
 The PDF format always produces a single combined document: every source file is merged into one output PDF.
@@ -18,8 +18,6 @@ You can specify a #link(<spines>)[spine] to control which files are included and
 title = "My book"
 vertebrae = ["intro.typ", "chapters/*.typ"]
 ```
-
-PDF always combines the spine into a single document by default, so there is nothing extra to configure.
 
 Because the source files are combined, #link(<relative-linking>)[relative links] between them are automatically resolved to internal document links that point to the relevant section in the output PDF.
 
