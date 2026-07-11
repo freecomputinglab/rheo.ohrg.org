@@ -57,15 +57,12 @@ Wrap your document with the `template` show rule to activate the layout:
 
 == Configuring the spine
 
-Add your document to both spines in `rheo.toml`:
+A single-file project needs no #link(<spines>)[spine] config at all --- the directory-scan default already includes `paper.typ`.
+Give the PDF a title, if you'd like one:
 
 ```toml
-[html.spine]
-vertebrae = ["paper.typ"]
-
 [pdf.spine]
 title = "My Presentation"
-vertebrae = ["paper.typ"]
 ```
 
 == PDF script output

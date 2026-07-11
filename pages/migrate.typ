@@ -32,6 +32,17 @@ After migrating, rebuild and check the output yourself, and consult the changelo
 #link(<another-section>)[Another section]
 ```
 
+*Output format `rheo-target` → `rheo-context.target`:* The output format moved off the removed `sys.inputs.rheo-target` key onto #link(<rheo-context>)[`rheo-context.target`]. `migrate` rewrites direct references:
+
+```typ
+// before
+#if "rheo-target" in sys.inputs { sys.inputs.rheo-target }
+// after
+#if "rheo-context" in sys.inputs and "target" in sys.inputs.rheo-context { sys.inputs.rheo-context.target }
+```
+
+It also rewrites the old `rheo-target()` helper to Typst's `target()`. Files that already use `target()` need no change.
+
 *Version bump:* `migrate --apply` updates the `version` field in `rheo.toml` to match the current CLI version.
 
 == What it does not migrate
