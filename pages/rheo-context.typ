@@ -13,6 +13,7 @@ When Rheo compiles a project, it prepends a small binding to the top of every ve
     (handle: "chapters:intro", path: "content/chapters/intro.typ", title: "Chapter Introduction"),
     // ... one entry per vertebra, in spine order
   ),
+  target: "html", // the output format; absent for PDF
 )
 ```
 
@@ -29,7 +30,7 @@ This page's handle is #rheo-context.handle.
 
 == Fields
 
-`rheo-context` currently has two fields.
+`rheo-context` currently has three fields.
 The shape is extensible --- more fields may be added in future versions --- so treat it as a dictionary that will only grow.
 
 / `handle`: This file's #link(<relative-linking>)[handle] --- its `:`-separated identifier, the same handle used for cross-file links.
@@ -38,6 +39,11 @@ The shape is extensible --- more fields may be added in future versions --- so t
   - `handle` --- the vertebra's handle.
   - `path` --- its path, relative to the project root.
   - `title` --- its title.
+
+/ `target`: The output format Rheo is compiling for --- `"html"` or `"epub"`.
+  It is *absent* for PDF, where Typst's native `target()` returns `"paged"`.
+  The value is the same for every vertebra.
+  In authored files, prefer Typst's own `target()` (which Rheo polyfills to return this value) over reading the field directly --- `target()` works everywhere, e.g. `#if target() == "epub" [ ... ]`.
 
 == Passing it to a package
 
