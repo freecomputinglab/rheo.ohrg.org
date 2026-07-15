@@ -20,30 +20,37 @@ After migrating, rebuild and check the output yourself, and consult the changelo
 
 == What it migrates
 
-*Link syntax (projects with version < 0.4.0):* Before 0.4.0, cross-file links used file paths directly:
+`migrate` groups its rewrites by the project version it's migrating from:
 
-```typ
-#link("./another-section.typ")[Another section]
-```
-
-`migrate` rewrites these to the current #link(<relative-linking>)[handle form]:
-
-```typ
-#link(<another-section>)[Another section]
-```
-
-*Output format `rheo-target` → `rheo-context.target`:* The output format moved off the removed `sys.inputs.rheo-target` key onto #link(<rheo-context>)[`rheo-context.target`]. `migrate` rewrites direct references:
-
-```typ
-// before
-#if "rheo-target" in sys.inputs { sys.inputs.rheo-target }
-// after
-#if "rheo-context" in sys.inputs and "target" in sys.inputs.rheo-context { sys.inputs.rheo-context.target }
-```
-
-It also rewrites the old `rheo-target()` helper to Typst's `target()`. Files that already use `target()` need no change.
-
-*Version bump:* `migrate --apply` updates the `version` field in `rheo.toml` to match the current CLI version.
+#table(
+  columns: (auto, 1fr),
+  align: (left, left),
+  table.header[*From version*][*What `migrate` rewrites*],
+  [`< 0.4.0`],
+  [
+    - *Link syntax:* cross-file links written as file paths are rewritten to the current #link(<relative-linking>)[handle form]:
+      ```typ
+      // before
+      #link("./another-section.typ")[Another section]
+      // after
+      #link(<another-section>)[Another section]
+      ```
+  ],
+  [`< 0.5.0`],
+  [
+    - *Output format:* direct `rheo-target` references are rewritten onto #link(<rheo-context>)[`rheo-context.target`]:
+      ```typ
+      // before
+      #if "rheo-target" in sys.inputs { sys.inputs.rheo-target }
+      // after
+      #if "rheo-context" in sys.inputs and "target" in sys.inputs.rheo-context { sys.inputs.rheo-context.target }
+      ```
+      It also rewrites the old `rheo-target()` helper to Typst's `target()`. Files already using `target()` need no change.
+    - *Spine config:* a `[spine] vertebrae` inclusion-filter glob list is converted to an equivalent `[spine] exclude`, so files the old list never named don't silently start being published under the #link(<spines>)[directory-scan default].
+  ],
+  [any outdated version],
+  [Bumps the `version` field in `rheo.toml` to match the current CLI version (`--apply` only).],
+)
 
 == What it does not migrate
 

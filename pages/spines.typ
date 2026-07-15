@@ -8,11 +8,12 @@ It takes its name from the #link("https://www.edrlab.org/open-standards/anatomy-
 
 == Directory-scan default
 
-With no configuration at all, the spine is built from `content_dir`'s own directory structure.
-Every `.typ` file is included, ordered alphabetically within each directory level.
-A subdirectory becomes a nested group in the spine: if it contains a landing file --- `index.typ`, or a file named after the directory itself (e.g. `chapters/chapters.typ`) --- that directory gets its own clickable page and handle; otherwise it becomes a non-clickable group node whose title is derived from the directory name.
+With no configuration at all, the spine is built from `content_dir`'s own directory structure:
 
-A leading numeric prefix on a directory or section name (`01-intro/`) is used to order it among its siblings but stripped from the displayed title (`01-intro/` → "Intro"); the raw name, prefix included, is kept in the handle. Files are not prettified this way --- a file's title comes from its own content, not its filename.
+- Every `.typ` file is included, ordered alphabetically within each directory level.
+- A subdirectory with a landing file --- `index.typ`, or a file named after the directory itself (e.g. `chapters/chapters.typ`) --- becomes a group with its own page and handle.
+- A subdirectory *without* a landing file becomes a group node with no page or handle of its own, its title derived from the directory name.
+- A leading numeric prefix on a directory or section name orders it among its siblings but is stripped from the displayed title: `01-intro/` → "Intro". The raw name, prefix included, is kept in the handle. Files are not prettified this way --- a file's title comes from its own content, not its filename.
 
 This default is enough for most projects: name your files and folders in the order you want them read, and the spine follows.
 
@@ -27,7 +28,7 @@ exclude = ["drafts/**", "TODO.typ"]
 
 Excluded paths are dropped from every format's spine.
 
-== `[[spine.section]]`: virtual directories
+== `[[spine.section]]`
 
 `[[spine.section]]` groups matched files under a virtual directory, without moving them on disk.
 This is useful for reshaping the spine's structure independently of your folder layout:
@@ -38,10 +39,10 @@ name = "chapters"
 include = ["ch-*.typ"]
 ```
 
-Files matching `include` get pulled under a virtual `chapters` group, gaining a namespaced handle (`ch-1.typ` → `<chapters:ch-1>`) exactly as if they lived in a `chapters/` directory.
-A section's `title` defaults to a prettified version of `name`, and can be overridden explicitly.
-Sections nest via `[[spine.section.section]]` to arbitrary depth.
-When `include` lists more than one glob, matches are gathered in glob order and lexicographically within each glob --- so listing globs in the order you want lets you control ordering explicitly, not just alphabetically.
+- Files matching `include` get pulled under a virtual `chapters` group, gaining a namespaced handle exactly as if they lived in a `chapters/` directory: `ch-1.typ` → `<chapters:ch-1>`.
+- A section's `title` defaults to a prettified version of `name`, and can be overridden explicitly.
+- Sections nest via `[[spine.section.section]]` to arbitrary depth.
+- When `include` lists more than one glob, matches are gathered in glob order and lexicographically within each glob --- so listing globs in the order you want lets you control ordering explicitly, not just alphabetically.
 
 == Per-format overrides
 
