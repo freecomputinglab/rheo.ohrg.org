@@ -123,10 +123,39 @@ All of #link("https://typst.app/docs/reference/scripting/")[Typst's other featur
 
 = Adding a config
 
-One issue with the EPUB that is currently being produced is that the `index.typ` section shows up last, after the `about.typ` and `contact.typ`, as Rheo orders files lexicographically by default.
+One issue with the EPUB that is currently being produced is that the `index.typ` section shows up last, after `about.typ` and `contact.typ`.
+This is because Rheo builds a project's #link(<spines>)[spine] by scanning `content_dir` and ordering files alphabetically by default, and `index` sorts after `about` and `contact`.
 This is probably not what we want, as the index page acts as a sort of table of contents in our writing project currently.
 
-To sophisticate the way that Rheo produces outputs, we can add a #link(<rheotoml>)[rheo.toml config] at the base of the project directory:
+Since the spine follows file names, we can fix the order by renaming the files so the alphabetical scan already matches our intended reading order:
+
+```bash
+mv project_uno/index.typ project_uno/00-index.typ
+mv project_uno/about.typ project_uno/01-about.typ
+mv project_uno/contact.typ project_uno/02-contact.typ
+```
+
+Renaming a file changes its #link(<relative-linking>)[handle] too --- Rheo derives a handle from the file's name --- so update the cross-links to match:
+
+`project_uno/00-index.typ`
+```typ
+= Project uno
+
+Project uno is a writing project.
+
+- #link(<01-about>)[About]
+- #link(<02-contact>)[Contact]
+```
+
+`project_uno/01-about.typ`
+```typ
+= About
+
+Project uno is an incredible writing project that will transform the way we understand the world.
+If you want to be involved, see the #link(<02-contact>)[Contact page].
+```
+
+Now let's add a #link(<rheotoml>)[rheo.toml config] at the base of the project directory to give the EPUB and PDF outputs a proper title:
 
 `project_uno/rheo.toml`
 #code-with-version(
@@ -135,11 +164,10 @@ To sophisticate the way that Rheo produces outputs, we can add a #link(<rheotoml
 
 [epub.spine]
 title = "Project Uno"
-vertebrae = ["index.typ", "about.typ", "contact.typ"]`,
-)
 
-This config uses the notion of a #link(<spines>)[spine] to indicate a custom order for the sections.
-We'll learn more about these later on in this documentation.
+[pdf.spine]
+title = "Project Uno"`,
+)
 
 Let's run the `watch` command again, this time with all outputs like the first time:
 
@@ -148,25 +176,7 @@ rheo watch project_uno --open
 ```
 
 Great!
-The EPUB order is fixed.
-The PDF output already combines every source file into a single document, but its sections are ordered lexicographically by default, so `index.typ` appears last there too.
-We can fix the PDF ordering the same way we did for EPUB, by adding a PDF spine that lists the vertebrae in the order we want:
-
-`project_uno/rheo.toml`
-#code-with-version(
-  lang: "toml",
-  `version = "{version}"
-
-[epub.spine]
-title = "Project Uno"
-vertebrae = ["index.typ", "about.typ", "contact.typ"]
-
-[pdf.spine]
-title = "Project Uno"
-vertebrae = ["index.typ", "about.typ", "contact.typ"]`,
-)
-
-(The PDF format always merges into a single output; `merge` is a PDF-specific attribute under `[pdf.spine]`, not a general setting, so we don't need to set it here.)
+Renaming the files fixed the order for both the EPUB and the PDF in one go --- the PDF output, like EPUB, combines every source file in its spine into a single document, following the same directory-scan order.
 
 Before we run this again, let's also clean the outputs in the build directory:
 

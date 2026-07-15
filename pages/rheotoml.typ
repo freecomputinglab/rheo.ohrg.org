@@ -21,8 +21,9 @@ build_dir = "build"
 formats = ["pdf", "html", "epub"]
 
 [epub.spine]
-vertebrae = ["**/*.typ"]
 title = "[project directory name]"`)
+
+Without a #link(<spines>)[spine] config, every Typst file under `content_dir` is included, ordered by the #link(<spines>)[directory-scan default].
 
 To point Rheo to a rheo.toml file that is not at the root of the project directory, specify it directly via the CLI:
 

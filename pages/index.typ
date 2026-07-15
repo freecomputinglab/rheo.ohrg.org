@@ -29,6 +29,7 @@
       (id: "core", title: "Basics", url: "./core.html"),
       (id: "rheotoml", title: "Rheo.toml", url: "./rheotoml.html"),
       (id: "relative-linking", title: "Relative linking", url: "./relative-linking.html"),
+      (id: "rheo-context", title: "rheo-context", url: "./rheo-context.html"),
       (id: "migrate", title: "Migrating projects", url: "./migrate.html"),
       (id: "build-dir", title: "Build directory", url: "./build-dir.html"),
       (id: "content-dir", title: "Content directory", url: "./content-dir.html"),

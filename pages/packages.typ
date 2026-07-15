@@ -23,6 +23,20 @@ A package can declare assets that will be injected into a format's build folder 
 This is particularly useful in HTML, as it means that we can essentially expose JS/CSS libraries through a Typst API to our project, as the #link(<pkg-slides>)[slides package] does for #link("https://revealjs.com/")[RevealJS].
 (See #link(<custom-js-css>)[Custom JS/CSS] for details on what that means for the build output in HTML.)
 
+== Passing rheo-context to a package
+
+A Typst function captures the scope in which it was _defined_, not the scope from which it is _called_.
+A function that lives in a package therefore cannot read the calling file's local `rheo-context` implicitly --- you have to hand it in.
+
+Pass it explicitly as an argument:
+
+```typ
+#import "@preview/somepackage:0.1.0"
+#show: somepackage.with(ctx: rheo-context)
+```
+
+The package can then read `ctx.handle`, walk `ctx.spine` (the tree) or `ctx.spine-flat` (the flat list), and so on.
+
 == Creating a Rheo-compatible package
 
 If you are authoring a Typst Universe package and want to ship assets that integrate with Rheo's HTML output, add a `[tool.rheo.html]` section to your package's `typst.toml`:
