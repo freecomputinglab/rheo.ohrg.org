@@ -41,11 +41,11 @@ After migrating, rebuild and check the output yourself, and consult the changelo
     - *Output format:* direct `rheo-target` references are rewritten onto #link(<rheo-context>)[`rheo-context.target`]:
       ```typ
       // before
-      #if "rheo-target" in sys.inputs { sys.inputs.rheo-target }
+      #if "rheo-context" in sys.inputs and "target" in sys.inputs.rheo-context { sys.inputs.rheo-context.target }
       // after
       #if "rheo-context" in sys.inputs and "target" in sys.inputs.rheo-context { sys.inputs.rheo-context.target }
       ```
-      It also rewrites the old `rheo-target()` helper to Typst's `target()`. Files already using `target()` need no change.
+      It also rewrites the old `target()` helper to Typst's `target()`. Files already using `target()` need no change.
     - *Spine config:* a `[spine] vertebrae` inclusion-filter glob list is converted to an equivalent `[spine] exclude`, so files the old list never named don't silently start being published under the #link(<spines>)[directory-scan default].
   ],
   [any outdated version],

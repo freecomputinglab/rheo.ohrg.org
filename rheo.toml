@@ -1,4 +1,4 @@
-version = "0.4.0"
+version = "0.5.0"
 content_dir = "pages"
 
 [[html.assets]]
@@ -6,54 +6,7 @@ css_stylesheet = "./style.css"
 
 [pdf.spine]
 title = "Rheo Menual"
-vertebrae = [
-  "frontmatter.typ",
-  "index.typ",
-  "why-is-rheo.typ",
-  "getting-started.typ",
-  "init.typ",
-  "faq.typ",
-  "core.typ",
-  "relative-linking.typ",
-  "rheo-context.typ",
-  "migrate.typ",
-  "rheotoml.typ",
-  "build-dir.typ",
-  "content-dir.typ",
-  "spines.typ",
-  "assets.typ",
-  "packages.typ",
-  "format-pdf.typ",
-  "format-epub.typ",
-  "format-html.typ",
-  "atom-feeds.typ",
-  "custom-js-css.typ",
-  "pkg-slides.typ",
-  "endmatter.typ",
-]
 
 [epub.spine]
 title = "Rheo Manual"
-vertebrae = [
-  "index.typ",
-  "why-is-rheo.typ",
-  "getting-started.typ",
-  "init.typ",
-  "faq.typ",
-  "core.typ",
-  "relative-linking.typ",
-  "rheo-context.typ",
-  "migrate.typ",
-  "rheotoml.typ",
-  "build-dir.typ",
-  "content-dir.typ",
-  "spines.typ",
-  "assets.typ",
-  "packages.typ",
-  "format-pdf.typ",
-  "format-epub.typ",
-  "format-html.typ",
-  "atom-feeds.typ",
-  "custom-js-css.typ",
-  "pkg-slides.typ",
-]
+exclude = ["endmatter.typ", "frontmatter.typ"]
