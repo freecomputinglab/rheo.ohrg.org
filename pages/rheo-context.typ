@@ -61,6 +61,13 @@ The shape of `rheo-context` is designed to be extensible --- more fields may be 
     The value is the same for every vertebra.
     In authored files, prefer Typst's own `target()` (which Rheo polyfills to return this value) over reading the field directly --- `target()` works everywhere, e.g. `#if target() == "epub" [ ... ]`.
   ],
+
+  [`ext`],
+  [
+    The output file extension for the format being compiled --- `"html"` for HTML, `"xhtml"` for EPUB --- sourced from the format plugin.
+    Like `target`, it is format-global (the same for every vertebra) and *absent* for PDF, where there are no per-page files.
+    This is the value Rheo itself uses to build depth-relative cross-vertebra link hrefs.
+  ],
 )
 
 == Example: a table of contents
