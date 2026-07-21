@@ -26,13 +26,13 @@ This is particularly useful in HTML, as it means that we can essentially expose 
 == Passing rheo-context to a package
 
 A Typst function captures the scope in which it was _defined_, not the scope from which it is _called_.
-A function that lives in a package therefore cannot read the calling file's local `rheo-context` implicitly --- you have to hand it in.
+A function that lives in a package therefore cannot read the calling file's local `rheo-context()` implicitly --- you have to hand it in.
 
 Pass it explicitly as an argument:
 
 ```typ
 #import "@preview/somepackage:0.1.0"
-#show: somepackage.with(ctx: rheo-context)
+#show: somepackage.with(ctx: rheo-context())
 ```
 
 The package can then read `ctx.handle`, walk `ctx.spine` (the tree) or `ctx.spine-flat` (the flat list), and so on.

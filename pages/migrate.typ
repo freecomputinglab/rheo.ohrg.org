@@ -48,6 +48,14 @@ After migrating, rebuild and check the output yourself, and consult the changelo
       It also rewrites the old `target()` helper to Typst's `target()`. Files already using `target()` need no change.
     - *Spine config:* a `[spine] vertebrae` inclusion-filter glob list is converted to an equivalent `[spine] exclude`, so files the old list never named don't silently start being published under the #link(<spines>)[directory-scan default].
   ],
+  [`< 0.6.0`],
+  [
+    - *`rheo-context` binding:* the injected per-vertebra binding changed from a bare dictionary to a zero-arg function #link(<rheo-context>)[`rheo-context()`]. So existing `rheo-context.field` code keeps working, `migrate` prepends a one-line compatibility shim to each file that reads the binding:
+      ```typ
+      #let rheo-context = rheo-context()
+      ```
+      The shim calls the injected function once and rebinds the name to its dictionary. `migrate` does *not* rewrite individual `rheo-context.field` references --- the shim leaves them working untouched.
+  ],
   [any outdated version],
   [Bumps the `version` field in `rheo.toml` to match the current CLI version (`--apply` only).],
 )

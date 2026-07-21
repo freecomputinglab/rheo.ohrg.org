@@ -6,28 +6,22 @@
 When Rheo compiles a project, it prepends a small binding to the top of every vertebra:
 
 ```typ
-#let rheo-context = (
+#let rheo-context() = (
   handle: "chapters:intro",
-  spine: (
-    (title: "Introduction", handle: "intro", path: "content/intro.typ", children: ()),
-    (title: "Chapters", handle: none, path: none, children: (
-      (title: "Chapter Introduction", handle: "chapters:intro", path: "content/chapters/intro.typ", children: ()),
-      // ... one node per vertebra or group, nested to arbitrary depth
-    )),
-  ),
-  target: "html", // the output format; absent for PDF
+  ..sys.inputs.rheo-context,
 )
 ```
 
+Only the `handle` is per-file; it is composed with the format-global values (`spine`, `spine-flat`, `target`, `ext`) spread from `sys.inputs.rheo-context`.
 This exposes Rheo's view of the project to your Typst code: which file this is, and every file in the #link(<spines>)[spine] alongside it.
-Rheo injects a distinct literal into each file, so every file sees _its own_ values.
+Rheo injects a distinct binding into each file, so every file sees _its own_ values.
 
-`rheo-context` is an ordinary top-level `#let` binding --- a plain dictionary.
-It is *not* a Typst #link("https://typst.app/docs/reference/context/")[`context`] value, and reading it does *not* require the `#context` keyword.
+`rheo-context()` is a zero-arg function returning a dictionary; call it to read Rheo's view.
+It is *not* a Typst #link("https://typst.app/docs/reference/context/")[`context`] value, and it needs no `#context` keyword (`sys.inputs` is non-contextual).
 Any Typst code in the file can use it directly:
 
 ```typ
-This page's handle is #rheo-context.handle.
+This page's handle is #rheo-context().handle.
 ```
 
 == Fields
@@ -74,12 +68,12 @@ The shape of `rheo-context` is designed to be extensible --- more fields may be 
 Because `spine-flat` lists every clickable vertebra in order, a template or package can build a flat table of contents from it directly:
 
 ```typ
-#for entry in rheo-context.spine-flat [
+#for entry in rheo-context().spine-flat [
   - #link(label(entry.handle))[#entry.title]
 ]
 ```
 
-Each file receives the same `spine-flat`, so this produces a consistent list across the whole project, while `rheo-context.handle` lets a template highlight the current page.
+Each file receives the same `spine-flat`, so this produces a consistent list across the whole project, while `rheo-context().handle` lets a template highlight the current page.
 
 A nested table of contents --- one that reflects the project's directory and section groups --- has to walk `spine` instead, recursing into `children`:
 
@@ -96,5 +90,5 @@ A nested table of contents --- one that reflects the project's directory and sec
       ]
   ]
 }
-#toc(rheo-context.spine)
+#toc(rheo-context().spine)
 ```
