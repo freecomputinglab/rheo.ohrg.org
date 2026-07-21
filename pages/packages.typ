@@ -26,9 +26,9 @@ This is particularly useful in HTML, as it means that we can essentially expose 
 == Passing rheo-context to a package
 
 A Typst function captures the scope in which it was _defined_, not the scope from which it is _called_.
-A function that lives in a package therefore cannot read the calling file's local `rheo-context()` implicitly --- you have to hand it in.
-
-Pass it explicitly as an argument:
+The format-global fields (`spine`, `spine-flat`, `target`, `ext`) live on `sys.inputs.rheo-context`, which any code --- a package function included --- can read directly.
+The per-file `handle`, though, is a local binding unique to each vertebra, so a function that lives in a package cannot see it implicitly.
+To hand a package the calling file's full `rheo-context()` --- handle and all --- pass it explicitly as an argument:
 
 ```typ
 #import "@preview/somepackage:0.1.0"
