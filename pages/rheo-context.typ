@@ -53,7 +53,7 @@ The shape of `rheo-context` is designed to be extensible --- more fields may be 
     - `path` --- its path, relative to the project root.
     - `title` --- its title.
     - `metadata` --- the vertebra's #link(<vertebra-metadata>)[document metadata] dictionary.
-    Use this where a flat sequence is simpler than walking the tree --- prev/next navigation, page counts, and the like.
+    Reach for it when a flat sequence beats walking the tree --- prev/next navigation, page counts, and the like.
     A file reads its _own_ metadata by finding its `handle` in `spine-flat`.
   ],
 
