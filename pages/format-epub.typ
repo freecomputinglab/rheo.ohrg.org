@@ -30,6 +30,14 @@ Rheo also generates a unique identifier for the document and populates other met
 
 #link(<relative-linking>)[Relative links] between source files are resolved to internal links that navigate between sections in the EPUB.
 
+Although the EPUB is a single merged archive, it is bundled from one output page per source file, and by default Rheo resets the footnote counter to `1` at the start of every page, so each section numbers its footnotes independently.
+Set `reset_footnotes = false` under `[epub]` to let footnotes accumulate continuously across the whole book instead:
+
+```toml
+[epub]
+reset_footnotes = false
+```
+
 == Detecting the EPUB target
 
 EPUB compiles through Typst's HTML target, so Typst's native `target()` returns `"html"` for both HTML and EPUB output -- the two are indistinguishable to standard Typst.

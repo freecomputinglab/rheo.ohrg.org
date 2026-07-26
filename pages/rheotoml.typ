@@ -27,6 +27,21 @@ Without a #link(<spines>)[spine] config, every Typst file under `content_dir` is
 To point Rheo to a rheo.toml file that is not at the root of the project directory, specify it directly via the CLI:
 
 ```sh
-rheo compile path/to/project --config path/to/config 
+rheo compile path/to/project --config path/to/config
 ```
+
+== Per-page footnotes
+
+In HTML and EPUB output, Rheo produces one output file per page.
+By default it resets the footnote counter to `1` at the start of every page, so each page numbers its footnotes independently.
+To let footnotes accumulate continuously across the whole bundle instead, set `reset_footnotes = false` under `[html]` or `[epub]`:
+
+```toml
+[html]
+reset_footnotes = false   # let footnotes accumulate across pages (default: true)
+```
+
+The key is per-format: set it on `[html]` and `[epub]` independently.
+It defaults to `true`, and as with other settings the CLI takes precedence over `rheo.toml`, which takes precedence over the default (there is no CLI flag for it).
+PDF is unaffected --- it combines your project into a single document, so its footnotes are always continuous regardless of this key.
 

@@ -31,3 +31,11 @@ exclude = ["drafts/**"]
 ```
 
 Rheo also supports #link("./atom-feeds.html")[Atom feeds] and per-file `rheo-*` variables for feed metadata.
+
+Because each source file becomes its own page, Rheo resets the footnote counter to `1` at the start of every HTML page by default, so each page numbers its footnotes independently.
+Set `reset_footnotes = false` under `[html]` to let footnotes accumulate continuously across the whole site instead:
+
+```toml
+[html]
+reset_footnotes = false
+```
