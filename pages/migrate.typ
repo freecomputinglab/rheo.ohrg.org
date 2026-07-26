@@ -18,7 +18,7 @@ Always run the dry run first to review what will be rewritten, then pass `--appl
 `migrate` is best-effort: it applies the mechanical rewrites it knows about, but it does not guarantee that your project will build or behave correctly on the new version.
 After migrating, rebuild and check the output yourself, and consult the changelog for breaking changes that require manual attention.
 
-== What it migrates
+== What migrate rewrites
 
 `migrate` groups its rewrites by the project version it's migrating from:
 
@@ -48,11 +48,19 @@ After migrating, rebuild and check the output yourself, and consult the changelo
       It also rewrites the old `target()` helper to Typst's `target()`. Files already using `target()` need no change.
     - *Spine config:* a `[spine] vertebrae` inclusion-filter glob list is converted to an equivalent `[spine] exclude`, so files the old list never named don't silently start being published under the #link(<spines>)[directory-scan default].
   ],
+  [`< 0.5.1`],
+  [
+    - *`rheo-context` binding:* the injected per-vertebra binding changed from a bare dictionary to a zero-arg function #link(<rheo-context>)[`rheo-context()`]. So existing `rheo-context.field` code keeps working, `migrate` prepends a one-line compatibility shim to each file that reads the binding:
+      ```typ
+      #let rheo-context = rheo-context()
+      ```
+      The shim calls the injected function once and rebinds the name to its dictionary. `migrate` does *not* rewrite individual `rheo-context.field` references --- the shim leaves them working untouched.
+  ],
   [any outdated version],
   [Bumps the `version` field in `rheo.toml` to match the current CLI version (`--apply` only).],
 )
 
-== What it does not migrate
+== What you'll still fix by hand
 
 - `#import` statements — these work unchanged in Rheo and do not need rewriting.
 - Custom labels and other source constructs.

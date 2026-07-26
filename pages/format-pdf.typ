@@ -5,10 +5,10 @@
 
 #link("https://typst.app/")[Typst], the programming language and compilation toolchain that underwrites Rheo, natively and fully supports PDF.
 
-== What Rheo adds
+== One PDF from many files
 
-Where Rheo goes beyond the standard Typst CLI by 'reticulating' multiple source files into a single, unified PDF.
-This is useful when you want to separate sections of your book into individual files -- for example, so that each section can also appear as its own web page in the HTML output -- while still producing a unified document for print.
+Where the Typst CLI compiles a single file, Rheo 'reticulates' every source file in your project into one unified PDF.
+This lets you keep each section of your book in its own file --- so that a section can double as its own web page in the HTML output --- while still producing a single document for print.
 
 The PDF format always produces a single combined document: every source file in its #link(<spines>)[spine] is merged into one output PDF, in directory-scan order.
 Give the combined document a title, and narrow which files are included with `exclude`:

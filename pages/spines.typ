@@ -46,7 +46,7 @@ include = ["ch-*.typ"]
 
 == Per-format overrides
 
-A format-specific table --- `[pdf.spine]`, `[html.spine]`, `[epub.spine]` --- overrides the global `[spine]` table field by field: any field the per-format table sets replaces the matching global field, and any field it leaves unset still falls back to the global `[spine]`.
+A format-specific table --- `[pdf.spine]`, `[html.spine]`, `[epub.spine]` --- overrides the global `[spine]` one field at a time: whatever it sets wins, and whatever it leaves out falls back to `[spine]`.
 
 ```toml
 [spine]
