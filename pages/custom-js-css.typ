@@ -7,7 +7,7 @@ The HTML format plugin extends Rheo's generic #link(<assets>)[asset system] with
 
 == CSS
 
-When Rheo generates HTML, it injects a #link(rheo-source-url + "/blob/main/crates/html/src/templates/style.css")[default stylesheet] into the generated static site for a simple, modern, and mobile-friendly aesthetic.
+When Rheo generates HTML, it injects a #link(rheo-source-url + "/blob/main/crates/html/src/templates/style.css")[default stylesheet] that gives your site a clean, mobile-friendly look out of the box.
 #link("https://screening-the-subject.ohrg.org")['Screening the subject'] is a website generated with the default Rheo stylesheet for reference.
 
 You can fully customize the stylesheet by adding a `style.css` at the root of your #link(<rheotoml>)[project directory].
@@ -51,7 +51,7 @@ dest = "annotations"
 js_scripts = "annotations/index.js"
 ```
 
-Use multiple blocks when your project combines more than one independent set of scripts or stylesheets --- for example, when bundling assets from multiple packages.
+Multiple blocks are what you want when a project pulls in more than one independent set of scripts or stylesheets --- say, assets bundled from several packages.
 Each block's files are written under its `dest` subdirectory, or directly into the HTML root if `dest` is omitted.
 
 For automatic injection of asset blocks from Typst packages, see #link(<packages>)[Packages].
