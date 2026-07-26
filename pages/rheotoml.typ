@@ -1,8 +1,7 @@
 #import "index.typ": sidebar-site, rheo-version, code-with-version
 #show: sidebar-site.with(current: "rheotoml")
 
-Rheo is a CLI that produces PDF, HTML, and EPUB simultaneously from a directory of Typst source documents.
-The directory that contains your Typst is called the *project directory*, and you can compile it like so:
+The directory that holds your Typst source is called the *project directory*, and you can compile it like so:
 
 ```bash
 rheo compile path/to/projectdirectory
