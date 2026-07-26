@@ -18,7 +18,7 @@ Always run the dry run first to review what will be rewritten, then pass `--appl
 `migrate` is best-effort: it applies the mechanical rewrites it knows about, but it does not guarantee that your project will build or behave correctly on the new version.
 After migrating, rebuild and check the output yourself, and consult the changelog for breaking changes that require manual attention.
 
-== What it migrates
+== What migrate rewrites
 
 `migrate` groups its rewrites by the project version it's migrating from:
 
@@ -60,7 +60,7 @@ After migrating, rebuild and check the output yourself, and consult the changelo
   [Bumps the `version` field in `rheo.toml` to match the current CLI version (`--apply` only).],
 )
 
-== What it does not migrate
+== What you'll still fix by hand
 
 - `#import` statements — these work unchanged in Rheo and do not need rewriting.
 - Custom labels and other source constructs.
