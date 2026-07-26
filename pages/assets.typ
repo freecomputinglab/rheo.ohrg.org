@@ -38,8 +38,7 @@ If you only need certain files for a specific format, you can scope the `copy` t
 copy = ["images/**", "fonts/**"]
 ```
 
-This copies the matched files only into the HTML output directory.
-Use this when files are only relevant to one format -- for instance, web fonts that PDF and EPUB don't need.
+This copies the matched files only into the HTML output directory --- handy for web fonts that PDF and EPUB have no use for.
 
 You can combine global and format-specific copies; both will be applied when building a given format.
 
@@ -54,4 +53,4 @@ Typst has an experimental #link("https://typst.app/docs/reference/bundle/")[bund
 
 Rheo's `copy` serves the same purpose but declaratively, at the project level via `rheo.toml`.
 Rather than writing `asset()` calls in every source file, you declare glob patterns once and Rheo copies the matched files into every (or a specific) format's output directory.
-The two approaches are complementary: `copy` handles static files known at project-configuration time, while `asset()` is available for files that need to be generated or selected dynamically from within Typst.
+Reach for `copy` when the files are static and known ahead of time; reach for `asset()` when a file has to be generated or picked dynamically from within Typst.
