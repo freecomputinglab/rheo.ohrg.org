@@ -11,7 +11,7 @@ On top of this core, each output format is implemented as a _format plugin_.
 
 Typst natively supports PDF and, experimentally, HTML.
 Rheo defines a `FormatPlugin` trait that can be implemented to produce additional formats beyond those that Typst natively supports.
-For example, Rheo #link(<format-epub>)[supports EPUB] as a format plugin, enabling the productino of a standards-compliant EPUB archive from source Typst.
+For example, Rheo #link(<format-epub>)[supports EPUB] as a format plugin, enabling the production of a standards-compliant EPUB archive from source Typst.
 
 Each format plugin declares:
 
@@ -19,7 +19,7 @@ Each format plugin declares:
 - Any #link(<format-specific>)[format-specific assets] it needs -- such as the HTML plugin's CSS stylesheet and JavaScript entrypoint.
 - Optional template files and configuration that are scaffolded when you run `rheo init`.
 
-The core engine handles discovers source files, resolves the spine for each format, copies assets, and invokes each plugin's compilation in turn.
+The core engine discovers source files, resolves the spine for each format, copies assets, and invokes each plugin's compilation in turn.
 
 == An open architecture
 
