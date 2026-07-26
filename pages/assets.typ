@@ -43,7 +43,7 @@ Use this when files are only relevant to one format -- for instance, web fonts t
 
 You can combine global and format-specific copies; both will be applied when building a given format.
 
-== Format-specific assets
+== Format-specific assets <format-specific>
 
 Format plugins can expose additional asset configuration beyond `copy`.
 For HTML, this includes CSS and JavaScript entrypoints and support for multiple asset blocks --- see #link(<custom-js-css>)[Custom JS/CSS].
