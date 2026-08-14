@@ -5,7 +5,7 @@ content_dir = "pages"
 css_stylesheet = "./style.css"
 
 [pdf.spine]
-title = "Rheo Menual"
+title = "Rheo Manual"
 
 [epub.spine]
 title = "Rheo Manual"
