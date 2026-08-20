@@ -82,7 +82,7 @@ Every vertebra in `spine` and `spine-flat` carries a `metadata` dictionary harve
 - `keywords` --- the `keywords` argument (a string, or an array of strings).
 - `date` --- the document date, as a real Typst #link("https://typst.app/docs/reference/foundations/datetime/")[`datetime`] (not a string), so you can call `.display()`, `.year()`, and the like.
 
-The `date` key is present only for a *static* date --- `#set document(date: datetime(year: ..., ...))`. It is *absent* when the date is `none`, `auto`, `datetime.today()`, or a partial `datetime` (the same resolution rules the #link(<atom-feeds>)[Atom feed] uses for entry timestamps).
+The `date` key is present whenever `#set document(date: ...)` resolves to a real value --- including `datetime.today()`, which Rheo now reads straight off the compiled document rather than rejecting outright, so it comes back as whatever day the build actually ran on and changes with every rebuild accordingly. It is *absent* only when the date is left `auto` (no rule set at all) or given explicitly as `none`; reach for a literal `datetime(year:, month:, day:)` instead if this value needs to hold still.
 
 ```typ
 // This file's own metadata, looked up by handle.
