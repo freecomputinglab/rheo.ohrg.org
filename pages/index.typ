@@ -55,7 +55,7 @@
     title: "HTML",
     items: (
       (id: "format-html", title: "Basics of HTML", url: "./format-html.html"),
-      (id: "atom-feeds", title: "Atom feeds", url: "./atom-feeds.html"),
+      (id: "atom-feeds", title: "Feeds", url: "./atom-feeds.html"),
       (id: "custom-js-css", title: "Custom JS/CSS", url: "./custom-js-css.html"),
     ),
   ),

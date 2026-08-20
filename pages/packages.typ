@@ -23,6 +23,8 @@ A package can declare assets that will be injected into a format's build folder 
 This is particularly useful in HTML, as it means that we can essentially expose JS/CSS libraries through a Typst API to our project, as the #link(<pkg-slides>)[slides package] does for #link("https://revealjs.com/")[RevealJS].
 (See #link(<custom-js-css>)[Custom JS/CSS] for details on what that means for the build output in HTML.)
 
+A package doesn't have to ship a bundle at all, though --- #link(<atom-feeds>)[`@rheo/feeds`] is pure Typst, and generates a project's Atom, RSS, or JSON feeds from a plain `configure(...)` call, no CSS or JavaScript involved.
+
 == Creating a Rheo-compatible package
 
 If you are authoring a Typst Universe package and want to ship assets that integrate with Rheo's HTML output, add a `[tool.rheo.html]` section to your package's `typst.toml`:
