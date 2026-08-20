@@ -21,6 +21,9 @@ Rheo is packaged as a standalone binary, and doesn't require any version of Typs
 (Note that even if you already have Typst on your system, Rheo will use its own embedded version of the compiler.)
 Refer to #link(rheo-source-url)[Rheo's source code] for more information and installation options.
 
+Because that embedded compiler is its own thing, Rheo also does its own font discovery rather than deferring to whatever fonts a system-installed Typst might already know about.
+Alongside whatever's on your system, it picks up a `fonts` directory at your project root automatically; point it elsewhere with the repeatable `--font-dir` flag on `compile` and `watch`, or list directories permanently under `font_dirs` in #link(<rheotoml>)[`rheo.toml`].
+
 = Firing up
 With Rheo we can produce a static site, a PDF, and an EPUB from a Typst document.
 Let's create a directory with a single Typst file in it:
@@ -186,7 +189,4 @@ rheo watch project_uno --open
 ```
 
 Now we have a fully featured writing project, with nice-looking and orderly outputs in PDF, EPUB, and in HTML!
-
-#context if target() == "html" [== Footnotes]
-
 

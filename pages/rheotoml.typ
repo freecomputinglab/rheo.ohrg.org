@@ -45,3 +45,15 @@ The key is per-format: set it on `[html]` and `[epub]` independently.
 It defaults to `true`, and as with other settings the CLI takes precedence over `rheo.toml`, which takes precedence over the default (there is no CLI flag for it).
 PDF is unaffected --- it combines your project into a single document, so its footnotes are always continuous regardless of this key.
 
+== Fonts
+
+Because Rheo embeds its own copy of the Typst compiler, it resolves fonts itself rather than deferring to any `typst` binary or font cache already on your system.
+Alongside your system fonts, it looks for a `fonts` directory at the root of your project by default and loads anything it finds there.
+Set the top-level `font_dirs` key to search different or additional directories instead --- paths are resolved relative to the project root unless absolute, and setting this key switches off the automatic `fonts` autoscan, so include `"fonts"` explicitly if you still want it searched:
+
+```toml
+font_dirs = ["fonts", "custom/typefaces"]
+```
+
+The repeatable `--font-dir` CLI flag, available on `compile` and `watch`, appends further directories on top of whatever `font_dirs` (or the autoscan) already resolved --- handy for a font you keep outside the project entirely.
+

@@ -5,8 +5,12 @@
 
 Typst #link("https://typst.app/docs/reference/html/")[experimentally supports] HTML.
 This means that not all Typst syntax will translate to a meaningful HTML structure.
-The most common features in everyday prose are all supported, however, such as text markup, links, headings, footnotes, and citations.
+The most common features in everyday prose are all supported, however, such as text markup, links, headings, footnotes, citations, and mathematics.
 For more information on which features are currently supported in Typst's HTML export, refer to the #link("https://github.com/typst/typst/issues/5512")[HTML export tracking issue].
+
+Math is worth calling out on its own, because it's one of the areas where Typst's HTML export is already fully mature rather than experimental.
+Both inline equations and display blocks compile straight to MathML, so an integral or a matrix keeps its own semantics in the DOM instead of becoming a rasterised image or a pile of hand-positioned `<span>`s.
+Rheo does no translation work here itself; it just carries Typst's MathML through unchanged to both HTML and EPUB output.
 
 == From one file to a whole site
 
