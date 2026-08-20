@@ -5,7 +5,7 @@
 
 Rheo sites can carry a feed --- a file a reader's newsreader polls on its own schedule, so new pages surface without anyone visiting the site to go and check.
 What changed between one Rheo release and the next is not the capability but where it lives.
-Generating a feed used to be a handful of `[html]` keys in `rheo.toml`, read by a Rust plugin built into the engine; now it is `@rheo/feeds:0.1.0`, a Typst package you import and configure the same way you'd reach for any other package from Typst Universe --- the same move `@rheo/blogfeed` and `@rheo/sidebar` already made for other project-shaped concerns.
+Generating a feed used to be a handful of `[html]` keys in `rheo.toml`, read by a Rust plugin built into the engine; now it is `@rheo/feeds:0.1.0`, a Typst package you import and configure the same way you'd reach for any other package from Typst Universe --- the same move `@rheo/blogfeed` and `@rheo/sidebar` already made for other project-shaped concerns, built entirely on the marrow primitives described in #link(<marrow>)[Marrow].
 The wire format a subscriber's reader parses hasn't moved; only the place you go to switch it on has.
 
 Import the package, describe one feed, and configure it, and you're done:
