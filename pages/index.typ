@@ -36,6 +36,7 @@
       (id: "spines", title: "Spines", url: "./spines.html"),
       (id: "assets", title: "Assets", url: "./assets.html"),
       (id: "packages", title: "Packages", url: "./packages.html"),
+      (id: "marrow", title: "Marrow", url: "./marrow.html"),
     ),
   ),
   (
