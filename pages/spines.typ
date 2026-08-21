@@ -28,9 +28,27 @@ exclude = ["drafts/**", "TODO.typ"]
 
 Excluded paths are dropped from every format's spine.
 
+== `[spine] include`
+
+`[spine] include` is an ordered list of glob patterns that becomes that spine's definitive order, replacing the alphabetical directory scan outright.
+Patterns are matched in the order you list them; within a single pattern, matches are sorted lexicographically.
+A file matched by none of the listed patterns is dropped from the spine entirely --- which is also why `include` makes a separate `exclude` for the same files unnecessary.
+
+```toml
+[spine]
+include = ["index.typ", "install.typ", "ideas.typ", "flights.typ"]
+```
+
+This is the tool for a specific reading order the alphabetical scan can't express on its own --- here `install` comes second even though `flights` and `ideas` would otherwise sort ahead of it.
+Unlike `[[spine.section]]` below --- which happens to have a field of the same name and a related but distinct job --- flat `include` introduces no group node and no path prefix: the handles and output paths it produces are exactly what the directory scan would already give, just reordered.
+`install.typ` still becomes `/install.html`, flat, not nested under any virtual directory.
+
+Two situations here fail the build rather than doing something quietly unintended: setting both `include` and `section` on the same table is rejected at validation (they're two different ways of reshaping the same scan, and Rheo asks you to pick one), and a pattern that matches no file is an error rather than a pattern that silently contributed nothing.
+The first version of flat `include` only reorders flat, top-level files --- it doesn't yet reach into a nested content directory and reorder within it.
+
 == `[[spine.section]]`
 
-`[[spine.section]]` groups matched files under a virtual directory, without moving them on disk.
+`[[spine.section]]` also has a field called `include`, but it does something different from the flat `[spine] include` documented just above: it groups matched files under a virtual directory, without moving them on disk, and it *does* prefix every matched file's handle and URL with that group's name.
 This is useful for reshaping the spine's structure independently of your folder layout:
 
 ```toml

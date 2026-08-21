@@ -45,6 +45,18 @@ The key is per-format: set it on `[html]` and `[epub]` independently.
 It defaults to `true`, and as with other settings the CLI takes precedence over `rheo.toml`, which takes precedence over the default (there is no CLI flag for it).
 PDF is unaffected --- it combines your project into a single document, so its footnotes are always continuous regardless of this key.
 
+== Automatic package detection
+
+Rheo scans your content files' `#import` statements and auto-detects assets or marrow declared by any `@rheo`-aware package you use, per format.
+Set `auto_detect_packages = false` on a format's own table to turn that off for that format alone:
+
+```toml
+[html]
+auto_detect_packages = false   # default: true
+```
+
+See #link(<packages>)[Packages] for what auto-detection actually injects and what a package's `min_version` floor still checks even with this key set to `false`.
+
 == Fonts
 
 Because Rheo embeds its own copy of the Typst compiler, it resolves fonts itself rather than deferring to any `typst` binary or font cache already on your system.
