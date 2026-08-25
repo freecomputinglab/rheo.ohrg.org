@@ -37,31 +37,23 @@
       (id: "assets", title: "Assets", url: "./assets.html"),
       (id: "packages", title: "Packages", url: "./packages.html"),
       (id: "marrow", title: "Marrow", url: "./marrow.html"),
+      (id: "beacons", title: "Beacons", url: "./beacons.html"),
+      (id: "head-control", title: "Head control", url: "./head-control.html"),
     ),
   ),
   (
-    title: "PDF",
+    title: "Formats",
     items: (
-      (id: "format-pdf", title: "Basics of PDF", url: "./format-pdf.html"),
-    ),
-  ),
-  (
-    title: "EPUB",
-    items: (
-      (id: "format-epub", title: "Basics of EPUB", url: "./format-epub.html"),
-    ),
-  ),
-  (
-    title: "HTML",
-    items: (
-      (id: "format-html", title: "Basics of HTML", url: "./format-html.html"),
-      (id: "atom-feeds", title: "Feeds", url: "./atom-feeds.html"),
+      (id: "format-pdf", title: "PDF", url: "./format-pdf.html"),
+      (id: "format-epub", title: "EPUB", url: "./format-epub.html"),
+      (id: "format-html", title: "HTML", url: "./format-html.html"),
       (id: "custom-js-css", title: "Custom JS/CSS", url: "./custom-js-css.html"),
     ),
   ),
   (
     title: "Packages",
     items: (
+      (id: "atom-feeds", title: "Feeds", url: "./atom-feeds.html"),
       (id: "pkg-slides", title: "Slides", url: "./pkg-slides.html"),
     ),
   ),

@@ -3,14 +3,14 @@
 
 = Slides
 
-The `@rheo/slides` package turns your Typst source file into two outputs simultaneously: a printable PDF script and an interactive #link("https://revealjs.com/")[RevealJS] presentation in the browser.
-This means that after writing a talk's script in Typst, you can insert slides into sections of it (also written in Typst) and produce a slide deck alongside a script that is also annotated with markers noting when to go to the next slide.
+The `@rheo/slides` #link(<packages>)[package] turns one Typst source file into two outputs simultaneously: a printable PDF script and an interactive #link("https://revealjs.com/")[RevealJS] presentation in the browser.
+Write a talk's script in Typst, insert slides into sections of it (also written in Typst), and you get a slide deck alongside a script annotated with markers noting when to advance.
 
-== Installation
+== Importing the package
 
 Import the package at the top of your slides source file:
 
-```typst
+```typ
 #import "@rheo/slides:0.1.0": template, slide
 ```
 
@@ -19,7 +19,7 @@ Import the package at the top of your slides source file:
 Use the `slide` function to mark each slide.
 Each call becomes one RevealJS slide in the browser and a 'slide' marker in the PDF:
 
-```typst
+```typ
 #slide(title: [Introduction])[
   Lorem ipsum dolor sit amet, consectetur adipiscing elit.
   Slides can contain any Typst content: lists, figures, math, citations.
@@ -39,7 +39,7 @@ When omitted, the slide renders without a heading in both outputs.
 
 Wrap your document with the `template` show rule to activate the layout:
 
-```typst
+```typ
 #show: template.with(
   theme: "white",
   transition: "slide",
@@ -51,9 +51,9 @@ Wrap your document with the `template` show rule to activate the layout:
 )
 ```
 
-- `first-slide` accepts arbitrary Typst content and is rendered as the opening slide.
-- `theme` accepts any #link("https://revealjs.com/themes/")[built-in RevealJS theme] name.
-- `transition` accepts any RevealJS transition name (`none`, `fade`, `slide`, `convex`, `concave`, `zoom`).
+- `first-slide` --- arbitrary Typst content, rendered as the opening slide.
+- `theme` --- any #link("https://revealjs.com/themes/")[built-in RevealJS theme] name.
+- `transition` --- any RevealJS transition name (`none`, `fade`, `slide`, `convex`, `concave`, `zoom`).
 
 == Configuring the spine
 
@@ -68,10 +68,9 @@ title = "My Presentation"
 == PDF script output
 
 In PDF output, each `slide` call renders as a headed section on standard paper.
-The first slide content (passed via `first-slide`) becomes a title page.
+The first slide's content, passed via `first-slide`, becomes a title page.
 Speaker notes, if included, appear below the slide body in a smaller typeface.
-
-This makes the PDF suitable as a printed script or a supplementary handout alongside the live RevealJS presentation.
+This makes the PDF suitable as a printed script or a supplementary handout alongside the live presentation.
 
 == Customising the RevealJS CSS
 
@@ -90,11 +89,11 @@ Your `style.css` loads after the package base styles, so any rule you write wins
 RevealJS themes expose CSS custom properties you can reference anywhere in your stylesheet.
 The most useful ones:
 
-- `--r-main-color` — foreground text colour
-- `--r-background-color` — slide background colour
-- `--r-main-font-size` — base font size
-- `--r-heading-color` — heading colour
-- `--r-link-color` — link colour
+- `--r-main-color` --- foreground text colour
+- `--r-background-color` --- slide background colour
+- `--r-main-font-size` --- base font size
+- `--r-heading-color` --- heading colour
+- `--r-link-color` --- link colour
 
 Use them to keep your overrides theme-agnostic:
 
@@ -106,7 +105,7 @@ Use them to keep your overrides theme-agnostic:
 
 === Common overrides
 
-*Title slide heading colour* — target the first slide's heading:
+*Title slide heading colour* --- target the first slide's heading:
 
 ```css
 .reveal .slides section:first-child h2 {
@@ -114,7 +113,7 @@ Use them to keep your overrides theme-agnostic:
 }
 ```
 
-*Font sizes* — scale slide body and captions independently:
+*Font sizes* --- scale slide body and captions independently:
 
 ```css
 .reveal .slides > section    { font-size: 0.8em; }
@@ -123,17 +122,17 @@ Use them to keep your overrides theme-agnostic:
 .reveal .slides figcaption   { font-size: 0.4em; }
 ```
 
-== Adding slides without losing your original paper styling
+== Keeping your original paper styling
 
-Typst's conditional rendering makes it easy to keep both a publishable, typeset paper _as well as_ its script and slides in the same Typst document.
-The key is overloading the `slide` function, so that it simply returns an empty block when you're not building the presentational format of your paper.
-This means that you can use the same Typst document and render via Rheo to both:
-- Publishable PDF/HTML/EPUB
-- A presentation with a PDF script with slide markers, and a RevealJS (HTML) slide deck.
+Typst's conditional rendering lets you keep a publishable, typeset paper _as well as_ its script and slides in the same document.
+The trick is to overload the `slide` function so that it returns an empty block when you are not building the presentational format, which means one source file renders through Rheo to both:
 
-For example, you can define a global boolean and shadow `slide` at the top of your document:
+- a publishable PDF, HTML, or EPUB, and
+- a presentation --- a PDF script with slide markers, and a RevealJS slide deck.
 
-```typst
+Define a global boolean and shadow `slide` at the top of your document:
+
+```typ
 #let is-presentation = false
 
 #let slide = if is-presentation { slide } else { (..args) => [] }
@@ -141,14 +140,10 @@ For example, you can define a global boolean and shadow `slide` at the top of yo
 
 When `is-presentation` is `false`, every `#slide[...]` call produces no content, so the document compiles as a clean paper with none of the slide scaffolding visible.
 Set it to `true` (and apply the `template` show rule) to build the presentation instead.
-Both outputs live in the same source file — switch between them by toggling one variable.
-The same boolean can drive other conditional styling.
-For example, a paper might use double spacing while the script uses single spacing:
+The same boolean can drive other conditional styling --- a paper might use double spacing while the script uses single spacing:
 
-```typst
+```typ
 #set par(leading: if is-presentation { 0.65em } else { 1.3em })
 ```
 
 Any show or set rule that differs between outputs can be gated on `is-presentation` in the same way.
-
-
