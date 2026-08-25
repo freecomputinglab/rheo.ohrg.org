@@ -3,14 +3,14 @@
 
 = Marrow
 
-The simple answer is that marrow is a file, `.marrow.typ`, that lets you mint extra output files from a Rheo project beyond the one-page-per-vertebra default.
-The less simple answer is that marrow is Typst run at the *bundle root*---outside every `#document(...)` block Rheo synthesizes for your ordinary pages---where the native Typst `document()` and `asset()` elements are legal to call directly.
-Derived artifacts like feeds, sitemaps, search indexes, and generated index pages belong in Typst rather than in a Rust plugin, and marrow is the seam that makes that possible: Rheo's job is only to provide the primitives, not to own every output file itself.
+Rheo projects treat `.marrow.typ` as a special file that allows you to programmatically generate extra files beyond the one-page-per-vertebra default.
+In contrast to vertebrae, which are treated as normal Typst compiled to PDF or HTML, marrow is Typst run at the #link("https://typst.app/docs/reference/bundle/")[bundle root], meaning that you can write Typst in it to generate new documents and assets.
+You can use marrow to programmatically derive artifacts such as feeds, sitemaps, search indexes, and generated pages.
 
-== Writing a marrow file
+== Crafting marrow
 
-Drop a file named `.marrow.typ` at the top of your content directory, next to your ordinary pages, and Rheo inlines its text at the bundle root on every build.
-Inside it, and only there, `document()` and `asset()` are in scope:
+Create a file named `.marrow.typ` at the top of your content directory, next to your ordinary pages.
+Inside this file (and only there), `document()` and `asset()` are in scope:
 
 ```typ
 #document("extra/hello.html", format: "html", title: [Extra])[Hello from the bundle root.]
@@ -18,32 +18,34 @@ Inside it, and only there, `document()` and `asset()` are in scope:
 ```
 
 Compiling this produces `extra/hello.html` and `extra/hello.txt` in your build output, sitting alongside whatever your ordinary vertebrae produce.
-`document()` mints a page; `asset()` writes bytes verbatim, with no Typst compilation of its own.
+For more information on what is valid Typst in marrow, see the #link("https://typst.app/docs/reference/bundle/")[Typst bundle documentation].
 
-If you'd rather call the file something else, set the top-level `marrow` key in `rheo.toml`, resolved against `content_dir` exactly like any other content path:
+If you'd rather call the file something else, set the top-level `marrow` key in `rheo.toml`, resolved against `content_dir` in `rheo.toml`:
 
 ```toml
 marrow = "bundle-root.typ"
 ```
 
-Whatever it's named, a marrow file is never a vertebra in its own right.
-It produces no `.marrow.html` of its own, and it never appears in the #link(<spines>)[spine], the sidebar navigation, or a template's prev/next pager---only the pages it explicitly mints with `document()` do.
+Note that marrow will never produce a `.marrow.html` of its own, and it never appears in the #link(<spines>)[spine], the sidebar navigation, or a template's prev/next pager.
 
-== When marrow runs
-
-Marrow runs once per *per-page* output format---HTML, EPUB---on every compile and every dev-server rebuild.
-The combined PDF target skips it entirely, because `document()` and `asset()` both hard-error there: Typst reserves them for the bundle target, and a combined PDF has no bundle to speak of.
+Marrow runs once per *per-page* output format on every compile and every dev-server rebuild.
+The combined PDF target skips it entirely, because `document()` and `asset()` both hard-error there.
+Typst reserves them for the bundle target, and a combined PDF has no bundle to speak of.
 
 A page marrow mints is still a first-class Rheo page in every other sense.
-It receives the same head-asset injection as an ordinary vertebra---a minted `extra/hello.html` carries `<link rel="stylesheet" href="../rheo-default.css">`, with the relative path adjusted for its own depth in the output tree---and any root-level `#set`/`#show` rule from your template still applies inside it.
+It receives the same head-asset injection as an ordinary vertebra, and any root-level `#set`/`#show` rule from your template still applies inside it.
 
-== Reading across the bundle
+== Reading across the spine
 
 A Rheo bundle compiles in a single Typst pass, and Typst's own bundle mechanism shares one introspector across every file in it.
-That means marrow can read `state(...)` and query labels registered by ordinary vertebrae elsewhere in the project, which is the actual reason the feature exists: it lets a package or project turn data scattered across many pages into pages of its own, without a stub `.typ` file per entry.
-The shape looks like this:
+That means marrow can read `state(...)` and query labels registered by ordinary vertebrae elsewhere in the project.
+Marrow thus lets a package or project turn data scattered across many pages into pages of its own, without a stub `.typ` file per entry:
 
 ```typ
+// across various vertebrae in the spine...
+#state("notes", ()).update(old => old + (my-note,))
+
+// in .marrow.typ
 #context {
   for n in state("notes", ()).final() {
     document("notes/" + n.name + ".html", format: "html", title: [Note])[#n.body]
@@ -51,55 +53,30 @@ The shape looks like this:
 }
 ```
 
-Any vertebra elsewhere in the project registers into `"notes"` however it likes---`state("notes", ()).update(old => old + (my-note,))`, say---and marrow mints one page per entry once the whole bundle has been seen.
-This is also `@rheo/feeds`'s own trick for minting an Atom feed with no Rust code, no plugin, and no `rheo.toml` keys of its own: packages configure it by registering into a state, and its own marrow file does the minting.
+Typst has no facility for enumerating files on disk, so marrow can never discover content by scanning your project directory itself---only by reading `state`, labels, or `sys.inputs.rheo-context`, all of which have to have been populated by something else in the bundle first.
 
-Two things are worth knowing about the limits of this introspection.
-First, Typst has no facility for enumerating files on disk, so marrow can never discover content by scanning your project directory itself---only by reading `state`, labels, or `sys.inputs.rheo-context`, all of which have to have been populated by something else in the bundle first.
-Second, a `#show` rule written inside marrow only affects content declared *after* it---in practice, the pages marrow itself goes on to mint---and does not reach back into vertebrae that already exist elsewhere in the project, because marrow is spliced in after every ordinary page, not before it.
+// A `#show` rule written inside marrow only affects content declared *after* it---in practice, the pages marrow itself goes on to mint---and does not reach back into vertebrae that already exist elsewhere in the project, because marrow is spliced in after every ordinary page, not before it.
 
-== Packages can contribute marrow too
+== Using beacons
 
-A Typst package can ship its own `.marrow.typ` at the root of the package, and Rheo inlines it exactly as it would your project's own---no `rheo.toml` entry, no manifest key in `typst.toml`, nothing to configure.
-Importing the package anywhere in your project is the only trigger.
-Every imported package's marrow is inlined first, in import order, and your project's own marrow is spliced in last, on top of whatever they've registered---all of them, every time, so renaming your project's marrow file can never silently suppress a package's contribution, or the other way around.
-
-If you'd rather turn all of this off, setting `[html] auto_detect_packages = false` disables every form of automatic package-driven behaviour that importing a package can trigger---marrow included, alongside the automatic asset injection described in #link(<packages>)[Packages].
-
-There is one sharp edge worth knowing if you're writing a package's marrow yourself.
-Its text is spliced verbatim into *your project's* bundle root, so any relative path inside it resolves against the project root---not `content_dir`, and not the package's own directory on disk.
-A package's marrow therefore has to reach its own code by package spec, `#import "@namespace/name:version"`, never by a relative import: a relative path that looks like it points at the package's own files will instead be resolved against whatever the importing project happens to keep there.
-
-== EPUB
-
-Marrow's `document()` and `asset()` calls both work under EPUB compilation as well as HTML.
-A minted page is packaged into the EPUB container as an ordinary file, but---in keeping with marrow never producing a vertebra---it does not join the book's reading order (`package.opf`'s spine) or its `nav.xhtml` table of contents.
-A minted `asset()`, unlike its HTML counterpart, is embedded directly inside the EPUB container with its own manifest entry, rather than being written as a loose file beside the `.epub` itself.
-
-== Talking to compiled pages
-
-Marrow runs inside the same Typst compile as every ordinary vertebra, but it runs before any of their HTML exists---Typst's `html` module can build elements and frames, but it has no function that turns a compiled document back into an HTML string.
-That is a problem the moment a marrow-minted artifact wants to carry another page's actual content: an Atom entry's `<content>`, a search index's stored body, an excerpt on a generated listing page.
-Rheo closes the gap with a placeholder element, resolved once every ordinary page has actually compiled, inside any bundle-emitted asset a marrow file mints with `asset(...)`:
+Marrow runs inside the same Typst compile as every ordinary vertebra, but it runs before any of their HTML exists.
+This is a problem if you want to interpolate a page's _compiled_ content into some asset that you program using marrow, such as an Atom entry's `<content>` or a search index's stored body.
+Rheo therefore allows you to specify a placeholder element called a *beacon*, which is resolved only once every ordinary page has actually compiled in a post-compilation pass:
 
 ```typ
 <rheo-content page="notes/etal.html" select="main" as="escaped"/>
 ```
 
-`page` is required, and names another vertebra's compiled output path---`notes/etal.html`, not `notes/etal.typ`.
-`select` picks the region of that page to pull in: a bare tag name (`main`, `article`), or a leading-dot class (`.rheo-content`).
-Left out, Rheo falls back to a cascade, first match wins: the page's `<main>` element, else the first element carrying the `rheo-content` class, else---kept working, but not the name to reach for freshly---the first element carrying `rheo-feed-content`, else the whole `<body>`.#footnote[The compatibility step exists because Rheo's Rust feed generator, retired in the move to `@rheo/feeds`, used `rheo-feed-content` for the same idea under a different name; a template still wrapping its article region that way keeps working exactly as it always did. #link(<atom-feeds>)[Feeds] tells that story in full.]
-`as` chooses how the selected HTML lands in your asset text: `escaped` (the default, entity-escaping `&`/`<`/`>`, for an Atom `<content type="html">`), `raw` (verbatim, for `<content type="xhtml">`), or `json` (escaped as the body of a JSON string instead---quotes and control characters, not markup---for a JSON Feed's `content_html`).
+// `page` is required, and names another vertebra's compiled output path---`notes/etal.html`, not `notes/etal.typ`.
+// `select` picks the region of that page to pull in: a bare tag name (`main`, `article`), or a leading-dot class (`.rheo-content`).
+// Left out, Rheo falls back to a cascade, first match wins: the page's `<main>` element, else the first element carrying the `rheo-content` class, else---kept working, but not the name to reach for freshly---the first element carrying `rheo-feed-content`, else the whole `<body>`.#footnote[The compatibility step exists because Rheo's Rust feed generator, retired in the move to `@rheo/feeds`, used `rheo-feed-content` for the same idea under a different name; a template still wrapping its article region that way keeps working exactly as it always did. #link(<atom-feeds>)[Feeds] tells that story in full.]
+// `as` chooses how the selected HTML lands in your asset text: `escaped` (the default, entity-escaping `&`/`<`/`>`, for an Atom `<content type="html">`), `raw` (verbatim, for `<content type="xhtml">`), or `json` (escaped as the body of a JSON string instead---quotes and control characters, not markup---for a JSON Feed's `content_html`).
+//
+// A placeholder only resolves inside an asset marrow itself mints, never inside an ordinary vertebra's own page body, which has no reason to reach for another page's HTML this way in the first place.
+// An author wanting a clean `select` target writes it the same way they always would, by wrapping the region that matters and leaving the chrome outside it:
 
-A placeholder only resolves inside an asset marrow itself mints, never inside an ordinary vertebra's own page body, which has no reason to reach for another page's HTML this way in the first place.
-An author wanting a clean `select` target writes it the same way they always would, by wrapping the region that matters and leaving the chrome outside it:
 
-```typ
-#html.elem("nav", [Site chrome.])
-#html.elem("main", html.elem("p", [The actual words of this page.]))
-```
-
-and mints the asset that reaches for it elsewhere in the bundle:
+You can specify a beacon in marrow like so:
 
 ```typ
 #asset(
@@ -107,8 +84,6 @@ and mints the asset that reaches for it elsewhere in the bundle:
   "<entry><body><rheo-content page=\"notes/etal.html\"/></body></entry>",
 )
 ```
-
-One more thing worth stating outright if you ever write the placeholder inside a JSON string by hand: JSON has no way to hold a bare `"`, so the attribute quotes have to be backslash-escaped (`page=\"notes/etal.html\"`) to keep the surrounding asset parseable, and Rheo un-escapes them before reading the tag.
 
 == Reaching into every page's head
 

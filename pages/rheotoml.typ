@@ -1,4 +1,4 @@
-#import "index.typ": sidebar-site, rheo-version, code-with-version
+#import "index.typ": code-with-version, rheo-version, sidebar-site
 #show: sidebar-site.with(current: "rheotoml")
 
 The directory that holds your Typst source is called the *project directory*, and you can compile it like so:
@@ -14,13 +14,16 @@ In general, there are two ways to configure Rheo:
 
 If you compile a Rheo project directory without a `rheo.toml` file, the following default settings will be applied to compile your project.
 
-#code-with-version(lang: "toml", `version = "{version}"
+#code-with-version(
+  lang: "toml",
+  `version = "{version}"
 content_dir = "./"
 build_dir = "build"
 formats = ["pdf", "html", "epub"]
 
 [epub.spine]
-title = "[project directory name]"`)
+title = "[project directory name]"`,
+)
 
 Without a #link(<spines>)[spine] config, every Typst file under `content_dir` is included, ordered by the #link(<spines>)[directory-scan default].
 
@@ -55,7 +58,7 @@ Set `auto_detect_packages = false` on a format's own table to turn that off for 
 auto_detect_packages = false   # default: true
 ```
 
-See #link(<packages>)[Packages] for what auto-detection actually injects and what a package's `min_version` floor still checks even with this key set to `false`.
+See #link(<packages>)[Packages] for more information.
 
 == Fonts
 
@@ -67,5 +70,5 @@ Set the top-level `font_dirs` key to search different or additional directories 
 font_dirs = ["fonts", "custom/typefaces"]
 ```
 
-The repeatable `--font-dir` CLI flag, available on `compile` and `watch`, appends further directories on top of whatever `font_dirs` (or the autoscan) already resolved --- handy for a font you keep outside the project entirely.
+The repeatable `--font-dir` CLI flag, available on `compile` and `watch`, appends further directories on top of whatever `font_dirs` (or the autoscan) already resolved.
 

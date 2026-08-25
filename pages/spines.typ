@@ -31,24 +31,21 @@ Excluded paths are dropped from every format's spine.
 == `[spine] include`
 
 `[spine] include` is an ordered list of glob patterns that becomes that spine's definitive order, replacing the alphabetical directory scan outright.
-Patterns are matched in the order you list them; within a single pattern, matches are sorted lexicographically.
-A file matched by none of the listed patterns is dropped from the spine entirely --- which is also why `include` makes a separate `exclude` for the same files unnecessary.
+Patterns are matched in the order you list them.
+Within a single pattern, matches are sorted lexicographically.
+_A file matched by none of the listed patterns is dropped from the spine entirely_, thus `include` makes a separate `exclude` for the same files unnecessary.
 
 ```toml
 [spine]
 include = ["index.typ", "install.typ", "ideas.typ", "flights.typ"]
 ```
 
-This is the tool for a specific reading order the alphabetical scan can't express on its own --- here `install` comes second even though `flights` and `ideas` would otherwise sort ahead of it.
-Unlike `[[spine.section]]` below --- which happens to have a field of the same name and a related but distinct job --- flat `include` introduces no group node and no path prefix: the handles and output paths it produces are exactly what the directory scan would already give, just reordered.
-`install.typ` still becomes `/install.html`, flat, not nested under any virtual directory.
-
-Two situations here fail the build rather than doing something quietly unintended: setting both `include` and `section` on the same table is rejected at validation (they're two different ways of reshaping the same scan, and Rheo asks you to pick one), and a pattern that matches no file is an error rather than a pattern that silently contributed nothing.
-The first version of flat `include` only reorders flat, top-level files --- it doesn't yet reach into a nested content directory and reorder within it.
+The `include` attribute is one way of restructuring the order in which vertebrae appear in the spine.
+For finer-grained control, read on to the next section.
 
 == `[[spine.section]]`
 
-`[[spine.section]]` also has a field called `include`, but it does something different from the flat `[spine] include` documented just above: it groups matched files under a virtual directory, without moving them on disk, and it *does* prefix every matched file's handle and URL with that group's name.
+Using `[[spine.section]]` allows you to group files under virtual directories for the purpose of order and structure in the Rheo spine without actually moving the files on disk.
 This is useful for reshaping the spine's structure independently of your folder layout:
 
 ```toml
@@ -59,12 +56,12 @@ include = ["ch-*.typ"]
 
 - Files matching `include` get pulled under a virtual `chapters` group, gaining a namespaced handle exactly as if they lived in a `chapters/` directory: `ch-1.typ` → `<chapters:ch-1>`.
 - A section's `title` defaults to a prettified version of `name`, and can be overridden explicitly.
-- Sections nest via `[[spine.section.section]]` to arbitrary depth.
+- Sections can be nested via `[[spine.section.section]]` to arbitrary depth.
 - When `include` lists more than one glob, matches are gathered in glob order and lexicographically within each glob --- so listing globs in the order you want lets you control ordering explicitly, not just alphabetically.
 
 == Per-format overrides
 
-A format-specific table --- `[pdf.spine]`, `[html.spine]`, `[epub.spine]` --- overrides the global `[spine]` one field at a time: whatever it sets wins, and whatever it leaves out falls back to `[spine]`.
+A format-specific table via `[pdf.spine]`, `[html.spine]`, or `[epub.spine]` will override the global `[spine]` one field at a time.
 
 ```toml
 [spine]
