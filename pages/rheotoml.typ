@@ -1,4 +1,4 @@
-#import "index.typ": sidebar-site, rheo-version, code-with-version
+#import "index.typ": code-with-version, rheo-version, sidebar-site
 #show: sidebar-site.with(current: "rheotoml")
 
 The directory that holds your Typst source is called the *project directory*, and you can compile it like so:
@@ -14,13 +14,16 @@ In general, there are two ways to configure Rheo:
 
 If you compile a Rheo project directory without a `rheo.toml` file, the following default settings will be applied to compile your project.
 
-#code-with-version(lang: "toml", `version = "{version}"
+#code-with-version(
+  lang: "toml",
+  `version = "{version}"
 content_dir = "./"
 build_dir = "build"
 formats = ["pdf", "html", "epub"]
 
 [epub.spine]
-title = "[project directory name]"`)
+title = "[project directory name]"`,
+)
 
 Without a #link(<spines>)[spine] config, every Typst file under `content_dir` is included, ordered by the #link(<spines>)[directory-scan default].
 
@@ -44,4 +47,28 @@ reset_footnotes = false   # let footnotes accumulate across pages (default: true
 The key is per-format: set it on `[html]` and `[epub]` independently.
 It defaults to `true`, and as with other settings the CLI takes precedence over `rheo.toml`, which takes precedence over the default (there is no CLI flag for it).
 PDF is unaffected --- it combines your project into a single document, so its footnotes are always continuous regardless of this key.
+
+== Automatic package detection
+
+Rheo scans your content files' `#import` statements and auto-detects assets or marrow declared by any `@rheo`-aware package you use, per format.
+Set `auto_detect_packages = false` on a format's own table to turn that off for that format alone:
+
+```toml
+[html]
+auto_detect_packages = false   # default: true
+```
+
+See #link(<packages>)[Packages] for more information.
+
+== Fonts
+
+Because Rheo embeds its own copy of the Typst compiler, it resolves fonts itself rather than deferring to any `typst` binary or font cache already on your system.
+Alongside your system fonts, it looks for a `fonts` directory at the root of your project by default and loads anything it finds there.
+Set the top-level `font_dirs` key to search different or additional directories instead --- paths are resolved relative to the project root unless absolute, and setting this key switches off the automatic `fonts` autoscan, so include `"fonts"` explicitly if you still want it searched:
+
+```toml
+font_dirs = ["fonts", "custom/typefaces"]
+```
+
+The repeatable `--font-dir` CLI flag, available on `compile` and `watch`, appends further directories on top of whatever `font_dirs` (or the autoscan) already resolved.
 

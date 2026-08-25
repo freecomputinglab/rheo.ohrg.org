@@ -3,23 +3,23 @@
 
 = Slides
 
-The `@rheo/slides` package turns your Typst source file into two outputs simultaneously: a printable PDF script and an interactive #link("https://revealjs.com/")[RevealJS] presentation in the browser.
-This means that after writing a talk's script in Typst, you can insert slides into sections of it (also written in Typst) and produce a slide deck alongside a script that is also annotated with markers noting when to go to the next slide.
+The `@rheo/slides` #link(<packages>)[package] turns one Typst source file into two outputs simultaneously: a printable PDF script and an interactive #link("https://revealjs.com/")[RevealJS] presentation in the browser.
+Write a talk's script in Typst, insert slides into sections of it (also written in Typst), and you get a slide deck alongside a script annotated with markers noting when to advance.
 
-== Installation
+== Importing the package
 
 Import the package at the top of your slides source file:
 
-```typst
+```typ
 #import "@rheo/slides:0.1.0": template, slide
 ```
 
 == Defining slides
 
 Use the `slide` function to mark each slide.
-Each call becomes one RevealJS slide in the browser and a 'slide' marker in the PDF:
+Each call becomes one RevealJS `<section>` in the browser and a `SLIDE` marker in the PDF:
 
-```typst
+```typ
 #slide(title: [Introduction])[
   Lorem ipsum dolor sit amet, consectetur adipiscing elit.
   Slides can contain any Typst content: lists, figures, math, citations.
@@ -32,14 +32,42 @@ Each call becomes one RevealJS slide in the browser and a 'slide' marker in the 
 ]
 ```
 
-The `title` argument is optional.
-When omitted, the slide renders without a heading in both outputs.
+A slide's title is sticky rather than per-slide.
+The package injects a title bar into the deck and repopulates it on every slide change from the current section's own title, so a slide that names no title keeps showing the last one that did --- which is what you want for a run of slides belonging to one part of a talk.
+Pass `title: none` to clear the bar for a slide that should carry no heading at all.
+
+#table(
+  columns: (auto, auto, 1fr),
+  align: (left, left, left),
+  table.header[*Argument*][*Default*][*Description*],
+  [`title`],
+  [`auto`],
+  [
+    The slide's title, shown in the deck's title bar.
+    Left at `auto` the previous slide's title carries over; `none` clears the bar.
+  ],
+
+  [`transition`],
+  [`auto`],
+  [
+    A per-slide override of the deck's transition, emitted as `data-transition` on that section.
+    Left at `auto` (or set to `none`) the slide inherits whatever the deck is using.
+    Any other value must be one of the transition names below, or the build fails naming it.
+  ],
+
+  [`inline`],
+  [`false`],
+  [
+    Whether the slide's body is also typeset in the PDF, beneath its marker.
+    See #link(<slides-pdf>)[PDF script output].
+  ],
+)
 
 == Applying the template
 
 Wrap your document with the `template` show rule to activate the layout:
 
-```typst
+```typ
 #show: template.with(
   theme: "white",
   transition: "slide",
@@ -51,9 +79,39 @@ Wrap your document with the `template` show rule to activate the layout:
 )
 ```
 
-- `first-slide` accepts arbitrary Typst content and is rendered as the opening slide.
-- `theme` accepts any #link("https://revealjs.com/themes/")[built-in RevealJS theme] name.
-- `transition` accepts any RevealJS transition name (`none`, `fade`, `slide`, `convex`, `concave`, `zoom`).
+#table(
+  columns: (auto, auto, 1fr),
+  align: (left, left, left),
+  table.header[*Argument*][*Default*][*Description*],
+  [`theme`],
+  [`"black"`],
+  [
+    One of RevealJS's #link("https://revealjs.com/themes/")[built-in themes], emitted as `data-theme` and used to pick the stylesheet the package injects at runtime.
+    The accepted names are `beige`, `black`, `black-contrast`, `blood`, `dracula`, `league`, `moon`, `night`, `serif`, `simple`, `sky`, `solarized`, `white`, and `white-contrast`; anything else fails the build rather than silently falling back.
+  ],
+
+  [`transition`],
+  [`none`],
+  [
+    The deck-wide transition: `none`, `fade`, `slide`, `convex`, `concave`, or `zoom`.
+    Left unset, RevealJS's own default applies.
+  ],
+
+  [`first-slide`],
+  [`none`],
+  [
+    Arbitrary Typst content, rendered as the opening slide.
+  ],
+
+  [`title`],
+  [`none`],
+  [
+    The deck's title, seeding the title bar for every slide after the cover until a `slide(title: ...)` replaces it.
+    Where `first-slide` is omitted, the opening slide becomes a level-1 heading containing this instead.
+  ],
+)
+
+One of `first-slide` or `title` is required, and the template asserts as much rather than producing a deck with no cover.
 
 == Configuring the spine
 
@@ -65,13 +123,13 @@ Give the PDF a title, if you'd like one:
 title = "My Presentation"
 ```
 
-== PDF script output
+== PDF script output <slides-pdf>
 
-In PDF output, each `slide` call renders as a headed section on standard paper.
-The first slide content (passed via `first-slide`) becomes a title page.
-Speaker notes, if included, appear below the slide body in a smaller typeface.
+The PDF is a script for the person giving the talk, not a printed copy of the deck.
+Each `slide` call renders as a small red `SLIDE` marker in the flow of the prose, telling you where to advance; the slide's own body is left out, on the reasoning that a slide's content is a prompt for what you are about to say rather than part of the script.
+Pass `inline: true` on a slide whose body you do want typeset beneath its marker.
 
-This makes the PDF suitable as a printed script or a supplementary handout alongside the live RevealJS presentation.
+This makes the PDF a working script, and it is why the same file can carry prose the deck never shows: anything outside a `#slide[...]` call is script-only, since the deck is assembled from the slide sections alone.
 
 == Customising the RevealJS CSS
 
@@ -88,15 +146,18 @@ Your `style.css` loads after the package base styles, so any rule you write wins
 === RevealJS CSS variables
 
 RevealJS themes expose CSS custom properties you can reference anywhere in your stylesheet.
-The most useful ones:
+Writing overrides against these rather than against literal colours keeps them theme-agnostic, so switching `theme` doesn't strand your stylesheet on the old palette.
 
-- `--r-main-color` — foreground text colour
-- `--r-background-color` — slide background colour
-- `--r-main-font-size` — base font size
-- `--r-heading-color` — heading colour
-- `--r-link-color` — link colour
-
-Use them to keep your overrides theme-agnostic:
+#table(
+  columns: (auto, 1fr),
+  align: (left, left),
+  table.header[*Property*][*What it holds*],
+  [`--r-main-color`], [Foreground text colour.],
+  [`--r-background-color`], [Slide background colour.],
+  [`--r-main-font-size`], [Base font size, which slide-relative `em` sizes resolve against.],
+  [`--r-heading-color`], [Heading colour.],
+  [`--r-link-color`], [Link colour.],
+)
 
 ```css
 .reveal .slides figcaption {
@@ -106,7 +167,7 @@ Use them to keep your overrides theme-agnostic:
 
 === Common overrides
 
-*Title slide heading colour* — target the first slide's heading:
+*Title slide heading colour* --- target the first slide's heading:
 
 ```css
 .reveal .slides section:first-child h2 {
@@ -114,7 +175,7 @@ Use them to keep your overrides theme-agnostic:
 }
 ```
 
-*Font sizes* — scale slide body and captions independently:
+*Font sizes* --- scale slide body and captions independently:
 
 ```css
 .reveal .slides > section    { font-size: 0.8em; }
@@ -123,17 +184,23 @@ Use them to keep your overrides theme-agnostic:
 .reveal .slides figcaption   { font-size: 0.4em; }
 ```
 
-== Adding slides without losing your original paper styling
+*The title bar* --- the package appends it to `.reveal` as `.slide-title-bar`, so it is styled and positioned like any other element:
 
-Typst's conditional rendering makes it easy to keep both a publishable, typeset paper _as well as_ its script and slides in the same Typst document.
-The key is overloading the `slide` function, so that it simply returns an empty block when you're not building the presentational format of your paper.
-This means that you can use the same Typst document and render via Rheo to both:
-- Publishable PDF/HTML/EPUB
-- A presentation with a PDF script with slide markers, and a RevealJS (HTML) slide deck.
+```css
+.reveal .slide-title-bar { font-size: 0.5em; opacity: 0.6; }
+```
 
-For example, you can define a global boolean and shadow `slide` at the top of your document:
+== Keeping your original paper styling
 
-```typst
+Typst's conditional rendering lets you keep a publishable, typeset paper _as well as_ its script and slides in the same document.
+The trick is to overload the `slide` function so that it returns an empty block when you are not building the presentational format, which means one source file renders through Rheo to both:
+
+- a publishable PDF, HTML, or EPUB, and
+- a presentation --- a PDF script with slide markers, and a RevealJS slide deck.
+
+Define a global boolean and shadow `slide` at the top of your document:
+
+```typ
 #let is-presentation = false
 
 #let slide = if is-presentation { slide } else { (..args) => [] }
@@ -141,14 +208,10 @@ For example, you can define a global boolean and shadow `slide` at the top of yo
 
 When `is-presentation` is `false`, every `#slide[...]` call produces no content, so the document compiles as a clean paper with none of the slide scaffolding visible.
 Set it to `true` (and apply the `template` show rule) to build the presentation instead.
-Both outputs live in the same source file — switch between them by toggling one variable.
-The same boolean can drive other conditional styling.
-For example, a paper might use double spacing while the script uses single spacing:
+The same boolean can drive other conditional styling --- a paper might use double spacing while the script uses single spacing:
 
-```typst
+```typ
 #set par(leading: if is-presentation { 0.65em } else { 1.3em })
 ```
 
 Any show or set rule that differs between outputs can be gated on `is-presentation` in the same way.
-
-

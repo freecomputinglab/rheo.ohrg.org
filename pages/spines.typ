@@ -28,9 +28,24 @@ exclude = ["drafts/**", "TODO.typ"]
 
 Excluded paths are dropped from every format's spine.
 
+== `[spine] include`
+
+`[spine] include` is an ordered list of glob patterns that becomes that spine's definitive order, replacing the alphabetical directory scan outright.
+Patterns are matched in the order you list them.
+Within a single pattern, matches are sorted lexicographically.
+_A file matched by none of the listed patterns is dropped from the spine entirely_, thus `include` makes a separate `exclude` for the same files unnecessary.
+
+```toml
+[spine]
+include = ["index.typ", "install.typ", "ideas.typ", "flights.typ"]
+```
+
+The `include` attribute is one way of restructuring the order in which vertebrae appear in the spine.
+For finer-grained control, read on to the next section.
+
 == `[[spine.section]]`
 
-`[[spine.section]]` groups matched files under a virtual directory, without moving them on disk.
+Using `[[spine.section]]` allows you to group files under virtual directories for the purpose of order and structure in the Rheo spine without actually moving the files on disk.
 This is useful for reshaping the spine's structure independently of your folder layout:
 
 ```toml
@@ -41,12 +56,12 @@ include = ["ch-*.typ"]
 
 - Files matching `include` get pulled under a virtual `chapters` group, gaining a namespaced handle exactly as if they lived in a `chapters/` directory: `ch-1.typ` → `<chapters:ch-1>`.
 - A section's `title` defaults to a prettified version of `name`, and can be overridden explicitly.
-- Sections nest via `[[spine.section.section]]` to arbitrary depth.
+- Sections can be nested via `[[spine.section.section]]` to arbitrary depth.
 - When `include` lists more than one glob, matches are gathered in glob order and lexicographically within each glob --- so listing globs in the order you want lets you control ordering explicitly, not just alphabetically.
 
 == Per-format overrides
 
-A format-specific table --- `[pdf.spine]`, `[html.spine]`, `[epub.spine]` --- overrides the global `[spine]` one field at a time: whatever it sets wins, and whatever it leaves out falls back to `[spine]`.
+A format-specific table via `[pdf.spine]`, `[html.spine]`, or `[epub.spine]` will override the global `[spine]` one field at a time.
 
 ```toml
 [spine]

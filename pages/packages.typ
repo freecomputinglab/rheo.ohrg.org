@@ -17,11 +17,19 @@ That's all!
 Just like the Typst CLI, Rheo will prewarm the `@rheo` namespace so that all of the #link("https://github.com/freecomputinglab/rheo-packages")[existing packages] are available.
 When Rheo compiles your project, it reads every `#import` statement in your content files, identifies any Typst Universe and Rheo packages, and makes them available in your project.
 
-A Rheo package is essentially a Typst package that can also provide #link(<assets>)[assets].
-A package can declare assets that will be injected into a format's build folder automatically --- behaving exactly like a manually configured `[[html.assets]]` block.
+A Rheo package is essentially a Typst package that can also provide #link(<assets>)[assets] and #link(<marrow>)[marrow].
+This means that a Rheo package can provide a Typst interface to custom functionality in any given format supported by Rheo, and/or abstract the same source Typst across multiple formats to gracefully degrade an interactive modal from HTML to PDF, for example.
 
-This is particularly useful in HTML, as it means that we can essentially expose JS/CSS libraries through a Typst API to our project, as the #link(<pkg-slides>)[slides package] does for #link("https://revealjs.com/")[RevealJS].
-(See #link(<custom-js-css>)[Custom JS/CSS] for details on what that means for the build output in HTML.)
+See the #link(<pkg-slides>)[slides package] for an example exposing #link("https://revealjs.com/")[RevealJS] by way of a Typst API to downstream projects.
+
+=== Turning off automatic detection
+
+Rheo handles asset and marrow import for every `#import` in your content files by default.
+If you don't want this auto-detection of Rheo packages, you can turn it off in your `rheo.toml`:
+
+```toml
+auto_detect_packages = false
+```
 
 == Creating a Rheo-compatible package
 
@@ -46,3 +54,23 @@ The `[tool.rheo.html]` section accepts the same fields as `[[html.assets]]`:
 
 Paths are relative to the package root and are resolved against the package's location in the local Typst package cache.
 When a user imports your package and builds their Rheo project, your assets are injected without any extra steps on their part.
+
+=== Requiring a minimum Rheo version
+
+A package can also declare the oldest Rheo it works with, in a `[tool.rheo]` table alongside (or instead of) the format-specific asset section above:
+
+```toml
+[tool.rheo]
+min_version = "0.6.0"
+```
+
+Rheo will only check a package if this attribute exists.
+Where a project imports a package whose declared floor is above the running Rheo, the build will fail before any Typst compile even starts.
+```
+@acme/widgets:1.0 needs rheo >= 0.8.0, but this is rheo 0.6.0
+@acme/charts:2.0 needs rheo >= 0.9.0, but this is rheo 0.6.0
+Upgrade rheo: https://rheo.ohrg.org
+```
+
+A package that isn't resolved locally, has no manifest, or simply never sets `min_version` will never throw this kind of error.
+`min_version` is only checked from Rheo `>=0.6.0`.

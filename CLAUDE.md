@@ -1,8 +1,23 @@
 # CLAUDE.md — rheo.ohrg.org
 
 User-facing documentation site for rheo, authored in Typst and built **with rheo itself**.
-Content lives in `pages/` (`content_dir = "pages"` in `rheo.toml`); the spine order is the
-`vertebrae` list in `rheo.toml`.
+Content lives in `pages/` (`content_dir = "pages"` in `rheo.toml`). The spine is a plain
+directory scan of `pages/` — there is no explicit ordering list. `rheo.toml`'s `[pdf.spine]`
+and `[epub.spine]` each carry only a `title` and, optionally, an `exclude` glob list.
+
+## Sidebar navigation
+
+The sidebar is hand-authored, separately from the spine: `site-nav` in `pages/index.typ` is a
+literal nested array of sections and page entries. Adding a page needs **both** a new
+`pages/<name>.typ` file **and** a `site-nav` entry there — the file alone compiles but stays
+unreachable from any nav. Every page opens with the two-line header:
+
+```typ
+#import "index.typ": sidebar-site
+#show: sidebar-site.with(current: "<id>")
+```
+
+where `<id>` matches that page's `site-nav` entry id.
 
 ## Building locally
 

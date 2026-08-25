@@ -37,8 +37,6 @@ The alias `<handle.typ>` is always available for every vertebra, regardless of o
 
 Use the escape form when the canonical handle would be ambiguous or when you want to be explicit about which file you are linking to.
 
-== Canonical-skip rule
-
 If you have authored a label in your source that matches the canonical handle for a file, Rheo silently skips injecting the automatic label for that file.
 The file remains reachable via its escape form.
 
@@ -51,10 +49,7 @@ The file remains reachable via its escape form.
 #link(<chapters:intro.typ>)[...] // escape form also works
 ```
 
-== Escape-label collision error
-
 If any source file defines a label that matches the escape form of another file (e.g. `<chapters:intro.typ>`), Rheo aborts the build with an error naming the offending file and label.
-This prevents silent ambiguity.
 
 == Migrating from older Rheo versions
 

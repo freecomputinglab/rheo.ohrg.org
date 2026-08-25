@@ -49,8 +49,8 @@ For HTML, this includes CSS and JavaScript entrypoints and support for multiple 
 
 == Relation to Typst's bundle format
 
-Typst has an experimental #link("https://typst.app/docs/reference/bundle/")[bundle format] that handles assets programmatically: you call `asset("output/path", read("source/file", encoding: none))` inside your Typst source to declare files that should be written alongside the document output.
-
+Typst has an experimental #link("https://typst.app/docs/reference/bundle/")[bundle format] that handles assets programmatically inside a Typst bundle to declare files that should be written alongside the document output.
 Rheo's `copy` serves the same purpose but declaratively, at the project level via `rheo.toml`.
 Rather than writing `asset()` calls in every source file, you declare glob patterns once and Rheo copies the matched files into every (or a specific) format's output directory.
-Reach for `copy` when the files are static and known ahead of time; reach for `asset()` when a file has to be generated or picked dynamically from within Typst.
+
+For programmatic control over assets in Typst, you can use the native `#asset` syntax in #link(<marrow>)[your project's marrow].

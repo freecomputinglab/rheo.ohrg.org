@@ -1,12 +1,13 @@
-version = "0.5.0"
+version = "0.6.0"
 content_dir = "pages"
 
 [[html.assets]]
 css_stylesheet = "./style.css"
 
 [pdf.spine]
-title = "Rheo Menual"
+title = "Rheo Manual"
+exclude = ["404.typ"]
 
 [epub.spine]
 title = "Rheo Manual"
-exclude = ["endmatter.typ", "frontmatter.typ"]
+exclude = ["404.typ", "endmatter.typ", "frontmatter.typ"]
