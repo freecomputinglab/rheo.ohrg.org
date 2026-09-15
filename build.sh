@@ -7,8 +7,8 @@ echo "Timestamp: $(date)"
 
 # Setup paths
 REPO_DIR="$(pwd)"
-RHEO_VERSION="v0.5.0"
-RHEO_CACHE="$REPO_DIR/.rheo-binary"
+RHEO_VERSION="v0.6.3"
+RHEO_CACHE="$REPO_DIR/.rheo-binary/$RHEO_VERSION"
 RHEO_BIN="$RHEO_CACHE/rheo"
 
 # Download rheo binary from GitHub release if not cached
@@ -43,5 +43,24 @@ if [ ! -f "build/html/index.html" ]; then
   exit 1
 fi
 
+# Cloudflare Pages only publishes build/html, but rheo writes the PDF and EPUB
+# to build/pdf and build/epub. Copy them alongside the HTML under the names
+# pages/index.typ links to.
+PDF_SRC="$(find build/pdf -maxdepth 1 -name '*.pdf' | head -1)"
+EPUB_SRC="$(find build/epub -maxdepth 1 -name '*.epub' | head -1)"
+
+if [ -z "$PDF_SRC" ]; then
+  echo "Error: no PDF found under build/pdf"
+  exit 1
+fi
+if [ -z "$EPUB_SRC" ]; then
+  echo "Error: no EPUB found under build/epub"
+  exit 1
+fi
+
+cp "$PDF_SRC" build/html/rheo-docs.pdf
+cp "$EPUB_SRC" build/html/rheo-docs.epub
+
 echo "=== Build completed successfully ==="
 echo "Generated $(find build/html -name "*.html" | wc -l) HTML files"
+echo "Published $(basename "$PDF_SRC") as rheo-docs.pdf and $(basename "$EPUB_SRC") as rheo-docs.epub"

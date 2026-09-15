@@ -1,3 +1,4 @@
 build/**/*
+.rheo-binary/
 .beads/
 .abacus/
