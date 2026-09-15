@@ -6,7 +6,41 @@ css_stylesheet = "./style.css"
 
 [pdf.spine]
 title = "Rheo Manual"
-exclude = ["404.typ"]
+# Reading order follows `site-nav` in pages/index.typ, so the manual runs in the
+# same order as the sidebar. frontmatter.typ (title page + outline) opens the
+# document and endmatter.typ (bibliography) closes it; 404.typ is dropped by
+# virtue of matching no pattern.
+include = [
+  "frontmatter.typ",
+  # Basics
+  "index.typ",
+  "why-is-rheo.typ",
+  "getting-started.typ",
+  "init.typ",
+  "faq.typ",
+  # Core
+  "core.typ",
+  "rheotoml.typ",
+  "relative-linking.typ",
+  "rheo-context.typ",
+  "migrate.typ",
+  "build-dir.typ",
+  "content-dir.typ",
+  "spines.typ",
+  "assets.typ",
+  "marrow.typ",
+  "beacons.typ",
+  "head-control.typ",
+  # Formats
+  "format-pdf.typ",
+  "format-epub.typ",
+  "format-html.typ",
+  # Packages
+  "packages.typ",
+  "atom-feeds.typ",
+  "pkg-slides.typ",
+  "endmatter.typ",
+]
 
 [epub.spine]
 title = "Rheo Manual"

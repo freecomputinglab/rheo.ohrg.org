@@ -1,6 +1,8 @@
 #import "index.typ": code-with-version, rheo-version, sidebar-site
 #show: sidebar-site.with(current: "rheotoml")
 
+= Rheo.toml
+
 The directory that holds your Typst source is called the *project directory*, and you can compile it like so:
 
 ```bash

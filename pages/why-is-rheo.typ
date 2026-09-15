@@ -1,6 +1,8 @@
 #import "index.typ": sidebar-site
 #show: sidebar-site.with(current: "why-is-rheo")
 
+= Why Rheo?
+
 == Why do we need Rheo?
 
 Rheo (_ree-oh_) is an #link("https://github.com/freecomputinglab/rheo")[open source] typesetting and static site engine for Typst.
